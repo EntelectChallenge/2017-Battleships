@@ -80,7 +80,7 @@ The game engine requires that you have `bot.json` file.  This will tell the game
 
 ```json
 {
-	"Author":"John Doe",
+    "Author":"John Doe",
     "Email":"john.doe@example.com",
     "NickName" :"John",
     "BotType": "CSharp",
@@ -105,7 +105,7 @@ The property fields are as follows:
 	* FSharp
 5. Project Location - The root location of the project file.  For instance in C# solutions, that will point to folder containing the solution (.sln) file.  This will be used for bot compilation when you submit your bot.
 6. Run File - This is the main entry point file for your bot that will be executed to play the game and must be relative to the root location of this meta file.
-  * Java users have to ensure that the main class is specified in the manifest file, also ensure that maven can compile your project as a fat-jar containing all of your libraries you might use.
+	* Java users have to ensure that the main class is specified in the manifest file, also ensure that maven can compile your project as a fat-jar containing all of your libraries you might use.
 7. RunArgs - (Optional) Any additional arguments you would like to send your bot.  This will be the 3rd argument sent to your bot (if provided).
 
 The game engine might set additional runtime parameter in some scenarios, for instance specifying minimum memory allocation for java bots.
@@ -175,8 +175,8 @@ These are the simplified rules.  More in depth rules are further down.
 1. A player can only pass through one command during a round.
 2. During the first phase a player has to place their ships.
 3. After a successful phase 1, a player can pass through one of the following commands
-    A. Do Nothing - nothing will happen
-    B. Fire Shot- Fires a shot at the given location
+	* Do Nothing - nothing will happen
+	* Fire Shot- Fires a shot at the given location
 4. A shot will damage a ship if it hits, else it will just hit the water and do nothing.
 5. A player earns points for each successful shot landed and for completely destroying an enemy's ship.
 6. A player is victorious if he destroy's all of the enemy's ships first, in the case of a tie the winner will be the player who landed the first shot successfully, if it is still a tie it will be the player who had the least amount of first phase failed commands.
@@ -198,18 +198,18 @@ Players can either be console players or bots.  Both follow the same game engine
 2. Phase 1 will be a maximum of 5 rounds long, if a player is unable to place their ships during these 5 turns they will be destroyed and the opposing player will win.
 3. During the first phase a player can only pass through the PlaceShipCommand, if another Command is sent through or the player fails to place their ships, their FailedFirstPhaseCommands counter will be incremented, if this reaches 5 they will be killed off.
 4. After the first phase is done, each player can send through one of the following commands.
-    A. Do Nothing - This will skip their turn, after 20 DoNothing Commands the player will be killed off to protect the game engine from faulty bots.
-    B. Fire Shot Command - This will fire a shot at the enemy's map, if the shot is successful and hits an opposing ship, the player will be awarded points, if the shot destroys an enemy ship, they will be awarded additinal points for sinking the ship.
+	* Do Nothing - This will skip their turn, after 20 DoNothing Commands the player will be killed off to protect the game engine from faulty bots.
+	* Fire Shot Command - This will fire a shot at the enemy's map, if the shot is successful and hits an opposing ship, the player will be awarded points, if the shot destroys an enemy ship, they will be awarded additinal points for sinking the ship.
 5. Bot players will have the following additional rules
-  A. Bot processes will be forcefully terminated after 4 seconds
-  B. Bots will not be allowed to exceed a total execution time of 2 seconds
-  C. Bots processes might be run with elevated processor priority. (For this reason the game has to be run with administrator privileges) 
-  D. Calibrations will be done at the start of a game to determine additional processor time.  So if the calibration bot takes 200ms to read the files and make a move decision then your bot will be allowed an additional 200ms to complete.
-  E. Malfunctioning bots or bots that exceed their time limit will send back a do nothing command.
-  F. Bot players that post more than 20 do nothing commands in a row will be assumed broken and will be automatically be killed.
-  G. Players must ensure that the bot process exits gracefully within the allotted time (Rule 5-B). 
-  H. All bot logic processing must be done within the source code submitted for your bot.  You may not use network calls such as web services to aid in your bots decision making. No child processes will be allowed and should it be discovered you will be disqualified.
-  I. The Nickname used on the `bot meta` file is used in the `map.txt` file, for this reason you will only be allowed alphanumeric characters as your nick name, and no special characters such as `Carriage Return`, `Line Feed` and `New Line` will not be allowed.
+	* Bot processes will be forcefully terminated after 4 seconds
+	* Bots will not be allowed to exceed a total execution time of 2 seconds
+	* Bots processes might be run with elevated processor priority. (For this reason the game has to be run with administrator privileges) 
+	* Calibrations will be done at the start of a game to determine additional processor time.  So if the calibration bot takes 200ms to read the files and make a move decision then your bot will be allowed an additional 200ms to complete.
+	* Malfunctioning bots or bots that exceed their time limit will send back a do nothing command.
+	* Bot players that post more than 20 do nothing commands in a row will be assumed broken and will be automatically be killed.
+	* Players must ensure that the bot process exits gracefully within the allotted time (Rule 5-B). 
+	* All bot logic processing must be done within the source code submitted for your bot.  You may not use network calls such as web services to aid in your bots decision making. No child processes will be allowed and should it be discovered you will be disqualified.
+	* The Nickname used on the `bot meta` file is used in the `map.txt` file, for this reason you will only be allowed alphanumeric characters as your nick name, and no special characters such as `Carriage Return`, `Line Feed` and `New Line` will not be allowed.
  6. Entelect reserves the right to change/update these rules at any point during the competition.
 
 ### Game Engine Rules
@@ -217,23 +217,23 @@ Players can either be console players or bots.  Both follow the same game engine
 The following rules describe how the game engine will run and process the game
 
 1. The game is split up into 2 phases.
-    A. Phase 1: the placing of the ships phase. During this phase, each player has 5 chances to place their ships on the map. If a player is not successful they will receive an increase to their failed first phase counter, if this reaches 5 they will be killed off.
-    B. Phase 2: firing shots at the opponent's map. During this phase each player takes a shot at the opposing player's map                 in hope of hitting a ship and destroying all of the enemy's ships first.
+	* Phase 1: the placing of the ships phase. During this phase, each player has 5 chances to place their ships on the map. If a player is not successful they will receive an increase to their failed first phase counter, if this reaches 5 they will be killed off.
+	* Phase 2: firing shots at the opponent's map. During this phase each player takes a shot at the opposing player's map                 in hope of hitting a ship and destroying all of the enemy's ships first.
 2. The game contains the following entities.
-    A. Empty space
-    B. Player Ship
+	* Empty space
+	* Player Ship
 2. An empty space can be occupied by a ship.
 4. A space occupied by a ship that is hit will be marked as hit (The player who landed the shot will have their shots landed counter increased).
 5. A space not occupied by a ship that is fired at will be marked as missed (The player who missed the shot will have their shots fired counter increased, regardless if it is a hit or a miss).
 6. The game engine will process rounds in the following order:
-    A. Process Player Commands (Depending on the phase)
-    B. Kill off Players (A player will be killed if all of his ships are destroyed)
+	* Process Player Commands (Depending on the phase)
+	* Kill off Players (A player will be killed if all of his ships are destroyed)
 7. If all of a player's ships are destroyed they will be eliminated and the opposing player will be the winner.
 8. If both players are killed at the same time, the following will be used to determine a winner.
-    A. Player who still has ships remaining
-    B. Player with the most points.
-    C. Player who landed a shot first.
-    D. Player who had the least amount of failed place ship commands.
+	* Player who still has ships remaining
+	* Player with the most points.
+	* Player who landed a shot first.
+	* Player who had the least amount of failed place ship commands.
 
 ### Points
 
