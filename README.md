@@ -9,9 +9,9 @@ For more information about the challenge see the [Challenge website](http://chal
 1.	Download the latest release files
 2.	Build your own bot
 3.	Submit your bot 
-4.	Prepare to fight for the title: Ruler of the high seas
+4.	Prepare to fight for the title: Ruler of the high seas.
 
-#Project Structure
+# Project Structure
 
 In this project you will find everything you need to build and run a bot on your local machine.  This project contains the following:
 
@@ -26,7 +26,7 @@ Improvements and enhancements will be made to the game engine code over time.  T
 
 The game engine has been made available to the community for peer review and bug fixes, so if you find any bugs or have any concerns, please e-mail challenge@entelect.co.za, discuss it with us on the [Challenge forum](http://forum.entelect.co.za/), alternatively submit a pull request on Github and we will review it.
 
-##Usage
+## Usage
 
 The easiest way to start using the game engine is to download the [Game Engine zip](https://github.com/EntelectChallenge/2017-Battleships/releases/latest). You will also need the .NET framework if you don't have it installed already - you can get the offline installer for [.NET Framework here](https://www.microsoft.com/en-us/download/details.aspx?id=53344).
 
@@ -35,6 +35,7 @@ Once you have installed .NET and downloaded the binary release zip file, extract
 We have included the reference bot in the binaries version folder, so at this point you can simply run the Run.bat to see the bots play a match.
 
 Once you have written your own bot you can you can use the command line arguments to specify the bots that should be run. You can see the available command line arguments by running `Battleship.exe --help`:
+
 ```powershell
 -b, --bot (Default: Empty String Array) Relative path to the folder containing the 		bot player. You can add multiple bots by separating each with a space.
 
@@ -55,11 +56,19 @@ Once you have written your own bot you can you can use the command line argument
 --tournamentMode (Default: false) Will run the game engine in tournament mode, this will delete all game files after every bot execution to prevent cheating and will write all the files again at the end of the match.
 
 --help Display this help screen.
-```
+````
 
 So for example you can do something like this to run your bot against the bundled reference bot: `Battleship.exe --pretty -b "../Reference Bot" "../My Bot That will win"`.
 
 You might have to change the configuration file depending on your system in order to run the game.  The configuration file is in the game engine folder called `Battleship.exe.config`.  You can modify the file to update where the game engine looks for the various runtime executables such as the java runtime to use.  All paths have to be absolute (unless the executable is in the system path).
+
+## Sample Bots
+
+Entelect will provide Sample Bots for C# and Java. Sample bots are basic started projects that can read game files and make random moves. Reference bots that are capable of playing a game from start to finish are also included for contestants wishing to have something more to work from.  
+
+For any additional languages we will be relying on the community contributing a sample bot for the language of their choice.  If you would like your language to be supported you will have to submit a sample bot based on the rules outlined in the [Sample Bot](https://github.com/EntelectChallenge/2017-Batteships/tree/master/Sample%20Bots) page.  Sample bot submissions will close at Midnight on the 26th of May, after this no additional sample bots will be accepted.
+
+Calibration bots will be included into the game engine before the first battle (after sample bot submission have closed) and will be based on the sample bot for each language.
 
 ## Your Bot
 
@@ -129,17 +138,9 @@ The game will store game files during a match in the following directory format
 ................................................... state.json
 ................................................... place.txt
 ................................................... command.txt
-```
+````
 
 The engine has two modes, normal mode or debug mode, and tournament mode. During normal mode no files are deleted, during tournament mode after each round, all files that could leak information to the opposing player is deleted as soon as the round ends, the information is stored in memory and dumped into the appropriate files at the end of match. The rules below will be explained using tournament mode.
-
-### Sample Bots
-
-Entelect will provide Sample Bots for C# and Java. Sample bots are basic started projects that can read game files and make random moves. Reference bots that are capable of playing a game from start to finish are also included for contestants wishing to have something more to work from.  
-
-For any additional languages we will be relying on the community contributing a sample bot for the language of their choice.  If you would like your language to be supported you will have to submit a sample bot based on the rules outlined in the [Sample Bot](https://github.com/EntelectChallenge/2017-Batteships/tree/master/Sample%20Bots) page.  Sample bot submissions will close at Midnight on the 26th of May, after this no additional sample bots will be accepted.
-
-Calibration bots will be included into the game engine before the first battle (after sample bot submission have closed) and will be based on the sample bot for each language.
 
 ### Game Phases
 
