@@ -1,0 +1,8 @@
+{
+	"Author":"John Doe",
+    "Email":"john.doe@example.com",
+    "NickName" :"John",
+    "BotType": 1,
+    "ProjectLocation" : "",
+    "RunFile" : "target\\sample-bot-1.0-SNAPSHOT-jar-with-dependencies.jar"
+}

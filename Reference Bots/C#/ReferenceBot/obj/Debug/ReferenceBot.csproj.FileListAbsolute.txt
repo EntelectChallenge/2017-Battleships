@@ -1,0 +1,11 @@
+W:\Projects\100k\2017\Source\Reference Bots\C#\ReferenceBot\bin\Debug\ReferenceBot.exe.config
+W:\Projects\100k\2017\Source\Reference Bots\C#\ReferenceBot\bin\Debug\bot.json
+W:\Projects\100k\2017\Source\Reference Bots\C#\ReferenceBot\bin\Debug\ReferenceBot.exe
+W:\Projects\100k\2017\Source\Reference Bots\C#\ReferenceBot\bin\Debug\ReferenceBot.pdb
+W:\Projects\100k\2017\Source\Reference Bots\C#\ReferenceBot\bin\Debug\Newtonsoft.Json.dll
+W:\Projects\100k\2017\Source\Reference Bots\C#\ReferenceBot\bin\Debug\Newtonsoft.Json.xml
+W:\Projects\100k\2017\Source\Reference Bots\C#\ReferenceBot\obj\Debug\ReferenceBot.exe
+W:\Projects\100k\2017\Source\Reference Bots\C#\ReferenceBot\obj\Debug\ReferenceBot.pdb
+C:\Development\EntelectChallenge\Reference Bots\C#\ReferenceBot\bin\Debug\ReferenceBot.exe.config
+C:\Development\EntelectChallenge\Reference Bots\C#\ReferenceBot\obj\Debug\ReferenceBot.exe
+C:\Development\EntelectChallenge\Reference Bots\C#\ReferenceBot\obj\Debug\ReferenceBot.pdb

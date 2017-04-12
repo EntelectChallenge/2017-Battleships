@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9A0FEB3F-B67C-4300-87A4-DA9BE8F81088}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Domain</RootNamespace>
+    <AssemblyName>Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bot\BotMeta.cs" />
+    <Compile Include="Exceptions\InvalidOperationException.cs" />
+    <Compile Include="Exceptions\LocationOutOfBoundsException.cs" />
+    <Compile Include="File\FileHelper.cs" />
+    <Compile Include="Games\GameMap.cs" />
+    <Compile Include="Games\PlayerType.cs" />
+    <Compile Include="Games\ShipType.cs" />
+    <Compile Include="Games\ShipTypeExtension.cs" />
+    <Compile Include="JSON\OpponentCell.cs" />
+    <Compile Include="JSON\OpponentPlayerMap.cs" />
+    <Compile Include="JSON\OpponentShip.cs" />
+    <Compile Include="JSON\PlayerGameState.cs" />
+    <Compile Include="Maps\Cell.cs" />
+    <Compile Include="Maps\Direction.cs" />
+    <Compile Include="Maps\ICellOccupant.cs" />
+    <Compile Include="Maps\PlayerMap.cs" />
+    <Compile Include="Meta\BotaMeta.cs" />
+    <Compile Include="Meta\RoundInfo.cs" />
+    <Compile Include="Players\BattleshipPlayer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ships\Battleship.cs" />
+    <Compile Include="Ships\Carrier.cs" />
+    <Compile Include="Ships\Cruiser.cs" />
+    <Compile Include="Ships\Destroyer.cs" />
+    <Compile Include="Ships\Ship.cs" />
+    <Compile Include="Ships\Submarine.cs" />
+    <Compile Include="Weapons\SingleShotWeapon.cs" />
+    <Compile Include="Weapons\Weapon.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
