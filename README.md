@@ -124,15 +124,14 @@ Your bot will receive two arguments on every execution round of the game:
 The game will store game files during a match in the following directory format
 ````
 ...Replays/
-..........Time Stamp/
-...................Phase and Round Number/
+..........{Match Time Stamp}/
+...................{Phase and Round Number}/
 ........................................ engine.log
-........................................ player 1 map.txt
-........................................ player 2 map.txt
-........................................ player 1 state.json
-........................................ player 2 state.json
+........................................ A - map.txt
+........................................ B - map.txt
+........................................ state.json
 ........................................ roundinfo.json
-........................................ Player Key/
+........................................ {Player Key}/
 ................................................... log.txt
 ................................................... map.txt
 ................................................... state.json
@@ -239,8 +238,8 @@ The following rules describe how the game engine will run and process the game
 
 Players wills be awarded points during the game based on the following.
 1. For each successful shot a player will be awarded 10 points.
-2. For destroying an enemy ship a player will be awarded 30 points.
-3. For Killing off an enemy player the player will be awarded an additional 100 points.
+1. For destroying an enemy ship a player will be awarded 30 points.
+1. For Killing off an enemy player the player will be awarded an additional 100 points.
 
 ## Release Notes
 
