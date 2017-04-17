@@ -167,6 +167,10 @@ The `map.txt` file will use the following characters to represent the game state
 The `map.txt` will also have sections underneath the map for each player to give more information about each player like the points, shots fired, shots landed and which ships are still remaining.
 ```
 
+### Game Engine Upgrades
+
+Duing the competition the game engine will be upgraded after each battle to support new features to make the game more complex and challenging.  Please make sure that you follow the releases to make sure you are always working with the latest features and that your bot can handle the latest changes to the game to ensure you stand a winning chance.  Each version of the game engine will be backwards compatible with older bots.
+
 ### Rules
 
 These are the simplified rules.  More in depth rules are further down.
