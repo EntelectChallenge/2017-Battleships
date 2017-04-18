@@ -28,7 +28,7 @@ The game engine has been made available to the community for peer review and bug
 
 ## Usage
 
-The easiest way to start using the game engine is to download the [Game Engine zip](https://github.com/EntelectChallenge/2017-Batteships/releases/latest). You will also need the .NET framework if you don't have it installed already - you can get the offline installer for [.NET Framework here](https://www.microsoft.com/en-us/download/details.aspx?id=53344).
+The easiest way to start using the game engine is to download the [Game Engine zip](https://github.com/EntelectChallenge/2017-Battleships/releases/latest). You will also need the .NET framework if you don't have it installed already - you can get the offline installer for [.NET Framework here](https://www.microsoft.com/en-us/download/details.aspx?id=53344).
 
 Once you have installed .NET and downloaded the binary release zip file, extract it and open a new Command Prompt in the Binaries/{version}/Game Engine folder.
 
@@ -66,7 +66,7 @@ You might have to change the configuration file depending on your system in orde
 
 Entelect will provide Sample Bots for C# and Java. Sample bots are basic started projects that can read game files and make random moves. Reference bots that are capable of playing a game from start to finish are also included for contestants wishing to have something more to work from.  
 
-For any additional languages we will be relying on the community contributing a sample bot for the language of their choice.  If you would like your language to be supported you will have to submit a sample bot based on the rules outlined in the [Sample Bot](https://github.com/EntelectChallenge/2017-Batteships/tree/master/Sample%20Bots) page.  Sample bot submissions will close at Midnight on the 26th of May, after this no additional sample bots will be accepted.
+For any additional languages we will be relying on the community contributing a sample bot for the language of their choice.  If you would like your language to be supported you will have to submit a sample bot based on the rules outlined in the [Sample Bot](https://github.com/EntelectChallenge/2017-Battleships/tree/master/Sample%20Bots) page.  Sample bot submissions will close at Midnight on the 26th of May, after this no additional sample bots will be accepted.
 
 Calibration bots will be included into the game engine before the first battle (after sample bot submission have closed) and will be based on the sample bot for each language.
 
@@ -74,7 +74,7 @@ Calibration bots will be included into the game engine before the first battle (
 
 Same as last year, the system will compile your bot, based on the bot meta file that you included.
 
-Sample bot project files can be downloaded [here.](https://github.com/EntelectChallenge/2017-Batteships/releases/latest)
+Sample bot project files can be downloaded [here.](https://github.com/EntelectChallenge/2017-Battleships/releases/latest)
 
 The game engine requires that you have `bot.json` file.  This will tell the game engine how to compile and run your bot.  The file must contain the following:
 
