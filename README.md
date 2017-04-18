@@ -200,21 +200,21 @@ Each player will only see where they hit and missed on their opponents map.
 Players can either be console players or bots.  Both follow the same game engine rules.
 
 1. Players will only be able submit one command per round.  The game engine will reject any additional commands sent by the player.
-2. Phase 1 will be a maximum of 9 rounds long, if a player is unable to place their ships during these 9 turns they will be destroyed and the opposing player will win.
+2. Phase 1 will be a maximum of 5 rounds long, if a player is unable to place their ships during these 5 turns they will be destroyed and the opposing player will win.
 3. During the first phase a player can only pass through the PlaceShipCommand, if another Command is sent through or the player fails to place their ships, their FailedFirstPhaseCommands counter will be incremented, if this reaches 5 they will be killed off.
 4. After the first phase is done, each player can send through one of the following commands.
 	* Do Nothing - This will skip their turn, after 20 DoNothing Commands the player will be killed off to protect the game engine from faulty bots.
 	* Fire Shot Command - This will fire a shot at the enemy's map, if the shot is successful and hits an opposing ship, the player will be awarded points, if the shot destroys an enemy ship, they will be awarded additinal points for sinking the ship.
 5. Bot players will have the following additional rules
-	A Bot processes will be forcefully terminated after 4 seconds
-	B Bots will not be allowed to exceed a total execution time of 2 seconds
-	C Bots processes might be run with elevated processor priority. (For this reason the game has to be run with administrator privileges) 
-	D Calibrations will be done at the start of a game to determine additional processor time.  So if the calibration bot takes 200ms to read the files and make a move decision then your bot will be allowed an additional 200ms to complete.
-	E Malfunctioning bots or bots that exceed their time limit will send back a do nothing command.
-	F Bot players that post more than 20 do nothing commands in a row will be assumed broken and will be automatically be killed.
-	G Players must ensure that the bot process exits gracefully within the allotted time (Rule 5-B). 
-	H All bot logic processing must be done within the source code submitted for your bot.  You may not use network calls such as web services to aid in your bots decision making. No child processes will be allowed and should it be discovered you will be disqualified.
-	I The Nickname used on the `bot meta` file is used in the `map.txt` file, for this reason you will only be allowed alphanumeric characters as your nick name, and no special characters such as `Carriage Return`, `Line Feed` and `New Line` will not be allowed.
+	* Bot processes will be forcefully terminated after 4 seconds
+	* Bots will not be allowed to exceed a total execution time of 2 seconds
+	* Bots processes might be run with elevated processor priority. (For this reason the game has to be run with administrator privileges) 
+	* Calibrations will be done at the start of a game to determine additional processor time.  So if the calibration bot takes 200ms to read the files and make a move decision then your bot will be allowed an additional 200ms to complete.
+	* Malfunctioning bots or bots that exceed their time limit will send back a do nothing command.
+	* Bot players that post more than 20 do nothing commands in a row will be assumed broken and will be automatically be killed.
+	* Players must ensure that the bot process exits gracefully within the allotted time (Rule 5-B). 
+	* All bot logic processing must be done within the source code submitted for your bot.  You may not use network calls such as web services to aid in your bots decision making. No child processes will be allowed and should it be discovered you will be disqualified.
+	* The Nickname used on the `bot meta` file is used in the `map.txt` file, for this reason you will only be allowed alphanumeric characters as your nick name, and no special characters such as `Carriage Return`, `Line Feed` and `New Line` will not be allowed.
  6. Entelect reserves the right to change/update these rules at any point during the competition.
 
 ### Game Engine Rules
