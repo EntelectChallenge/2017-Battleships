@@ -214,17 +214,17 @@ Players can either be console players or bots.  Both follow the same game engine
 	* Bot players that post more than 20 do nothing commands in a row will be assumed broken and will automatically be killed.
 	* Players must ensure that the bot process exits gracefully within the allotted time (Rule 5-B). 
 	* All bot logic processing must be done within the source code submitted for your bot.  You may not use network calls such as web services to aid in your bots decision making. No child processes will be allowed and should it be discovered you will be disqualified.
-	* The Nickname used on the `bot meta` file is used in the `map.txt` file, for this reason you will only be allowed alphanumeric characters as your nick name, and no special characters such as `Carriage Return`, `Line Feed` and `New Line` will not be allowed.
+	* The nickname used on the `bot meta` file is used in the `map.txt` file, for this reason you will only be allowed alphanumeric characters as your nickname, and no special characters such as `Carriage Return`, `Line Feed` and `New Line` will not be allowed.
  6. Entelect reserves the right to change/update these rules at any point during the competition.
 
 ### Game Engine Rules
 
 The following rules describe how the game engine will run and process the game
 
-1. The game is split up into 2 phases.
+1. The game is split up into 2 phases:
 	* Phase 1: the placing of the ships phase. During this phase, each player has 5 chances to place their ships on the map. If a player is not successful they will receive an increase to their failed first phase counter, if this reaches 5 they will be killed off.
 	* Phase 2: firing shots at the opponent's map. During this phase each player takes a shot at the opposing player's map                 in hope of hitting a ship and destroying all of the enemy's ships first.
-2. The game contains the following entities.
+2. The game contains the following entities:
 	* Empty space
 	* Player Ship
 2. An empty space can be occupied by a ship.
@@ -234,7 +234,7 @@ The following rules describe how the game engine will run and process the game
 	* Process Player Commands (Depending on the phase)
 	* Kill off Players (A player will be killed if all of his ships are destroyed)
 7. If all of a player's ships are destroyed they will be eliminated and the opposing player will be the winner.
-8. If both players are killed at the same time, the following will be used to determine a winner.
+8. If both players are killed at the same time, the following will be used to determine a winner:
 	* Player who still has ships remaining
 	* Player with the most points.
 	* Player who landed a shot first.
@@ -243,9 +243,9 @@ The following rules describe how the game engine will run and process the game
 ### Points
 
 Players wills be awarded points during the game based on the following.
-1. For each successful shot a player will be awarded 10 points.
-1. For destroying an enemy ship a player will be awarded 30 points.
-1. For Killing off an enemy player the player will be awarded an additional 100 points.
+1. For each successful shot you will be awarded 10 points.
+1. For destroying an enemy ship you will be awarded 30 points.
+1. For killing the enemy player you will be awarded an additional 100 points.
 
 ## Release Notes
 
