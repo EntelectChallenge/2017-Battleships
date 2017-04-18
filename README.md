@@ -193,6 +193,8 @@ The map will be square sized based on the given size rules. Please note that eac
 2. 10 x 10 if medium is selected.
 3. 14 x 14 if large is selected.
 
+Each player will only see where they hit and missed on their opponents map.
+
 ### Player Rules
 
 Players can either be console players or bots.  Both follow the same game engine rules.
