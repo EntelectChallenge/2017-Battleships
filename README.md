@@ -191,7 +191,7 @@ The map will be square sized based on the given size rules. Please note that eac
 
 1. 7 x 7 if small is selected.
 2. 10 x 10 if medium is selected.
-3. 12 x 12 if large is selected.
+3. 14 x 14 if large is selected.
 
 ### Player Rules
 
