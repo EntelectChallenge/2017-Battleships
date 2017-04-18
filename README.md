@@ -28,7 +28,7 @@ The game engine has been made available to the community for peer review and bug
 
 ## Usage
 
-The easiest way to start using the game engine is to download the [Game Engine zip](https://github.com/EntelectChallenge/2017-Battleships/releases/latest). You will also need the .NET framework if you don't have it installed already - you can get the offline installer for [.NET Framework here](https://www.microsoft.com/en-us/download/details.aspx?id=53344).
+The easiest way to start using the game engine is to download the [Game Engine zip](https://github.com/EntelectChallenge/2017-Batteships/releases/latest). You will also need the .NET framework if you don't have it installed already - you can get the offline installer for [.NET Framework here](https://www.microsoft.com/en-us/download/details.aspx?id=53344).
 
 Once you have installed .NET and downloaded the binary release zip file, extract it and open a new Command Prompt in the Binaries/{version}/Game Engine folder.
 
@@ -74,7 +74,7 @@ Calibration bots will be included into the game engine before the first battle (
 
 Same as last year, the system will compile your bot, based on the bot meta file that you included.
 
-Sample bot project files can be downloaded [here.](https://github.com/EntelectChallenge/2017-Battleships/releases/latest)
+Sample bot project files can be downloaded [here.](https://github.com/EntelectChallenge/2017-Batteships/releases/latest)
 
 The game engine requires that you have `bot.json` file.  This will tell the game engine how to compile and run your bot.  The file must contain the following:
 
