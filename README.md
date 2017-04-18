@@ -187,7 +187,7 @@ These are the simplified rules.  More in depth rules are further down.
 # The Rules to rule them all
 ### Map Generation
 
-The map will be square sized based on the given size rules. Please note that each player has their own map and this is the size of the players map and not the entire game map.
+The map will be square sized based on the given size rules. Please note that each player has their own map and this is the size of the player's map and not the entire game map.
 
 1. 7 x 7 if small is selected.
 2. 10 x 10 if medium is selected.
