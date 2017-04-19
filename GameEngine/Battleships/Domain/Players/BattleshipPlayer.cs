@@ -69,7 +69,7 @@ namespace Domain.Players
         }
 
         [JsonProperty]
-        public int ShipsRemaing
+        public int ShipsRemaining
         {
             get { return this.Ships.Count(x => !x.Destroyed); }
         }
