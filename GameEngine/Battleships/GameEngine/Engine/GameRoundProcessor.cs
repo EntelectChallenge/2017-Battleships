@@ -140,7 +140,7 @@ namespace GameEngine.Engine
             _logger.LogDebug("Killing off players who have no ships left");
             foreach (var battleshipPlayer in _gameMap.RegisteredPlayers)
             {
-                if (battleshipPlayer.ShipsRemaing != 0) continue;
+                if (battleshipPlayer.ShipsRemaining != 0) continue;
                 if (battleshipPlayer == playerOne)
                 {
                     playerTwo.AddPoints(_playerKillPoints);
