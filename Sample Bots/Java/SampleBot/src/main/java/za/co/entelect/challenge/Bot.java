@@ -11,7 +11,6 @@ import za.co.entelect.challenge.domain.state.GameState;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Bot {
@@ -50,21 +49,21 @@ public class Bot {
 
     private PlaceShipCommand placeShips() {
 
-        ArrayList<ShipType> shipsToPlace = new ArrayList<ShipType>();
+        ArrayList<ShipType> shipsToPlace = new ArrayList<>();
         shipsToPlace.add(ShipType.Battleship);
         shipsToPlace.add(ShipType.Carrier);
         shipsToPlace.add(ShipType.Cruiser);
         shipsToPlace.add(ShipType.Destroyer);
         shipsToPlace.add(ShipType.Submarine);
 
-        ArrayList<Point> points = new ArrayList<Point>();
+        ArrayList<Point> points = new ArrayList<>();
         points.add(new Point(1, 0));
         points.add(new Point(3, 1));
         points.add(new Point(4, 2));
         points.add(new Point(7, 3));
         points.add(new Point(1, 8));
 
-        ArrayList<Direction> directions = new ArrayList<Direction>();
+        ArrayList<Direction> directions = new ArrayList<>();
         directions.add(Direction.North);
         directions.add(Direction.East);
         directions.add(Direction.North);
