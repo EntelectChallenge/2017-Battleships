@@ -42,7 +42,7 @@ namespace GameEngine.Commands.PlayerCommands
             }
             catch (Exception exception)
             {
-                throw new InvalidCommandException(exception.Message);
+                throw new InvalidCommandException(exception.Message, exception);
             }
         }
 
