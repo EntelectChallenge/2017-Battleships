@@ -1,0 +1,8 @@
+{
+	"Author":"Scala Doe",
+    "Email":"Scala.doe@example.com",
+    "NickName" :"Scala",
+    "BotType": 1,
+    "ProjectLocation" : "",
+    "RunFile" : "target\\battleships-1.0-SNAPSHOT-jar-with-dependencies.jar"
+}
