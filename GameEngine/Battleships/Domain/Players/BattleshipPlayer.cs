@@ -117,7 +117,7 @@ namespace Domain.Players
 
         public Weapon GetWeapon(WeaponType weaponType)
         {
-            var weapon = Ships.Where(x => !x.Destroyed).SelectMany(x => x.Weapons).First(x => x.WeaponType == weaponType);
+            var weapon = Ships.Where(x => !x.Destroyed).SelectMany(x => x.Weapons).FirstOrDefault(x => x.WeaponType == weaponType);
             if(weapon == null)
                 throw new ArgumentException($"Player has no active ships capable of firing weapon {weaponType}");
 
