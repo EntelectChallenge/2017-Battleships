@@ -20,7 +20,8 @@ namespace Domain.Bot
             CPlusPlus,
             Python2,
             Python3,
-            FSharp
+            FSharp,
+            Golang
         }
     }
 }

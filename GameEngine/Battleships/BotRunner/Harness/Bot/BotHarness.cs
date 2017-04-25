@@ -58,6 +58,9 @@ namespace TestHarness.TestHarnesses.Bot
                 case BotMeta.BotTypes.Java:
                     _botRunner = new JavaRunner(this);
                     break;
+                case BotMeta.BotTypes.Golang:
+                    _botRunner = new GolangRunner(this);
+                    break;
                 case BotMeta.BotTypes.JavaScript:
                     _botRunner = new JavaScriptRunner(this);
                     break;
@@ -72,7 +75,7 @@ namespace TestHarness.TestHarnesses.Bot
             CurrentWorkingDirectory = Path.Combine(Path.Combine(WorkDir, RoundPath(gameState, _currentRound)),
                 BattleshipPlayer.Key.ToString(CultureInfo.InvariantCulture));
             WriteRoundFiles(gameState);
-            _botRunner.CalibrateBot();
+            _botRunner.CalibrateBot(); //
             RemoveCommandFile(); //Remove the move file created by calibration bots
             NewRoundStarted(gameState);
         }
