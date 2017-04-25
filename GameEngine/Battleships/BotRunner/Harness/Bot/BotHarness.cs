@@ -75,7 +75,7 @@ namespace TestHarness.TestHarnesses.Bot
             CurrentWorkingDirectory = Path.Combine(Path.Combine(WorkDir, RoundPath(gameState, _currentRound)),
                 BattleshipPlayer.Key.ToString(CultureInfo.InvariantCulture));
             WriteRoundFiles(gameState);
-            _botRunner.CalibrateBot();
+            _botRunner.CalibrateBot(); //
             RemoveCommandFile(); //Remove the move file created by calibration bots
             NewRoundStarted(gameState);
         }

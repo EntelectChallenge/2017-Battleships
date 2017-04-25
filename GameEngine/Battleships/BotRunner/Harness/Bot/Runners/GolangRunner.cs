@@ -14,7 +14,7 @@ namespace TestHarness.TestHarnesses.Bot.Runners
         protected override ProcessHandler CreateProcessHandler()
         {
             var processArgs = GetProcessArguments(ParentHarness.BotMeta.RunFile, ParentHarness.BattleshipPlayer.Key, ParentHarness.CurrentWorkingDirectory);
-	    return new ProcessHandler(ParentHarness.BotDir, Settings.Default.PathToGolang,  processArgs, ParentHarness.Logger);
+  	        return new ProcessHandler(ParentHarness.BotDir, Settings.Default.PathToGolang,  processArgs, ParentHarness.Logger);
         }
 
         protected override void RunCalibrationTest()
