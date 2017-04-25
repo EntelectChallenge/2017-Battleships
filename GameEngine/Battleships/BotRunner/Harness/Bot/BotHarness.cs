@@ -58,6 +58,9 @@ namespace TestHarness.TestHarnesses.Bot
                 case BotMeta.BotTypes.Java:
                     _botRunner = new JavaRunner(this);
                     break;
+                case BotMeta.BotTypes.Golang:
+                    _botRunner = new GolangRunner(this);
+                    break;
                 case BotMeta.BotTypes.JavaScript:
                     _botRunner = new JavaScriptRunner(this);
                     break;

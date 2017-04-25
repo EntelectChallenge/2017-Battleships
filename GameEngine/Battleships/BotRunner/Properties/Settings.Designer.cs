@@ -61,6 +61,18 @@ namespace BotRunner.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("go")]
+        public string PathToGolang {
+            get {
+                return ((string)(this["PathToGolang"]));
+            }
+            set {
+                this["PathToGolang"] = value;
+            }
+        }
+	
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("node.exe")]
         public string PathToNode {
             get {
