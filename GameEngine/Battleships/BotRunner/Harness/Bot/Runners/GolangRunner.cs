@@ -14,19 +14,19 @@ namespace TestHarness.TestHarnesses.Bot.Runners
         protected override ProcessHandler CreateProcessHandler()
         {
             var processArgs = GetProcessArguments(ParentHarness.BotMeta.RunFile, ParentHarness.BattleshipPlayer.Key, ParentHarness.CurrentWorkingDirectory);
-	    return new ProcessHandler(ParentHarness.BotDir, "go",  processArgs, ParentHarness.Logger, true);
+  	        return new ProcessHandler(ParentHarness.BotDir, Settings.Default.PathToGolang,  processArgs, ParentHarness.Logger);
         }
 
         protected override void RunCalibrationTest()
         {
-            var calibrationJar = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                @"Calibrations" + Path.DirectorySeparatorChar + "BotCalibrationGolang.jar");
-            var processArgs = GetProcessArguments(calibrationJar, ParentHarness.BattleshipPlayer.Key, ParentHarness.CurrentWorkingDirectory);
+            var calibrationGo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                @"Calibrations" + Path.DirectorySeparatorChar + "BotCalibrationGo");
+            var processArgs = GetProcessArguments(calibrationGo, ParentHarness.BattleshipPlayer.Key, ParentHarness.CurrentWorkingDirectory);
 
-            // using (var handler = new ProcessHandler(AppDomain.CurrentDomain.BaseDirectory, Settings.Default.PathToGolang, processArgs, ParentHarness.Logger))
-            // {
-            //     handler.RunProcess();
-            // }
+            using (var handler = new ProcessHandler(AppDomain.CurrentDomain.BaseDirectory, Settings.Default.PathToGolang, processArgs, ParentHarness.Logger))
+            {
+                handler.RunProcess();
+            }
         }
 
 
