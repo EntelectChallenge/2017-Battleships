@@ -47,7 +47,7 @@ Once you have written your own bot you can you can use the command line argument
 
 -l, --log (Default: ) Relative path where you want the match replay log files to be output (instead of the default Replays/{matchSeed}).
 
--s, --size (Default: 2) The map size to use for the match. 1 = small (7 x 7), 2 = medium (10 x 10), 3 = large (12 x 12).
+-s, --size (Default: 2) The map size to use for the match. 1 = small (7 x 7), 2 = medium (10 x 10), 3 = large (14 x 14).
 
 --nolimit (Default: false) Disables the time limit for bot execution.
 
