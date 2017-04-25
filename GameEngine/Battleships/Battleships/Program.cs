@@ -29,7 +29,10 @@ namespace Battleships
                     game.Logger = new CombinedLogger(new InMemoryLogger(), new ConsoleLogger());
                 }
                 game.StartNewGame(options);
-                Console.ReadLine();
+                if (options.Pretty)
+                {
+                    Console.ReadLine();
+                }
             }
             catch (Exception ex)
             {
