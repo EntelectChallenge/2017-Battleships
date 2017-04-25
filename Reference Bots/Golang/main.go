@@ -27,18 +27,16 @@ type Bot struct {
 
 type Cell struct {
 	Occupied bool
-	Damaged bool
-	Missed bool
-	Hit bool
-	X int
-	Y int
+	Damaged  bool
+	Missed   bool
+	Hit      bool
+	X        int
+	Y        int
 }
-
 
 func (c Cell) String() string {
 	return fmt.Sprintf("{O: %v, H: %v, D: %v, M: %v, (X:%d, X:%d)}", c.Occupied, c.Hit, c.X, c.Y)
 }
-
 
 type MapType struct {
 	Cells []Cell
@@ -91,19 +89,19 @@ func NewCommand(code Code, x int, y int) *Command {
 
 const (
 	NORTH = "North"
-	EAST = "East"
+	EAST  = "East"
 	SOUTH = "South"
-	WEST = "West"
+	WEST  = "West"
 )
 
 type Direction string
 
 const (
 	BATTLESHIP = "Battleship"
-	CARRIER = "Carrier"
-	CRUISER = "Cruiser"
-	DESTROYER = "Destroyer"
-	SUBMARINE = "Submarine"
+	CARRIER    = "Carrier"
+	CRUISER    = "Cruiser"
+	DESTROYER  = "Destroyer"
+	SUBMARINE  = "Submarine"
 )
 
 type ShipType string
@@ -138,13 +136,12 @@ func (c *Command) String() string {
 		c.coordinate.y)
 }
 
-
 var shipSizes = map[ShipType]int{
 	BATTLESHIP: 4,
-	CARRIER: 5,
-	CRUISER: 3,
-	DESTROYER: 2,
-	SUBMARINE: 3,
+	CARRIER:    5,
+	CRUISER:    3,
+	DESTROYER:  2,
+	SUBMARINE:  3,
 }
 
 func placeShips(bot Bot, gameState GameState) *PlaceShipCommand {
@@ -158,15 +155,13 @@ func placeShips(bot Bot, gameState GameState) *PlaceShipCommand {
 		_ = shipSize
 		counter += 1
 		placeShipCommand.shipTypes = append(placeShipCommand.shipTypes, shipType)
-		var location = Point{ 0,  counter }
+		var location = Point{0, counter}
 		placeShipCommand.points = append(placeShipCommand.points, location)
-		placeShipCommand.directions =append(placeShipCommand.directions, EAST)
+		placeShipCommand.directions = append(placeShipCommand.directions, EAST)
 	}
-	
+
 	return &placeShipCommand
 }
-
-
 
 func writePlaceShips(bot Bot, placeShipCommand *PlaceShipCommand) {
 	f, err := os.Create(path.Join(bot.workingDirectory, placeShipFileName))
@@ -187,16 +182,16 @@ func makeMove(bot Bot, gameState GameState) *Command {
 	var command Command
 	// get opponent cells already attempted
 	fmt.Println("gamestate====", gameState.OpponentMap)
-	newX, newY := 0,0
+	newX, newY := 0, 0
 	for index, cell := range gameState.OpponentMap.Cells {
-		_ = index 
-		if !cell.Damaged && !cell.Missed  {
+		_ = index
+		if !cell.Damaged && !cell.Missed {
 			newX, newY = cell.X, cell.Y
 			break
 		}
 	}
-	
-	command.coordinate = Point{ newX, newY }
+
+	command.coordinate = Point{newX, newY}
 	command.commandCode = FIRESHOT
 	return &command
 }
@@ -283,5 +278,4 @@ func main() {
 	var duration = time.Since(startTime)
 	fmt.Printf("[Bot]\tBot finished in %v", duration)
 
-	
 }
