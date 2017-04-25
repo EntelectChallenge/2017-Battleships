@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BotRunner.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -10,6 +10,9 @@
     </Setting>
     <Setting Name="PathToJava" Type="System.String" Scope="User">
       <Value Profile="(Default)">java</Value>
+    </Setting>
+    <Setting Name="PathToGolang" Type="System.String" Scope="User">
+      <Value Profile="(Default)">go</Value>
     </Setting>
     <Setting Name="PathToNode" Type="System.String" Scope="User">
       <Value Profile="(Default)">node.exe</Value>
