@@ -1,9 +1,0 @@
-{
-    "Author":"John Go",
-    "Email":"john.go@example.com",
-    "NickName" :"Hugo",
-    "BotType": 7,
-    "ProjectLocation" : "",
-    "RunFile" : "main.go"
-}
-

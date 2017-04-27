@@ -3,3 +3,15 @@ Sample Bots/Java/SampleBot/sample-bot.iml
 Sample Bots/Java/SampleBot/target
 Reference Bots/Java/ReferenceBot/.idea/
 Reference Bots/Java/ReferenceBot/ReferenceBot.iml
+GameEngine/Battleships/Battleships/bin/
+GameEngine/Battleships/Battleships/obj/
+GameEngine/Battleships/Domain/bin/
+GameEngine/Battleships/Domain/obj/
+GameEngine/Battleships/GameEngine/bin/
+GameEngine/Battleships/GameEngine/obj/
+GameEngine/Battleships/Makefile
+GameEngine/Battleships/Tests.Domain/bin/
+GameEngine/Battleships/Tests.Domain/obj/
+GameEngine/Battleships/BotRunner/bin/
+GameEngine/Battleships/BotRunner/obj/
+GameEngine/Battleships/packages/
