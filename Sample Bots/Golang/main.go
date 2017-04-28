@@ -1,10 +1,7 @@
 package main
 
-// #OUTPUT=
-// #/home/stephan/source/entelect-2017/dls/Version\ 1.0.0/refbots/go
-// #ls $OUTPUT
-// #GOOS=windows GOARCH=386 go build -o ${OUTPUT}/gobot.exe main.go
-// GOOS=windows GOARCH=amd64 go build -o /home/stephan/source/entelect-2017/dls/Version\ 1.0.0/refbots/go/gobot.exe main.go
+// Compilation for Windows on non-windows...:
+// GOOS=windows GOARCH=amd64 go build -o some_target_dir/gobot.exe main.go
 
 import "os"
 import "fmt"
@@ -13,6 +10,7 @@ import "encoding/json"
 import "io/ioutil"
 import "math/rand"
 import "path"
+import "math"
 
 const commandFileName string = "command.txt"
 
@@ -35,7 +33,7 @@ type Cell struct {
 }
 
 func (c Cell) String() string {
-	return fmt.Sprintf("{O: %v, H: %v, D: %v, M: %v, (X:%d, X:%d)}", c.Occupied, c.Hit, c.X, c.Y)
+	return fmt.Sprintf("{O: %v, H: %v, D: %v, M: %v, (X:%d, Y:%d)}", c.Occupied, c.Hit, c.Damaged, c.Missed, c.X, c.Y)
 }
 
 type MapType struct {
@@ -146,10 +144,6 @@ var shipSizes = map[ShipType]int{
 
 func placeShips(bot Bot, gameState GameState) *PlaceShipCommand {
 	var placeShipCommand PlaceShipCommand
-	// var mapWidth = 10 // TODO get from gameState
-	// var mapHeight = 10 // TODO get from gameState
-
-	// dumb ship plopper. Not even random
 	counter := 0
 	for shipType, shipSize := range shipSizes {
 		_ = shipSize
@@ -175,22 +169,26 @@ func writePlaceShips(bot Bot, placeShipCommand *PlaceShipCommand) {
 		panic(err) // handle this better
 	}
 	f.Sync() // flush
-
 }
 
 func makeMove(bot Bot, gameState GameState) *Command {
+	// Crazy Ivan
 	var command Command
-	// get opponent cells already attempted
-	fmt.Println("gamestate====", gameState.OpponentMap)
-	newX, newY := 0, 0
-	for index, cell := range gameState.OpponentMap.Cells {
-		_ = index
-		if !cell.Damaged && !cell.Missed {
-			newX, newY = cell.X, cell.Y
-			break
-		}
-	}
 
+	// get opponent cells already attempted
+	newX, newY := 0, 0
+	totalCubes := int(math.Pow(float64(gameState.MapDimension), 2))
+	for {
+		randomIndex := rand.Intn(totalCubes)
+		cell := gameState.OpponentMap.Cells[randomIndex]
+		if cell.Damaged || cell.Missed {
+			continue
+		}
+		newX, newY = cell.X, cell.Y
+		break
+	}
+	
+	
 	command.coordinate = Point{newX, newY}
 	command.commandCode = FIRESHOT
 	return &command
@@ -223,19 +221,12 @@ func (bot Bot) Execute() {
 		fmt.Println("statefile broke", err)
 		os.Exit(1)
 	}
-	//fmt.Println("..gameStateBoth = ", gameState.Player1Map, gameState.Player2Map, gameState.OpponentMap)
-	// fmt.Println("..gameStateAlter = ", gameState.Player1Map, gameState.Player2Map, gameState.PlayerMap)
-	// for key, value := range gameState.OpponentMap["Cells"] {
-	// 	fmt.Println("key=", key, "value=", value)
-	// }
 
 	if gameState.Phase == 1 {
-		// placeShips
 		fmt.Println("Placing ships!")
 		placeShipCommand := placeShips(bot, gameState)
 		writePlaceShips(bot, placeShipCommand)
 	} else {
-		// makeMove
 		fmt.Println("Making move")
 		command := makeMove(bot, gameState)
 		writeMove(bot, command)
@@ -263,8 +254,6 @@ func runBot(args []string) {
 		os.Exit(1)
 	}
 
-	// Bot bot = new Bot(args[0], args[1]);
-	// bot.execute();
 	var bot = Bot{args[0], args[1]}
 	bot.Execute()
 }
