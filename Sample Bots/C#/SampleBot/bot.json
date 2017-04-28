@@ -4,5 +4,5 @@
     "NickName" :"John",
     "BotType": 0,
     "ProjectLocation" : "",
-    "RunFile" : "bin\\Debug\\ReferenceBot.exe"
+    "RunFile" : "bin\\Debug\\SampleBot.exe"
 }
