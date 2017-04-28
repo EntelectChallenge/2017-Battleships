@@ -74,6 +74,12 @@ namespace Domain.Maps
             return this.neighbours[direction];
         }
 
+
+        internal bool HasNeighbour(Direction direction)
+        {
+            return this.neighbours.ContainsKey(direction);
+        }
+
         internal void Place(Direction direction, Ship ship)
         {
             if (this.OccupiedBy != null)

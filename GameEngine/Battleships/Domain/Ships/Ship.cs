@@ -64,8 +64,17 @@ namespace Domain.Ships
                     cells.Add(cell);
                     cell.Place(direction, this);
                     _cells[length] = cell;
+
+                    if (!cell.HasNeighbour(direction))
+                        break;
+
                     cell = cell.Neighbour(direction);
                     length++;
+                }
+
+                if (length < _cells.Length - 1)
+                {
+                    throw new InvalidOperationException($"There are not enough cells left in the {direction} direction to finish placing the {ShipType}");
                 }
 
                 Placed = true;
@@ -85,8 +94,9 @@ namespace Domain.Ships
             var cell = startCell;
             while (length <= _cells.Length)
             {
-                if (!cell.CanPlace())
+                if (!cell.CanPlace() || !cell.HasNeighbour(direction))
                     return false;
+
                 cell = cell.Neighbour(direction);
                 length++;
             }
