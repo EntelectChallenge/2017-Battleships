@@ -16,7 +16,7 @@ function initBot(args) {
     workingDirectory = args[1];
 
     // Read the current state and choose an action
-    var stateFile = require(workingDirectory + '/../' + stateFileName);
+    var stateFile = require(workingDirectory + '/' + stateFileName);
     var phase = stateFile.Phase;
 
     if(phase == 1) {
