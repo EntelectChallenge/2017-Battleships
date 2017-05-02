@@ -23,15 +23,7 @@ namespace TestHarness.TestHarnesses.Bot.Runners
 
         protected override void RunCalibrationTest()
         {
-	    /* Leaving this uncommented until Calibration test bots have been formalised */
-            // var calibrationGo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-            //     @"Calibrations" + Path.DirectorySeparatorChar + "BotCalibrationGo");
-            // var processArgs = GetProcessArguments(calibrationGo, ParentHarness.BattleshipPlayer.Key, ParentHarness.CurrentWorkingDirectory);
-
-            // using (var handler = new ProcessHandler(AppDomain.CurrentDomain.BaseDirectory, Settings.Default.PathToGolang, processArgs, ParentHarness.Logger))
-            // {
-            //     handler.RunProcess();
-            // }
+	    /* Leaving this unimplemented until Calibration test bot methodology has been formalised */
         }
     }
 }
