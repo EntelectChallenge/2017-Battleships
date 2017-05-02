@@ -10,7 +10,6 @@ using Domain.Bot;
 using Domain.Meta;
 using GameEngine.Loggers;
 
-// namespace BotRunner.Harness.Bot.Compilers
 namespace TestHarness.TestHarnesses.Bot.Compilers
 {
     public class GolangCompiler : ICompiler

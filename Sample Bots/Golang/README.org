@@ -56,16 +56,16 @@ Create a Makefile at =GameEngine/Battleships/Makefile= with the following:
 
   all: $(TARGET)
 
-
   REFBOTHOME=$(HOME)/source/entelect-2017/dls/Version\ 1.0.0/refbots
   SAMPLEBOTHOME=$(HOME)/source/entelect-2017/2017-Battleships/Sample\ Bots
   runbots:
-	  $(MONO) $(TARGET) -b $(REFBOTHOME)/C# $(SAMPLEBOTHOME)/Golang  --clog --pretty --debug # hello
+	  $(MONO) $(TARGET) -b $(REFBOTHOME)/C# $(SAMPLEBOTHOME)/Golang  --clog --pretty --debug 
 
 
-  runbots2:
-	  $(MONO) $(TARGET) -b $(SAMPLEBOTHOME)/C#/SampleBot $(SAMPLEBOTHOME)/Golang  --clog --pretty --debug # hello
-
+  runbots-recompile:
+	  rm -fr $(SAMPLEBOTHOME)/Golang/main
+	  rm -fr $(SAMPLEBOTHOME)/C#/SampleBot/bin
+	  $(MONO) $(TARGET) -b $(SAMPLEBOTHOME)/C#/SampleBot $(SAMPLEBOTHOME)/Golang  --clog --pretty --debug --forceRebuild
 #+END_SRC
 
 which is used as follows:
