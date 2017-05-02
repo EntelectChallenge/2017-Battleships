@@ -34,7 +34,19 @@ namespace BotRunner.Properties {
                 this["PathToMSBuild"] = value;
             }
         }
-        
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("xbuild")]
+        public string PathToXBuild {
+            get {
+                return ((string)(this["PathToXBuild"]));
+            }
+            set {
+                this["PathToXBuild"] = value;
+            }
+        }
+	
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("mvn.bat")]

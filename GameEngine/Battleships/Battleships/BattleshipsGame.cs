@@ -62,6 +62,17 @@ namespace Battleships
                             botFolder => LoadBot(botFolder, _runLocation, options.NoLimit, options.DebugMode))
                         .Where(player => player != null));
 
+		Logger.LogInfo("Loading bots");
+		// options.BotFolders.Select(
+                //             botFolder => BuildBot(botFolder));
+
+		foreach (String botFolder in options.BotFolders) {
+		    System.Console.Write("{0}\n", botFolder);
+		    BuildBot(botFolder).Compile();
+		}
+		
+		Logger.LogInfo("done.");
+		
                 if (players.Count == 0)
                 {
                     for (var i = 0; i < 2; i++)
@@ -222,6 +233,24 @@ namespace Battleships
             }
         }
 
+	private BotCompiler BuildBot(String botLocation)
+        {
+            try
+            {
+                var botMeta = BotMetaReader.ReadBotMeta(botLocation);
+
+                Logger.LogInfo("Loaded bot to build " + botLocation);
+
+                return new BotCompiler(botMeta, botLocation, Logger);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogException("Failed to build bot " + botLocation, ex);
+                throw new Exception("Failed to build bot " + botLocation + Environment.NewLine + ex);
+            }
+	    
+	}
+	
         private string RoundPath(GameMap gameMap, int round)
         {
             return "Phase " + gameMap.Phase + " - Round " + round;

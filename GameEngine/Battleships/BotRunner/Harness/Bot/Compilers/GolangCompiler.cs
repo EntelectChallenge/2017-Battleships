@@ -10,15 +10,16 @@ using Domain.Bot;
 using Domain.Meta;
 using GameEngine.Loggers;
 
+// namespace BotRunner.Harness.Bot.Compilers
 namespace TestHarness.TestHarnesses.Bot.Compilers
 {
-    public class DotNetCompiler : ICompiler
+    public class GolangCompiler : ICompiler
     {
         private readonly BotMeta _botMeta;
         private readonly string _botDir;
         private readonly ILogger _compileLogger;
 
-        public DotNetCompiler(BotMeta botMeta, string botDir, ILogger compileLogger)
+        public GolangCompiler(BotMeta botMeta, string botDir, ILogger compileLogger)
         {
             _botMeta = botMeta;
             _botDir = botDir;
@@ -27,20 +28,15 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
 
         public bool HasPackageManager()
         {
-            var path = Path.Combine(_botDir, "nuget.exe");
-            var exists = File.Exists(path);
-
-            _compileLogger.LogInfo("Checking if bot " + _botMeta.NickName + " has a nuget package manager exe at location " + _botDir);
-
-            return exists;
-        }
+	    return false;  // "go get" is built in and as close as we're going to get to a package manager.
+	}
 
         public bool RunPackageManager()
         {
             if (!HasPackageManager()) return true;
 
-            _compileLogger.LogInfo("Nuget Package manager Found, running restore");
-            using (var handler = new ProcessHandler(_botDir, Path.Combine(_botDir, "nuget.exe"), "restore", _compileLogger))
+            _compileLogger.LogInfo("Running Go get");
+            using (var handler = new ProcessHandler(_botDir, Settings.Default.PathToGolang, "get .", _compileLogger))
             {
                 handler.ProcessToRun.ErrorDataReceived += ProcessDataRecieved;
                 handler.ProcessToRun.OutputDataReceived += ProcessDataRecieved;
@@ -51,15 +47,14 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
 
         public bool RunCompiler()
         {
-            _compileLogger.LogInfo("Compiling bot " + _botMeta.NickName + " in location " + _botMeta.ProjectLocation + " using .Net");
-            var executable = Environment.OSVersion.Platform == PlatformID.Unix ? Settings.Default.PathToXBuild : Settings.Default.PathToMSBuild;
-            using (var handler = new ProcessHandler(Path.Combine(_botDir, _botMeta.ProjectLocation??""), executable, "/t:rebuild /p:Configuration=Release /p:Platform=\"Any CPU\"", _compileLogger))
+            _compileLogger.LogInfo("Compiling bot " + _botMeta.NickName + " in location " + _botMeta.ProjectLocation + " using Golang");
+	    using (var handler = new ProcessHandler(Path.Combine(_botDir, _botMeta.ProjectLocation??""), Settings.Default.PathToGolang, "build -a", _compileLogger))
             {
                 handler.ProcessToRun.ErrorDataReceived += ProcessDataRecieved;
                 handler.ProcessToRun.OutputDataReceived += ProcessDataRecieved;
 
                 return handler.RunProcess() == 0;
-            }
+            }	    
         }
 
         void ProcessDataRecieved(object sender, System.Diagnostics.DataReceivedEventArgs e)

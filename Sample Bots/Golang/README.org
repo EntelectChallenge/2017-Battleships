@@ -56,10 +56,15 @@ Create a Makefile at =GameEngine/Battleships/Makefile= with the following:
 
   all: $(TARGET)
 
+
   REFBOTHOME=$(HOME)/source/entelect-2017/dls/Version\ 1.0.0/refbots
   SAMPLEBOTHOME=$(HOME)/source/entelect-2017/2017-Battleships/Sample\ Bots
   runbots:
 	  $(MONO) $(TARGET) -b $(REFBOTHOME)/C# $(SAMPLEBOTHOME)/Golang  --clog --pretty --debug # hello
+
+
+  runbots2:
+	  $(MONO) $(TARGET) -b $(SAMPLEBOTHOME)/C#/SampleBot $(SAMPLEBOTHOME)/Golang  --clog --pretty --debug # hello
 
 #+END_SRC
 
@@ -76,4 +81,9 @@ which is used as follows:
   GOOS=windows GOARCH=amd64 go build -o /some_refbot_dir/go/gobot.exe main.go
 #+END_SRC
 
+
+* Compilation notes 
+  #+BEGIN_SRC bash
+    pushd /home/stephan/source/entelect-2017/2017-Battleships/Sample\ Bots/Golang &&  go build -o main -a .  && popd
+  #+END_SRC
 

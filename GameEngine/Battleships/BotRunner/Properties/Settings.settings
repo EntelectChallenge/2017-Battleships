@@ -5,6 +5,9 @@
     <Setting Name="PathToMSBuild" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Windows\Microsoft.NET\Framework64\v4.0.30319\msbuild.exe</Value>
     </Setting>
+    <Setting Name="PathToXBuild" Type="System.String" Scope="User">
+      <Value Profile="(Default)">xbuild</Value>
+    </Setting>
     <Setting Name="PathToMaven" Type="System.String" Scope="User">
       <Value Profile="(Default)">mvn.bat</Value>
     </Setting>
