@@ -48,7 +48,7 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
         public bool RunCompiler()
         {
             _compileLogger.LogInfo("Compiling bot " + _botMeta.NickName + " in location " + _botMeta.ProjectLocation + " using Golang");
-	    using (var handler = new ProcessHandler(Path.Combine(_botDir, _botMeta.ProjectLocation??""), Settings.Default.PathToGolang, "build -a", _compileLogger))
+	    using (var handler = new ProcessHandler(Path.Combine(_botDir, _botMeta.ProjectLocation??""), Settings.Default.PathToGolang, "build -o "+ _botMeta.RunFile + " -a", _compileLogger))
             {
                 handler.ProcessToRun.ErrorDataReceived += ProcessDataRecieved;
                 handler.ProcessToRun.OutputDataReceived += ProcessDataRecieved;

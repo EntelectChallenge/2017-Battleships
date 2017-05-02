@@ -4,6 +4,6 @@
     "NickName" :"Hugo",
     "BotType": 7,
     "ProjectLocation" : "",
-    "RunFile" : "main.go"
+    "RunFile" : "main"
 }
 
