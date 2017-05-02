@@ -3,6 +3,9 @@
 1. Download [[https://storage.googleapis.com/golang/go1.8.1.windows-amd64.msi][golang compiler for windows]] OR the [[https://golang.org/dl/][zip version]] if you wish to configure it yourself.
 2. Instructions provided [[https://golang.org/doc/install#windows][here]]
 3. Please ensure the =Go/bin= folder is available in the system PATH.
+4. Please install git as it is part of the =go get= command's package management system
+5. Ensure Git is in the system path.
+
 
 * Notes on alternative compilation
 
