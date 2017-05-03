@@ -34,6 +34,9 @@ namespace TestHarness.TestHarnesses.Bot
                     case BotMeta.BotTypes.Python3:
                     _compiler = new PythonCompiler(botMeta, botDir, compileLogger);
                     break;
+                    case BotMeta.BotTypes.Rust:
+                    _compiler = new RustCompiler(botMeta, botDir, compileLogger);
+                    break;
                 default:
                     _compiler = new DotNetCompiler(botMeta, botDir, compileLogger);
                     break;

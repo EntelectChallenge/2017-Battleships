@@ -1,0 +1,7 @@
+[package]
+name = "SampleBot"
+version = "0.1.0"
+authors = ["John Doe <john.doe@example.com>"]
+
+[dependencies]
+json = "0.11.6"
