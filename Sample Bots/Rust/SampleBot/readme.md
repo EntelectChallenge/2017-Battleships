@@ -18,3 +18,9 @@ Do a release mode build with Cargo.
 
 This will also download the packages specified in `Cargo.toml`. The
 binary is placed in `target/release/rust_sample_bot`.
+
+Windows / Linux Nonsense
+------------------------
+
+Depending on the platform you're running on, you may need to open up
+`bot.json` to add or remove the '.exe' extension from the RunFile.
