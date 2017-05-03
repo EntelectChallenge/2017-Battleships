@@ -4,5 +4,5 @@
     "NickName" :"Rusty",
     "BotType": 8,
     "ProjectLocation" : "",
-    "RunFile" : "target\\release\\SampleBot"
+    "RunFile" : "target\\release\\rust_sample_bot"
 }

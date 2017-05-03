@@ -22,11 +22,10 @@ fn main() {
     
     let state = read_file(&working_dir).expect("Failed to read state.json");
     println!("{}", state);
-    let build_phase = state["Phase"] == 1;
-    let shoot_phase = !build_phase;
+    let place_phase = state["Phase"] == 1;
     let map_dimension = state["MapDimension"].as_u32().expect("Could not read map dimension from the state");
         
-    if build_phase {
+    if place_phase {
         place_ships(&working_dir, map_dimension).expect("Failed to write placement");
     }
     else {
