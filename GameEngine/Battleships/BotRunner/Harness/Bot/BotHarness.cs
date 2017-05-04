@@ -33,7 +33,7 @@ namespace TestHarness.TestHarnesses.Bot
         private PlayerType _playerType;
 
         public BotHarness(BotMeta meta, string botDir, string workDir, bool noTimeLimit, bool haltOnError)
-            : base(meta.NickName ?? meta.Author ?? meta.Email)
+            : base(meta.NickName ?? meta.Author ?? meta.Email, meta.Discriminator)
         {
             BotMeta = meta;
             BotDir = botDir;
@@ -71,7 +71,7 @@ namespace TestHarness.TestHarnesses.Bot
 
         public override void StartGame(GameMap gameState)
         {
-            _playerType = gameState.RegisteredPlayers.First(x => x.Name == Name).PlayerType;
+            _playerType = gameState.RegisteredPlayers.First(x => x.Name == Name && x.Discriminator == Discriminator).PlayerType;
             CurrentWorkingDirectory = Path.Combine(Path.Combine(WorkDir, RoundPath(gameState, _currentRound)),
                 BattleshipPlayer.Key.ToString(CultureInfo.InvariantCulture));
             WriteRoundFiles(gameState);

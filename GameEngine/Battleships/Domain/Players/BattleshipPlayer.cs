@@ -17,6 +17,9 @@ namespace Domain.Players
         public string Name { get; }
 
         [JsonIgnore]
+        public int Discriminator { get; }
+
+        [JsonIgnore]
         public Submarine Submarine { get; }
 
         [JsonIgnore]
@@ -74,9 +77,10 @@ namespace Domain.Players
             get { return this.Ships.Count(x => !x.Destroyed); }
         }
 
-        public BattleshipPlayer(string name, char key, PlayerType type)
+        public BattleshipPlayer(string name, int discriminator, char key, PlayerType type)
         {
             this.Name = name;
+            this.Discriminator = discriminator;
             this.PlayerType = type;
             this.Submarine = new Submarine(this, ShipType.Submarine);
             this.Destroyer = new Destroyer(this, ShipType.Destroyer);

@@ -40,6 +40,10 @@ namespace GameEngine.Common
         /// </summary>
         public String Name { get; private set; }
         /// <summary>
+        /// Discriminator of this player
+        /// </summary>
+        public int Discriminator { get; private set; }
+        /// <summary>
         /// The player key on the game map for this player.  This will be set when the player is registered for a game, and should not be changed
         /// </summary>
         public BattleshipPlayer BattleshipPlayer { get; private set; }
@@ -50,9 +54,10 @@ namespace GameEngine.Common
 
         public ILogger Logger { get; set; }
 
-        protected Player(String name)
+        protected Player(String name, int discriminator)
         {
             Name = name;
+            Discriminator = discriminator;
         }
 
         /// <summary>

@@ -18,7 +18,7 @@ namespace BotRunner.Harness.ConsoleHarness
     {
         private PlayerType _playerType;
 
-        public ConsoleHarness(string name) : base(name)
+        public ConsoleHarness(string name, int discriminator) : base(name, discriminator)
         {
         }
 
