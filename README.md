@@ -1,6 +1,6 @@
 # 2017-Battleships
 
-The current release is version [1.0.0](https://github.com/EntelectChallenge/2017-Battleships/releases/latest).
+The current release is version [1.0.1](https://github.com/EntelectChallenge/2017-Battleships/releases/latest).
 
 For more information about the challenge see the [Challenge website](http://challenge.entelect.co.za/) .
 
@@ -249,7 +249,20 @@ Players wills be awarded points during the game based on the following.
 
 ## Release Notes
 
-### Version 1.0.0 - 03 April 2016
+### Version 1.0.1 - 04 May 2017
+Change Log:
+
+1. Fixed some typo's in the game engine and output files.
+2. Updated Java bot to use Java 8 features.
+3. Fixed a bug where the game engine would throw an InvalidOperationException if a player tries to fire a weapon with no remaining ships.
+4. Changed Opponent Ship Types in the JSON to be string values instead of integer.
+5. Updated Game Engine to only pause on exit if it is running in a pretty session.
+6. Fixed a bug where the game engine could throw exceptions when placing ships in some scenarios.
+7. Fixed a bug where repeatedly hitting the same block with a ship on would continually award points.
+8. Fixed a bug where the game engine would not output files for different players with the same name correctly.
+9. Added additional sample bots.
+
+### Version 1.0.0 - 18 April 2017
 Change Log:
 
 1. Initial release
