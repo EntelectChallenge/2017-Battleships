@@ -20,6 +20,7 @@ namespace BotRunner.Util
             var meta = JsonConvert.DeserializeObject<BotMeta>(fileContent);
             meta.ProjectLocation = meta.ProjectLocation.Replace(@"\\", Path.DirectorySeparatorChar.ToString()).Replace(@"\", Path.DirectorySeparatorChar.ToString());
             meta.RunFile = meta.RunFile.Replace(@"\\", Path.DirectorySeparatorChar.ToString()).Replace(@"\", Path.DirectorySeparatorChar.ToString());
+            meta.Discriminator = 0;
             return meta;
         }
     }

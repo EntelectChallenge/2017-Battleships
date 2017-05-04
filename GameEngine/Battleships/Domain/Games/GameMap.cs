@@ -54,8 +54,8 @@ namespace Domain.Games
             this.MapSize = mapHeight;
             this.RegisteredPlayers = new List<BattleshipPlayer>();
 
-            var playerOne = new BattleshipPlayer(playerOneName, 'A', PlayerType.One);
-            var playerTwo = new BattleshipPlayer(playerTwoName, 'B', PlayerType.Two);
+            var playerOne = new BattleshipPlayer(playerOneName, 0, 'A', PlayerType.One);
+            var playerTwo = new BattleshipPlayer(playerTwoName, 1, 'B', PlayerType.Two);
 
             this._players[PlayerType.One] = playerOne;
             this._players[PlayerType.Two] = playerTwo;

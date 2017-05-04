@@ -54,19 +54,18 @@ namespace Battleships
 
                 for (var i = 0; i < options.ConsolePlayers; i++)
                 {
-                    players.Add(new ConsoleHarness("Player " + (players.Count + 1)));
+                    players.Add(new ConsoleHarness("Player " + (players.Count + 1), i));
                 }
 
                 players.AddRange(
-                    options.BotFolders.Select(
-                            botFolder => LoadBot(botFolder, _runLocation, options.NoLimit, options.DebugMode))
+                    options.BotFolders.Select((botFolder,index) => LoadBot(botFolder, _runLocation, players.Count + index, options.NoLimit, options.DebugMode))
                         .Where(player => player != null));
 
                 if (players.Count == 0)
                 {
                     for (var i = 0; i < 2; i++)
                     {
-                        players.Add(new ConsoleHarness("Player " + (players.Count + 1)));
+                        players.Add(new ConsoleHarness("Player " + (players.Count + 1), i));
                     }
                 }
 
@@ -205,11 +204,12 @@ namespace Battleships
             };
         }
 
-        private Player LoadBot(String botLocation, String logLocation, bool noLimit, bool haltOnError)
+        private Player LoadBot(String botLocation, String logLocation, int BotNumber, bool noLimit, bool haltOnError)
         {
             try
             {
                 var botMeta = BotMetaReader.ReadBotMeta(botLocation);
+                botMeta.Discriminator = BotNumber;
 
                 Logger.LogInfo("Loaded bot " + botLocation);
 
