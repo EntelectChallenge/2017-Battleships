@@ -44,7 +44,7 @@ object GameMapParser {
                       )
   case class OpponentShips(
                     Destroyed: Boolean,
-                    ShipType: Int
+                    ShipType: String
                   )
   case class OpponentCells(
                     Damaged: Boolean,
