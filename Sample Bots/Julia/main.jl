@@ -2,9 +2,10 @@ import JSON
 
 commandFileName = "command.txt"
 placeShipFileName = "place.txt"
-stateFileName = "test_data/Phase 1 - Round 0/state.json"
-#stateFileName = "test_data/Phase 2 - Round 1/state.json"
+#stateFileName = "test_data/Phase 1 - Round 0/state.json"
+stateFileName = "test_data/Phase 2 - Round 1/state.json"
 #stateFileName = "state.json"
+workingDirectory = "."
 
 state = JSON.parsefile(stateFileName)
 
@@ -39,6 +40,15 @@ end
 
 function bombsAway()
   println("* Bombs away!")
+
+  fire = 1
+  xCoordinate = rand(1:10)
+  yCoordinate = rand(1:10)
+
+  payload = string(fire, ",", xCoordinate, ",", yCoordinate, "\n")
+
+  write(commandFileName, payload)
+  println("* A shot was fired at [$xCoordinate,$yCoordinate]");
 end
 
 makeYourMove()
