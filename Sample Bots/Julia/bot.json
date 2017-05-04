@@ -1,0 +1,9 @@
+{
+    "Author" : "Marius Kruger",
+    "Email" : "amanic@gmail.com",
+    "NickName" : "Julia",
+    "BotType": "Julia",
+    "ProjectLocation" : "",
+    "RunFile" : "main.jl",
+    "RunArgs" : ""
+}
