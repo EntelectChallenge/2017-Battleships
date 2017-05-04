@@ -34,7 +34,7 @@ Destroyer 4 0 North
 """;
 
 	 write(placeShipFileName, placementString)
-   println("* Aight Captain, the ships were deployed \o/");
+   println("* Aye aye Captain, the ships were deployed \\o/");
 end
 
 function bombsAway()
