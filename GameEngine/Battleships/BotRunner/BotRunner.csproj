@@ -51,6 +51,7 @@
     <Compile Include="Harness\Bot\BotRunner.cs" />
     <Compile Include="Harness\Bot\GeneralCommand.cs" />
     <Compile Include="Harness\Bot\Compilers\DotNetCompiler.cs" />
+    <Compile Include="Harness\Bot\Compilers\GolangCompiler.cs" />
     <Compile Include="Harness\Bot\Compilers\JavaCompiler.cs" />
     <Compile Include="Harness\Bot\Compilers\JavaScriptCompiler.cs" />
     <Compile Include="Harness\Bot\Compilers\PythonCompiler.cs" />

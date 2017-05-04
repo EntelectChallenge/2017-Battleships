@@ -3,6 +3,9 @@
 1. Download [[https://storage.googleapis.com/golang/go1.8.1.windows-amd64.msi][golang compiler for windows]] OR the [[https://golang.org/dl/][zip version]] if you wish to configure it yourself.
 2. Instructions provided [[https://golang.org/doc/install#windows][here]]
 3. Please ensure the =Go/bin= folder is available in the system PATH.
+4. Please install git as it is part of the =go get= command's package management system
+5. Ensure Git is in the system path.
+
 
 * Notes on alternative compilation
 
@@ -59,8 +62,13 @@ Create a Makefile at =GameEngine/Battleships/Makefile= with the following:
   REFBOTHOME=$(HOME)/source/entelect-2017/dls/Version\ 1.0.0/refbots
   SAMPLEBOTHOME=$(HOME)/source/entelect-2017/2017-Battleships/Sample\ Bots
   runbots:
-	  $(MONO) $(TARGET) -b $(REFBOTHOME)/C# $(SAMPLEBOTHOME)/Golang  --clog --pretty --debug # hello
+	  $(MONO) $(TARGET) -b $(REFBOTHOME)/C# $(SAMPLEBOTHOME)/Golang  --clog --pretty --debug 
 
+
+  runbots-recompile:
+	  rm -fr $(SAMPLEBOTHOME)/Golang/main
+	  rm -fr $(SAMPLEBOTHOME)/C#/SampleBot/bin
+	  $(MONO) $(TARGET) -b $(SAMPLEBOTHOME)/C#/SampleBot $(SAMPLEBOTHOME)/Golang  --clog --pretty --debug --forceRebuild
 #+END_SRC
 
 which is used as follows:
@@ -76,4 +84,9 @@ which is used as follows:
   GOOS=windows GOARCH=amd64 go build -o /some_refbot_dir/go/gobot.exe main.go
 #+END_SRC
 
+
+* Compilation notes 
+  #+BEGIN_SRC bash
+    pushd /home/stephan/source/entelect-2017/2017-Battleships/Sample\ Bots/Golang &&  go build -o main -a .  && popd
+  #+END_SRC
 
