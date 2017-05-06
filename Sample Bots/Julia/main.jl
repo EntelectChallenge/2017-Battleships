@@ -88,3 +88,6 @@ end
 
 println("ARGS=$ARGS")
 main(ARGS...)
+
+#TODO: facture out bot module
+#TODO: write some basic tests..

@@ -14,6 +14,9 @@
     <Setting Name="PathToJava" Type="System.String" Scope="User">
       <Value Profile="(Default)">java</Value>
     </Setting>
+    <Setting Name="PathToJulia" Type="System.String" Scope="User">
+      <Value Profile="(Default)">java</Value>
+    </Setting>
     <Setting Name="PathToGolang" Type="System.String" Scope="User">
       <Value Profile="(Default)">go</Value>
     </Setting>

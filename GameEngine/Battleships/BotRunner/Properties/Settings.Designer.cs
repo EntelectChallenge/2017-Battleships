@@ -73,6 +73,18 @@ namespace BotRunner.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("julia")]
+        public string PathToJava {
+            get {
+                return ((string)(this["PathToJulia"]));
+            }
+            set {
+                this["PathToJulia"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("go")]
         public string PathToGolang {
             get {
