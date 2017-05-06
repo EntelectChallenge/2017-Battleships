@@ -16,21 +16,18 @@ namespace BotRunner.Harness.ConsoleHarness
 {
     public class ConsoleHarness : Player
     {
-        private PlayerType _playerType;
-
         public ConsoleHarness(string name) : base(name)
         {
         }
 
         public override void StartGame(GameMap gameState)
         {
-            _playerType = gameState.RegisteredPlayers.First(x => x.Name == Name).PlayerType;
             NewRoundStarted(gameState);
         }
 
         public override void NewRoundStarted(GameMap gameState)
         {
-            ConsoleRender.RenderToConsolePretty(gameState, _playerType);
+            ConsoleRender.RenderToConsolePretty(gameState, BattleshipPlayer.PlayerType);
             if (gameState.Phase == 1)
             {
                 try

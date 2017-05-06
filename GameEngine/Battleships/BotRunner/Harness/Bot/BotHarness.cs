@@ -30,7 +30,6 @@ namespace TestHarness.TestHarnesses.Bot
         private readonly BotRunner _botRunner;
         private int _currentRound = 0;
         private int _totalDoNothingCommands;
-        private PlayerType _playerType;
 
         public BotHarness(BotMeta meta, string botDir, string workDir, bool noTimeLimit, bool haltOnError)
             : base(meta.NickName ?? meta.Author ?? meta.Email)
@@ -74,7 +73,6 @@ namespace TestHarness.TestHarnesses.Bot
 
         public override void StartGame(GameMap gameState)
         {
-            _playerType = gameState.RegisteredPlayers.First(x => x.Name == Name).PlayerType;
             CurrentWorkingDirectory = Path.Combine(Path.Combine(WorkDir, RoundPath(gameState, _currentRound)),
                 BattleshipPlayer.Key.ToString(CultureInfo.InvariantCulture));
             WriteRoundFiles(gameState);
@@ -220,7 +218,7 @@ namespace TestHarness.TestHarnesses.Bot
         {
             var dir = Path.Combine(CurrentWorkingDirectory, Settings.Default.StateFileName);
             var renderer = new GameMapRender(gameMap, true);
-            var json = renderer.RenderJsonGameState(_playerType);
+            var json = renderer.RenderJsonGameState(BattleshipPlayer.PlayerType);
 
             File.WriteAllText(dir, json.ToString(), new UTF8Encoding(false));
         }
@@ -229,7 +227,7 @@ namespace TestHarness.TestHarnesses.Bot
         {
             var dir = Path.Combine(CurrentWorkingDirectory, Settings.Default.MapFileName);
             var renderer = new GameMapRender(gameMap, true);
-            var map = renderer.RenderTextGameState(_playerType);
+            var map = renderer.RenderTextGameState(BattleshipPlayer.PlayerType);
 
             File.WriteAllText(dir, map.ToString(), new UTF8Encoding(false));
         }

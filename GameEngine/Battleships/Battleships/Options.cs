@@ -40,6 +40,10 @@ namespace Battleships
             HelpText = "Halts the Game Engine when a bot writes to the error stream")]
         public bool DebugMode { get; set; }
 
+        [Option('f', "forceRebuild", DefaultValue = false,
+            HelpText = "Rebuilds Bots based on their compiler types")]
+        public bool ForceRebuild { get; set; }
+	
         [Option("tournamentMode", DefaultValue = false,
             HelpText = "Will prevent writing sensitive information until the end of the match")]
         public bool TournamentMode { get; set; }

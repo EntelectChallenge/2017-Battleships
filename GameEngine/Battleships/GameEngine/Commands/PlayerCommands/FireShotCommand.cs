@@ -23,6 +23,7 @@ namespace GameEngine.Commands.PlayerCommands
         {
             try
             {
+                var alreadyDestroyed = gameMap.WasShipDestroyed(player.PlayerType, _point);
                 var shotLanded = gameMap.Shoot(player.PlayerType, _point, WeaponType.SingleShot);
                 player.ShotsFired++;
                 if (shotLanded)
@@ -34,8 +35,9 @@ namespace GameEngine.Commands.PlayerCommands
                         player.FirstShotLanded = gameMap.CurrentRound;
                     }
                 }
+
                 var destroyed = gameMap.WasShipDestroyed(player.PlayerType, _point);
-                if (destroyed)
+                if (!alreadyDestroyed && destroyed)
                 {
                     player.AddPoints(Settings.Default.PointsShipSunk);
                 }
