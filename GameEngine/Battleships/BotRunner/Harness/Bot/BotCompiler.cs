@@ -36,6 +36,7 @@ namespace TestHarness.TestHarnesses.Bot
                     break;
                     case BotMeta.BotTypes.Golang:
                     _compiler = new GolangCompiler(botMeta, botDir, compileLogger);
+                    break;
                     case BotMeta.BotTypes.Rust:
                     _compiler = new RustCompiler(botMeta, botDir, compileLogger);
                     break;
