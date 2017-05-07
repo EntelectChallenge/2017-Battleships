@@ -74,7 +74,7 @@ namespace BotRunner.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("julia")]
-        public string PathToJava {
+        public string PathToJulia {
             get {
                 return ((string)(this["PathToJulia"]));
             }

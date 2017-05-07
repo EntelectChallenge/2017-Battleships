@@ -21,7 +21,7 @@ namespace TestHarness.TestHarnesses.Bot.Runners
 
             processArgs = AddAdditionalRunArgs(processArgs);
 
-            return new ProcessHandler(ParentHarness.BotDir, Settings.Default.PathToNode, processArgs, ParentHarness.Logger);
+            return new ProcessHandler(ParentHarness.BotDir, Settings.Default.PathToJulia, processArgs, ParentHarness.Logger);
         }
 
         protected override void RunCalibrationTest()

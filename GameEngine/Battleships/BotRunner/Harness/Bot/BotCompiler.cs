@@ -29,6 +29,7 @@ namespace TestHarness.TestHarnesses.Bot
                     break;
                     case BotMeta.BotTypes.Java:
                     _compiler = new JavaCompiler(botMeta, botDir, compileLogger);
+                    break;
                     case BotMeta.BotTypes.Julia:
                     _compiler = new JuliaCompiler(botMeta, botDir, compileLogger);
                     break;
