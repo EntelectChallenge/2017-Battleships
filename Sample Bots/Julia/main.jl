@@ -4,6 +4,9 @@ const commandFileName = "command.txt"
 const placeShipFileName = "place.txt"
 const stateFileName = "state.json"
 
+@enum ShipType Carrier Battleship Cruiser Submarine Destroyer
+@enum Direction North East South West
+
 type GameContext
   state::Dict
   playerKey::String
@@ -11,20 +14,32 @@ type GameContext
   GameContext()=new(Dict(), "", "")
 end
 
+type ShipPlacement
+  shipType::ShipType
+  x::Int8
+  y::Int8
+  direction::Direction
+end
+
 function getFilePath(gameContext::GameContext, fileName::AbstractString)
   ret = string(gameContext.workingDirectory, '/', fileName)
   println("** $ret")
   ret
 end
+
 function getPhase(gameContext::GameContext)
   gameContext.state["Phase"]
+end
+
+function getMapDimension(gameContext::GameContext)
+  gameContext.state["MapDimension"]
 end
 
 function makeYourMove(gameContext::GameContext)
   phase = getPhase(gameContext)
   println("* Phase $phase")
   if phase == 1
-    deployShips(gameContext)
+    placeShips(gameContext)
   elseif phase == 2
     bombsAway(gameContext)
   else
@@ -32,27 +47,34 @@ function makeYourMove(gameContext::GameContext)
   end
 end
 
-function deployShips(gameContext::GameContext)
-  println("* Deploying ships..")
+function placeShips(gameContext::GameContext)
+  println("* Placing ships..")
+  writePlaceShips(gameContext, (
+    ShipPlacement(Carrier,0,0,North),
+    ShipPlacement(Battleship,1,0,North),
+    ShipPlacement(Cruiser,2,0,North),
+    ShipPlacement(Submarine,3,0,North),
+    ShipPlacement(Destroyer,4,0,North),
+  ))
+end
 
-  placementString = """
-Carrier 0 0 North
-Battleship 1 0 North
-Cruiser 2 0 North
-Submarine 3 0 North
-Destroyer 4 0 North
-"""
-
-	 write(getFilePath(gameContext, placeShipFileName), placementString)
-   println("* Aye aye Captain, the ships were deployed \\o/")
+function writePlaceShips(gameContext::GameContext, shipPlacements)
+  placementString = ""
+  for shipPlacement in shipPlacements
+    placementString*="$(shipPlacement.shipType) $(shipPlacement.x) $(shipPlacement.y) $(shipPlacement.direction)\n"
+  end
+  println(placementString)
+	write(getFilePath(gameContext, placeShipFileName), placementString)
+  println("* Aye aye Captain, the ships were deployed \\o/")
 end
 
 function bombsAway(gameContext::GameContext)
   println("* Bombs away!")
 
   fire = 1
-  xCoordinate = rand(1:10)
-  yCoordinate = rand(1:10)
+  max = getMapDimension(gameContext)-1
+  xCoordinate = rand(0:max)
+  yCoordinate = rand(0:max)
 
   payload = string(fire, ",", xCoordinate, ",", yCoordinate, "\n")
 
