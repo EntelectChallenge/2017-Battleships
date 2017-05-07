@@ -32,6 +32,9 @@
     <Setting Name="PathToNpm" Type="System.String" Scope="User">
       <Value Profile="(Default)">X:\NodeJS\npm.cmd</Value>
     </Setting>
+    <Setting Name="PathToCargo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cargo</Value>
+    </Setting>
     <Setting Name="StateFileName" Type="System.String" Scope="User">
       <Value Profile="(Default)">state.json</Value>
     </Setting>
