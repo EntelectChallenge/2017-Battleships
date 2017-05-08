@@ -4,6 +4,6 @@
     "NickName" :"Hugo",
     "BotType": 7,
     "ProjectLocation" : "goboat",
-    "RunFile" : "bin\\main"
+    "RunFile" : "bin\\goboat"
 }
 
