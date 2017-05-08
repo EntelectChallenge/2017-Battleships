@@ -3,7 +3,9 @@ using System.Diagnostics;
 using System.Text;
 using BotRunner.Properties;
 using GameEngine.Loggers;
-
+using System.Collections.Specialized;
+using System.Collections;
+    
 namespace BotRunner.Util
 {
     public class ProcessHandler : IDisposable
@@ -18,10 +20,10 @@ namespace BotRunner.Util
         {
         }
 
-        public ProcessHandler(string workDir, string processName, string processArgs, ILogger logger, bool isMono)
+        public ProcessHandler(string workDir, string processName, string processArgs, ILogger logger, bool isMono, StringDictionary envVars=null)
         {
             _logger = logger;
-            _processToRun = CreateProcess(workDir, processName, processArgs, isMono);
+            _processToRun = CreateProcess(workDir, processName, processArgs, isMono, envVars);
             LimitExecutionTime = false;
         }
 
@@ -30,7 +32,7 @@ namespace BotRunner.Util
             get { return _processToRun; }
         }
 
-        private Process CreateProcess(string workDir, string processName, string processArgs, bool isMono)
+        private Process CreateProcess(string workDir, string processName, string processArgs, bool isMono, StringDictionary envVars)
         {
             var process = new Process()
             {
@@ -50,6 +52,15 @@ namespace BotRunner.Util
                 }
             };
 
+	    if (envVars != null) {
+		foreach (DictionaryEntry item in envVars) {
+		    var key = item.Key.ToString().ToUpper();
+		    var value = item.Value.ToString();
+		    System.Console.Write("Loading environment variable: {0}={1}\n", key, value);
+		    process.StartInfo.EnvironmentVariables.Add(key, value);
+		}
+	    }
+	    
             return process;
         }
 
