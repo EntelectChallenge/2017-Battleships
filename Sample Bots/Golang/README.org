@@ -12,66 +12,7 @@
 ** GameEngine rebuild for those who don't like guis.
 In case you're a =mono/C#= newcomer here is a small Makefile that may assist in rebuilding the GameEngine from scratch and running test matches.
 
-Create a Makefile at =GameEngine/Battleships/Makefile= with the following:
-
-#+BEGIN_SRC makefile :tangle ../../GameEngine/Battleships/Makefile
-  MONO=mono
-  XBUILD=xbuild
-  SOURCEDIR=.
-  NUGET=nuget
-  TARGET=$(SOURCEDIR)/Battleships/bin/Debug/Battleships.exe
-  PACKAGEDIR=./packages/
-  NUGETCMD=$(NUGET) install -OutputDirectory $(PACKAGEDIR)
-  DEPS=$(shell find $(SOURCEDIR) -name 'packages.config')
-
-  $(PACKAGEDIR):
-	  mkdir $(PACKAGEDIR)
-
-  $(DEPS): $(PACKAGEDIR)
-	  @echo "finding dependencies and installing"
-	  @$(foreach dep, $(DEPS), $(NUGETCMD) $(dep);)
-
-  clean-objs:
-	  rm -fr $(SOURCEDIR)/Battleships/bin/
-	  rm -fr $(SOURCEDIR)/Battleships/obj/
-	  rm -fr $(SOURCEDIR)/Battleships/Battleships/bin/
-	  rm -fr $(SOURCEDIR)/Battleships/Battleships/obj/
-	  rm -fr $(SOURCEDIR)/Battleships/Domain/bin/
-	  rm -fr $(SOURCEDIR)/Battleships/Domain/obj/
-	  rm -fr $(SOURCEDIR)/Battleships/GameEngine/bin/
-	  rm -fr $(SOURCEDIR)/Battleships/GameEngine/obj/
-	  rm -fr $(SOURCEDIR)/Battleships/Tests.Domain/bin/
-	  rm -fr $(SOURCEDIR)/Battleships/Tests.Domain/obj/
-	  rm -fr $(SOURCEDIR)/Battleships/BotRunner/bin/
-	  rm -fr $(SOURCEDIR)/Battleships/BotRunner/obj/
-
-
-  clean-all: clean-objs
-	  rm -fr $(PACKAGEDIR)
-	  find $(SOURCEDIR)/ -iname "*.exe" -iname "*.dll" -iname "*.obj" -delete
-
-  $(TARGET):
-	  @echo "building"
-	  $(XBUILD) $(SOURCEDIR)/Battleships.sln
-
-
-  deps: $(DEPS)
-
-  all: $(TARGET)
-
-  REFBOTHOME=$(HOME)/source/entelect-2017/dls/Version\ 1.0.0/refbots
-  SAMPLEBOTHOME=$(HOME)/source/entelect-2017/2017-Battleships/Sample\ Bots
-  runbots:
-	  $(MONO) $(TARGET) -b $(REFBOTHOME)/C# $(SAMPLEBOTHOME)/Golang  --clog --pretty --debug 
-
-
-  runbots-recompile:
-	  rm -fr $(SAMPLEBOTHOME)/Golang/main
-	  rm -fr $(SAMPLEBOTHOME)/C#/SampleBot/bin
-	  $(MONO) $(TARGET) -b $(SAMPLEBOTHOME)/C#/SampleBot $(SAMPLEBOTHOME)/Golang  --clog --pretty --debug --forceRebuild
-#+END_SRC
-
-which is used as follows:
+See the Makefile at =GameEngine/Battleships/Makefile= which is used as follows:
 
 #+BEGIN_SRC bash
   make deps  # call Nuget for all package configs in the build tree.
