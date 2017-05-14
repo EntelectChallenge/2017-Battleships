@@ -22,7 +22,8 @@ namespace Domain.Bot
             Python3,
             FSharp,
             Golang,
-            Julia
+            Julia,
+            Rust
         }
     }
 }

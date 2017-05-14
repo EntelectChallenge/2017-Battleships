@@ -154,6 +154,18 @@ namespace BotRunner.Properties {
                 this["PathToNpm"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("cargo")]
+        public string PathToCargo {
+            get {
+                return ((string)(this["PathToCargo"]));
+            }
+            set {
+                this["PathToCargo"] = value;
+            }
+        }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

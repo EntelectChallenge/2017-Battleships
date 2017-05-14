@@ -9,6 +9,8 @@ using BotRunner.Util;
 using Domain.Bot;
 using Domain.Meta;
 using GameEngine.Loggers;
+using System.Collections.Specialized;
+using System.Collections;
 
 namespace TestHarness.TestHarnesses.Bot.Compilers
 {
@@ -47,7 +49,11 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
         public bool RunCompiler()
         {
             _compileLogger.LogInfo("Compiling bot " + _botMeta.NickName + " in location " + _botMeta.ProjectLocation + " using Golang");
-	    using (var handler = new ProcessHandler(Path.Combine(_botDir, _botMeta.ProjectLocation??""), Settings.Default.PathToGolang, "build -o "+ _botMeta.RunFile + " -a", _compileLogger))
+	    var location = _botDir;
+	    var envVars = new StringDictionary();
+	    var target = _botMeta.RunFile;
+	    envVars.Add("GOPATH", location);
+	    using (var handler = new ProcessHandler(_botDir, Settings.Default.PathToGolang, " build -v -o " + target +" -a "+  _botMeta.ProjectLocation, _compileLogger, false, envVars))
             {
                 handler.ProcessToRun.ErrorDataReceived += ProcessDataRecieved;
                 handler.ProcessToRun.OutputDataReceived += ProcessDataRecieved;
