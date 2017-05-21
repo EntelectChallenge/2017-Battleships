@@ -33,7 +33,7 @@ object GameMapParser {
                     IsWinner: Boolean,
                     ShotsFired: Int,
                     ShotsHit: Int,
-                    ShipsRemaing: Int,
+                    ShipsRemaining: Int,
                     Key: String
                   )
   case class PlayerMap(
