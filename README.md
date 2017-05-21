@@ -1,6 +1,6 @@
 # 2017-Battleships
 
-The current release is version [1.0.1](https://github.com/EntelectChallenge/2017-Battleships/releases/latest).
+The current release is version [1.0.2](https://github.com/EntelectChallenge/2017-Battleships/releases/latest).
 
 For more information about the challenge see the [Challenge website](http://challenge.entelect.co.za/) .
 
@@ -248,6 +248,14 @@ Players wills be awarded points during the game based on the following.
 1. For killing the enemy player you will be awarded an additional 100 points.
 
 ## Release Notes
+
+### Version 1.0.2 - 21 May 2017
+Change Log:
+
+1. Improved support for Golang bots.
+2. Fixed a bug where the game engine would continue with the match if a bot fails to write a place file.
+3. Fixed a bug where ships could not be placed on the border of the map in an easternly or nothernly direction.
+4. Minor updates to ensure the game engine runs correctly on the tournament server.
 
 ### Version 1.0.1 - 04 May 2017
 Change Log:
