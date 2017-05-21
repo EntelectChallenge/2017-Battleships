@@ -9,8 +9,11 @@ namespace TestHarness.TestHarnesses.Bot.Runners
 {
     public class DotNetRunner : BotRunner
     {
-        public DotNetRunner(BotHarness parentHarness) : base(parentHarness)
+        private readonly EnvironmentSettings _environmentSettings;
+
+        public DotNetRunner(BotHarness parentHarness, EnvironmentSettings environmentSettings) : base(parentHarness)
         {
+            _environmentSettings = environmentSettings;
         }
 
         protected override ProcessHandler CreateProcessHandler()

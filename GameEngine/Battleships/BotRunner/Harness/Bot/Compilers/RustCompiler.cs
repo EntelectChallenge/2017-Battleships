@@ -17,12 +17,14 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
         private readonly BotMeta _botMeta;
         private readonly string _botDir;
         private readonly ILogger _compileLogger;
+        private readonly EnvironmentSettings _environmentSettings;
 
-        public RustCompiler(BotMeta botMeta, string botDir, ILogger compileLogger)
+        public RustCompiler(BotMeta botMeta, string botDir, ILogger compileLogger, EnvironmentSettings environmentSettings)
         {
             _botMeta = botMeta;
             _botDir = botDir;
             _compileLogger = compileLogger;
+            _environmentSettings = environmentSettings;
         }
 
         public bool HasPackageManager()
@@ -38,7 +40,7 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
         public bool RunCompiler()
         {
             _compileLogger.LogInfo("Compiling bot " + _botMeta.NickName + " in location " + _botMeta.ProjectLocation + " using Rust");
-            using (var handler = new ProcessHandler(Path.Combine(_botDir, _botMeta.ProjectLocation??""), Settings.Default.PathToCargo, "build --release", _compileLogger))
+            using (var handler = new ProcessHandler(Path.Combine(_botDir, _botMeta.ProjectLocation??""), _environmentSettings.PathToCargo, "build --release", _compileLogger))
             {
                 handler.ProcessToRun.ErrorDataReceived += ProcessDataRecieved;
                 handler.ProcessToRun.OutputDataReceived += ProcessDataRecieved;

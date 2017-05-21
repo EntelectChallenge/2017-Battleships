@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BotRunner.Util;
 using Domain.Bot;
 using Domain.Meta;
 using GameEngine.Loggers;
@@ -16,7 +17,7 @@ namespace TestHarness.TestHarnesses.Bot
         private readonly ILogger _compileLogger;
         private readonly ICompiler _compiler;
 
-        public BotCompiler(BotMeta botMeta, string botDir, ILogger compileLogger)
+        public BotCompiler(BotMeta botMeta, string botDir, ILogger compileLogger, EnvironmentSettings environmentSettings)
         {
             _botMeta = botMeta;
             _botDir = botDir;
@@ -25,23 +26,23 @@ namespace TestHarness.TestHarnesses.Bot
             switch (botMeta.BotType)
             {
                     case BotMeta.BotTypes.JavaScript:
-                    _compiler = new JavaScriptCompiler(botMeta, botDir, compileLogger);
+                    _compiler = new JavaScriptCompiler(botMeta, botDir, compileLogger, environmentSettings);
                     break;
                     case BotMeta.BotTypes.Java:
-                    _compiler = new JavaCompiler(botMeta, botDir, compileLogger);
+                    _compiler = new JavaCompiler(botMeta, botDir, compileLogger, environmentSettings);
                     break;
                     case BotMeta.BotTypes.Python2:
                     case BotMeta.BotTypes.Python3:
-                    _compiler = new PythonCompiler(botMeta, botDir, compileLogger);
+                    _compiler = new PythonCompiler(botMeta, botDir, compileLogger, environmentSettings);
                     break;
                     case BotMeta.BotTypes.Golang:
-                    _compiler = new GolangCompiler(botMeta, botDir, compileLogger);
+                    _compiler = new GolangCompiler(botMeta, botDir, compileLogger, environmentSettings);
                     break;
                     case BotMeta.BotTypes.Rust:
-                    _compiler = new RustCompiler(botMeta, botDir, compileLogger);
+                    _compiler = new RustCompiler(botMeta, botDir, compileLogger, environmentSettings);
                     break;
                 default:
-                    _compiler = new DotNetCompiler(botMeta, botDir, compileLogger);
+                    _compiler = new DotNetCompiler(botMeta, botDir, compileLogger, environmentSettings);
                     break;
             }
         }

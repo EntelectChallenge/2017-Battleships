@@ -7,8 +7,11 @@ namespace TestHarness.TestHarnesses.Bot.Runners
 {
     public class JavaRunner : BotRunner
     {
-        public JavaRunner(BotHarness parentHarness) : base(parentHarness)
+        private readonly EnvironmentSettings _environmentSettings;
+
+        public JavaRunner(BotHarness parentHarness, EnvironmentSettings environmentSettings) : base(parentHarness)
         {
+            _environmentSettings = environmentSettings;
         }
 
         protected override ProcessHandler CreateProcessHandler()
@@ -16,7 +19,7 @@ namespace TestHarness.TestHarnesses.Bot.Runners
             var processArgs = GetProcessArguments(ParentHarness.BotMeta.RunFile, ParentHarness.BattleshipPlayer.Key, ParentHarness.CurrentWorkingDirectory);
             processArgs = AddAdditionalRunArgs(processArgs);
 
-            return new ProcessHandler(ParentHarness.BotDir, Settings.Default.PathToJava, processArgs, ParentHarness.Logger);
+            return new ProcessHandler(ParentHarness.BotDir, _environmentSettings.PathToJava, processArgs, ParentHarness.Logger);
         }
 
         protected override void RunCalibrationTest()
@@ -25,7 +28,7 @@ namespace TestHarness.TestHarnesses.Bot.Runners
                 @"Calibrations" + Path.DirectorySeparatorChar + "BotCalibrationJava.jar");
             var processArgs = GetProcessArguments(calibrationJar, ParentHarness.BattleshipPlayer.Key, ParentHarness.CurrentWorkingDirectory);
 
-            using (var handler = new ProcessHandler(AppDomain.CurrentDomain.BaseDirectory, Settings.Default.PathToJava, processArgs, ParentHarness.Logger))
+            using (var handler = new ProcessHandler(AppDomain.CurrentDomain.BaseDirectory, _environmentSettings.PathToJava, processArgs, ParentHarness.Logger))
             {
                 handler.RunProcess();
             }

@@ -16,13 +16,15 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
         private readonly BotMeta _botMeta;
         private readonly string _botDir;
         private readonly ILogger _compileLogger;
+        private readonly EnvironmentSettings _environmentSettings;
         private bool _failed;
 
-        public JavaScriptCompiler(BotMeta botMeta, string botDir, ILogger compileLogger)
+        public JavaScriptCompiler(BotMeta botMeta, string botDir, ILogger compileLogger, EnvironmentSettings environmentSettings)
         {
             _botMeta = botMeta;
             _botDir = botDir;
             _compileLogger = compileLogger;
+            _environmentSettings = environmentSettings;
         }
 
         public bool HasPackageManager()
@@ -40,7 +42,7 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
             if (!HasPackageManager()) return true;
 
             _compileLogger.LogInfo("Found package.json, doing install");
-            using (var handler = new ProcessHandler(_botDir, Settings.Default.PathToNpm, "install", _compileLogger))
+            using (var handler = new ProcessHandler(_botDir, _environmentSettings.PathToNpm, "install", _compileLogger))
             {
                 handler.ProcessToRun.ErrorDataReceived += ProcessDataRecieved;
                 handler.ProcessToRun.OutputDataReceived += ProcessDataRecieved;

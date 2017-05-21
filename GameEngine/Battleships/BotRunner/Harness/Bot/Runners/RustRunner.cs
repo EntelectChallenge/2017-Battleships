@@ -9,8 +9,11 @@ namespace TestHarness.TestHarnesses.Bot.Runners
 {
     public class RustRunner : BotRunner
     {
-        public RustRunner(BotHarness parentHarness) : base(parentHarness)
+        private readonly EnvironmentSettings _environmentSettings;
+
+        public RustRunner(BotHarness parentHarness, EnvironmentSettings environmentSettings) : base(parentHarness)
         {
+            _environmentSettings = environmentSettings;
         }
 
         protected override ProcessHandler CreateProcessHandler()

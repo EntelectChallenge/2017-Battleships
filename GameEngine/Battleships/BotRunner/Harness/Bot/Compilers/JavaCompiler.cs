@@ -16,12 +16,14 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
         private readonly BotMeta _botMeta;
         private readonly string _botDir;
         private readonly ILogger _compileLogger;
+        private readonly EnvironmentSettings _environmentSettings;
 
-        public JavaCompiler(BotMeta botMeta, string botDir, ILogger compileLogger)
+        public JavaCompiler(BotMeta botMeta, string botDir, ILogger compileLogger, EnvironmentSettings environmentSettings)
         {
             _botMeta = botMeta;
             _botDir = botDir;
             _compileLogger = compileLogger;
+            _environmentSettings = environmentSettings;
         }
 
         public bool HasPackageManager()
@@ -44,7 +46,7 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
             if (exists)
             {
                 _compileLogger.LogInfo("Compiling bot " + _botMeta.NickName + " using maven");
-                using (var handler = new ProcessHandler(compileLocation, Settings.Default.PathToMaven, "clean compile assembly:single -e", _compileLogger))
+                using (var handler = new ProcessHandler(compileLocation, _environmentSettings.PathToMaven, "clean compile assembly:single -e", _compileLogger))
                 {
                     handler.ProcessToRun.ErrorDataReceived += ProcessDataRecieved;
                     handler.ProcessToRun.OutputDataReceived += ProcessDataRecieved;

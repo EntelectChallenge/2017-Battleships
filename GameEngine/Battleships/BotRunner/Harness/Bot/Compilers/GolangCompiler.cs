@@ -19,12 +19,14 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
         private readonly BotMeta _botMeta;
         private readonly string _botDir;
         private readonly ILogger _compileLogger;
+        private readonly EnvironmentSettings _environmentSettings;
 
-        public GolangCompiler(BotMeta botMeta, string botDir, ILogger compileLogger)
+        public GolangCompiler(BotMeta botMeta, string botDir, ILogger compileLogger, EnvironmentSettings environmentSettings)
         {
             _botMeta = botMeta;
             _botDir = botDir;
             _compileLogger = compileLogger;
+            _environmentSettings = environmentSettings;
         }
 
         public bool HasPackageManager()
@@ -37,7 +39,7 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
             if (!HasPackageManager()) return true;
 
             _compileLogger.LogInfo("Running Go get");
-            using (var handler = new ProcessHandler(_botDir, Settings.Default.PathToGolang, "get .", _compileLogger))
+            using (var handler = new ProcessHandler(_botDir, _environmentSettings.PathToGolang, "get .", _compileLogger))
             {
                 handler.ProcessToRun.ErrorDataReceived += ProcessDataRecieved;
                 handler.ProcessToRun.OutputDataReceived += ProcessDataRecieved;
@@ -53,7 +55,7 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
 	    var envVars = new StringDictionary();
 	    var target = _botMeta.RunFile;
 	    envVars.Add("GOPATH", location);
-	    using (var handler = new ProcessHandler(_botDir, Settings.Default.PathToGolang, " build -v -o " + target +" -a "+  _botMeta.ProjectLocation, _compileLogger, false, envVars))
+	    using (var handler = new ProcessHandler(_botDir, _environmentSettings.PathToGolang, " build -v -o " + target +" -a "+  _botMeta.ProjectLocation, _compileLogger, false, envVars))
             {
                 handler.ProcessToRun.ErrorDataReceived += ProcessDataRecieved;
                 handler.ProcessToRun.OutputDataReceived += ProcessDataRecieved;
