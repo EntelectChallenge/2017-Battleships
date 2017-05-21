@@ -53,7 +53,7 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
         {
             _compileLogger.LogInfo("Compiling bot " + _botMeta.NickName + " in location " + _botMeta.ProjectLocation + " using .Net");
             var executable = Environment.OSVersion.Platform == PlatformID.Unix ? Settings.Default.PathToXBuild : Settings.Default.PathToMSBuild;
-            using (var handler = new ProcessHandler(Path.Combine(_botDir, _botMeta.ProjectLocation??""), executable, "/t:rebuild /p:Configuration=Release /p:Platform=\"Any CPU\"", _compileLogger))
+            using (var handler = new ProcessHandler(Path.Combine(_botDir, _botMeta.ProjectLocation??""), executable, "/tv:14.0 /t:rebuild /p:Configuration=Release /p:Platform=\"Any CPU\"", _compileLogger))
             {
                 handler.ProcessToRun.ErrorDataReceived += ProcessDataRecieved;
                 handler.ProcessToRun.OutputDataReceived += ProcessDataRecieved;

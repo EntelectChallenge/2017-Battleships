@@ -23,111 +23,84 @@ namespace GameEngine.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("7")]
         public int SmallMapSize {
             get {
                 return ((int)(this["SmallMapSize"]));
             }
-            set {
-                this["SmallMapSize"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public int MediumMapSize {
             get {
                 return ((int)(this["MediumMapSize"]));
             }
-            set {
-                this["MediumMapSize"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("14")]
         public int LargeMapSize {
             get {
                 return ((int)(this["LargeMapSize"]));
             }
-            set {
-                this["LargeMapSize"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public int PointsHit {
             get {
                 return ((int)(this["PointsHit"]));
             }
-            set {
-                this["PointsHit"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("30")]
         public int PointsShipSunk {
             get {
                 return ((int)(this["PointsShipSunk"]));
             }
-            set {
-                this["PointsShipSunk"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100")]
         public int PointsPlayerKilled {
             get {
                 return ((int)(this["PointsPlayerKilled"]));
             }
-            set {
-                this["PointsPlayerKilled"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public int DefaultNumberOfShips {
             get {
                 return ((int)(this["DefaultNumberOfShips"]));
             }
-            set {
-                this["DefaultNumberOfShips"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1.0.0")]
         public string GameEngineVersion {
             get {
                 return ((string)(this["GameEngineVersion"]));
             }
-            set {
-                this["GameEngineVersion"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public string GameEngineLevel {
             get {
                 return ((string)(this["GameEngineLevel"]));
-            }
-            set {
-                this["GameEngineLevel"] = value;
             }
         }
     }
