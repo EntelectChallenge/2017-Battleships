@@ -63,6 +63,9 @@ namespace TestHarness.TestHarnesses.Bot
                 case BotMeta.BotTypes.JavaScript:
                     _botRunner = new JavaScriptRunner(this);
                     break;
+                case BotMeta.BotTypes.Rust:
+                    _botRunner = new RustRunner(this);
+                    break;
                 default:
                     throw new ArgumentException("Invalid bot type " + meta.BotType);
             }
