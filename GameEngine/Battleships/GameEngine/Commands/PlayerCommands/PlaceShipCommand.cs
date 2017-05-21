@@ -26,6 +26,15 @@ namespace GameEngine.Commands.PlayerCommands
 
         public void PerformCommand(GameMap gameMap, BattleshipPlayer player)
         {
+            if (_ships == null || _points == null || _directions == null)
+            {
+                throw new InvalidCommandException($"There was a problem during the placement of player's {player} ships (Placement null), the round will be played over");
+            }
+            if (_ships.Count != _maxNumOfShips || _points.Count != _maxNumOfShips || _directions.Count != _maxNumOfShips)
+            {
+                throw new InvalidCommandException($"There was a problem during the placement of player's {player} ships (Invalid placement count), the round will be played over");
+            }
+
             gameMap.CleanMapBeforePlace(player.PlayerType);
             var successfulPlace = true;
             for (var index = 0; index < _maxNumOfShips; index++)

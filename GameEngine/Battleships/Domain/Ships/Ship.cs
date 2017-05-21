@@ -90,18 +90,21 @@ namespace Domain.Ships
         {
             var startCell = playerMap.GetCellAtPoint(point);
 
-            var length = 1;
+            var length = 0;
             var cell = startCell;
-            while (length <= _cells.Length)
+            while (length < _cells.Length)
             {
-                if (!cell.CanPlace() || !cell.HasNeighbour(direction))
+                if (!cell.CanPlace())
                     return false;
 
-                cell = cell.Neighbour(direction);
                 length++;
+                if (!cell.HasNeighbour(direction))
+                    break;
+
+                cell = cell.Neighbour(direction);
             }
 
-            return true;
+            return length == _cells.Length;
         }
 
         public override string ToString()

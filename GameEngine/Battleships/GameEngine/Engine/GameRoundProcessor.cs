@@ -8,6 +8,7 @@ using Domain.Games;
 using Domain.Players;
 using Domain.Ships;
 using GameEngine.Commands;
+using GameEngine.Commands.PlayerCommands;
 using GameEngine.Common;
 using GameEngine.Exceptions;
 using GameEngine.Loggers;
@@ -110,6 +111,11 @@ namespace GameEngine.Engine
 
                 try
                 {
+                    if (_gameMap.Phase == 1 && !(command.Value is PlaceShipCommand))
+                    {
+                        throw new InvalidCommandException($"There was a problem during the placement of player's {command.Key.BattleshipPlayer} ships (DoNothing), the round will be played over");
+                    }
+
                     command.Value.PerformCommand(_gameMap, command.Key.BattleshipPlayer);
                 }
                 catch (InvalidCommandException ex)
