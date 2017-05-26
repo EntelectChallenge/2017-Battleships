@@ -16,7 +16,7 @@ namespace TestHarness.TestHarnesses.Bot.Runners
 
         protected override ProcessHandler CreateProcessHandler()
         {
-            var processArgs = String.Format("{0} {1} \"{2}\"", ParentHarness.BotMeta.RunFile, ParentHarness.BattleshipPlayer.Key,
+			var processArgs = String.Format("--precompiled=yes --compilecache=no {0} {1} \"{2}\"", ParentHarness.BotMeta.RunFile, ParentHarness.BattleshipPlayer.Key,
                 ParentHarness.CurrentWorkingDirectory);
 
             processArgs = AddAdditionalRunArgs(processArgs);
