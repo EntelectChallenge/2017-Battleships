@@ -65,6 +65,8 @@ namespace TestHarness.TestHarnesses.Bot
                     break;
                 case BotMeta.BotTypes.Julia:
                     _botRunner = new JuliaRunner(this);
+                case BotMeta.BotTypes.Rust:
+                    _botRunner = new RustRunner(this);
                     break;
                 default:
                     throw new ArgumentException("Invalid bot type " + meta.BotType);
