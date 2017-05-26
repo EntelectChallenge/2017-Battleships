@@ -32,7 +32,7 @@ namespace TestHarness.TestHarnesses.Bot
                     _compiler = new JavaCompiler(botMeta, botDir, compileLogger, environmentSettings);
                     break;
                     case BotMeta.BotTypes.Julia:
-                    _compiler = new JuliaCompiler(botMeta, botDir, compileLogger);
+				    _compiler = new JuliaCompiler(botMeta, botDir, compileLogger, environmentSettings);
                     break;
                     case BotMeta.BotTypes.Python2:
                     case BotMeta.BotTypes.Python3:

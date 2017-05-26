@@ -106,12 +106,15 @@ end
 
 function main(args...)
   println("args=$args")
-  if length(args) < 2
-      printUsage()
-      error("Error: Expected 2 args but got: $args")
-      exit(1)
+  if length(args) >= 1 && args[1] == "--compile"
+    @time run("007", "test_data/Phase 2 - Round 1")  #just run it in any case to warm up julia with this bot
+  elseif length(args) < 2
+    printUsage()
+    error("Error: Expected 2 args but got: $args")
+    exit(1)
+  else
+    @time run(args...)
   end
-  @time run(args...)
 end
 
 function printUsage()

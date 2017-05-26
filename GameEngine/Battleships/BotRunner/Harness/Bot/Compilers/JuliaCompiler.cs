@@ -17,12 +17,14 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
         private readonly string _botDir;
         private readonly ILogger _compileLogger;
         private bool _failed;
+		private readonly EnvironmentSettings _environmentSettings;
 
-        public JuliaCompiler(BotMeta botMeta, string botDir, ILogger compileLogger)
+		public JuliaCompiler(BotMeta botMeta, string botDir, ILogger compileLogger, EnvironmentSettings environmentSettings)
         {
             _botMeta = botMeta;
             _botDir = botDir;
             _compileLogger = compileLogger;
+			_environmentSettings = environmentSettings;
         }
 
         public bool HasPackageManager()
@@ -37,8 +39,20 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
 
         public bool RunCompiler()
         {
-            // don't actully compile anything for now
+			// runs the bot with a --compile flag so it can warm up or precompile if needed
+
+			var compileLocation = Path.Combine(_botDir, _botMeta.ProjectLocation ?? "");            
             _compileLogger.LogInfo("Compiling bot " + _botMeta.NickName + " using Julia");
+
+			using (var handler = 
+				new ProcessHandler(compileLocation, _environmentSettings.PathToJulia, " --precompiled=yes --compilecache=yes " +  _botMeta.RunFile + " --compile", _compileLogger)
+			) {
+				handler.ProcessToRun.ErrorDataReceived += ProcessDataRecieved;
+				handler.ProcessToRun.OutputDataReceived += ProcessDataRecieved;
+
+				_compileLogger.LogInfo("Compilation exited with: " + handler.RunProcess());
+
+			}
             return true;
         }
 
