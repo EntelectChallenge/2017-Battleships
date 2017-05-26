@@ -17,12 +17,14 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
         private readonly BotMeta _botMeta;
         private readonly string _botDir;
         private readonly ILogger _compileLogger;
+        private readonly EnvironmentSettings _environmentSettings;
 
-        public DotNetCompiler(BotMeta botMeta, string botDir, ILogger compileLogger)
+        public DotNetCompiler(BotMeta botMeta, string botDir, ILogger compileLogger, EnvironmentSettings environmentSettings)
         {
             _botMeta = botMeta;
             _botDir = botDir;
             _compileLogger = compileLogger;
+            _environmentSettings = environmentSettings;
         }
 
         public bool HasPackageManager()
@@ -52,8 +54,8 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
         public bool RunCompiler()
         {
             _compileLogger.LogInfo("Compiling bot " + _botMeta.NickName + " in location " + _botMeta.ProjectLocation + " using .Net");
-            var executable = Environment.OSVersion.Platform == PlatformID.Unix ? Settings.Default.PathToXBuild : Settings.Default.PathToMSBuild;
-            using (var handler = new ProcessHandler(Path.Combine(_botDir, _botMeta.ProjectLocation??""), executable, "/t:rebuild /p:Configuration=Release /p:Platform=\"Any CPU\"", _compileLogger))
+            var executable = Environment.OSVersion.Platform == PlatformID.Unix ? _environmentSettings.PathToXBuild : _environmentSettings.PathToMSBuild;
+            using (var handler = new ProcessHandler(Path.Combine(_botDir, _botMeta.ProjectLocation??""), executable, "/tv:14.0 /t:rebuild /p:Configuration=Release /p:Platform=\"Any CPU\"", _compileLogger))
             {
                 handler.ProcessToRun.ErrorDataReceived += ProcessDataRecieved;
                 handler.ProcessToRun.OutputDataReceived += ProcessDataRecieved;

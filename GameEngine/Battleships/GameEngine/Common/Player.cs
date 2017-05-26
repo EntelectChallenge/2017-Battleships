@@ -50,7 +50,7 @@ namespace GameEngine.Common
 
         public ILogger Logger { get; set; }
 
-        protected Player(String name)
+        protected Player(string name)
         {
             Name = name;
         }

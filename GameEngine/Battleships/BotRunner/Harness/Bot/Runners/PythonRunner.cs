@@ -12,17 +12,20 @@ namespace TestHarness.TestHarnesses.Bot.Runners
 {
     public class PythonRunner : BotRunner
     {
-        public PythonRunner(BotHarness parentHarness)
+        private readonly EnvironmentSettings _environmentSettings;
+
+        public PythonRunner(BotHarness parentHarness, EnvironmentSettings environmentSettings)
             : base(parentHarness)
         {
+            _environmentSettings = environmentSettings;
         }
 
         protected override ProcessHandler CreateProcessHandler()
         {
-            var pythonExecutable = Settings.Default.PathToPython3;
+            var pythonExecutable = _environmentSettings.PathToPython3;
             if (ParentHarness.BotMeta.BotType == BotMeta.BotTypes.Python2)
             {
-                pythonExecutable = Settings.Default.PathToPython2;
+                pythonExecutable = _environmentSettings.PathToPython2;
             }
 
             var processArgs = GetProcessArguments(ParentHarness.BotMeta.RunFile, ParentHarness.BattleshipPlayer.Key, ParentHarness.CurrentWorkingDirectory);
@@ -33,10 +36,10 @@ namespace TestHarness.TestHarnesses.Bot.Runners
 
         protected override void RunCalibrationTest()
         {
-            var pythonExecutable = Settings.Default.PathToPython3;
+            var pythonExecutable = _environmentSettings.PathToPython3;
             if (ParentHarness.BotMeta.BotType == BotMeta.BotTypes.Python2)
             {
-                pythonExecutable = Settings.Default.PathToPython2;
+                pythonExecutable = _environmentSettings.PathToPython2;
             }
 
             var calibrationBot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,

@@ -174,80 +174,59 @@ namespace BotRunner.Properties {
             get {
                 return ((string)(this["StateFileName"]));
             }
-            set {
-                this["StateFileName"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("map.txt")]
         public string MapFileName {
             get {
                 return ((string)(this["MapFileName"]));
             }
-            set {
-                this["MapFileName"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("log.txt")]
         public string LogFileName {
             get {
                 return ((string)(this["LogFileName"]));
             }
-            set {
-                this["LogFileName"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("bot.json")]
         public string BotMetaFileName {
             get {
                 return ((string)(this["BotMetaFileName"]));
             }
-            set {
-                this["BotMetaFileName"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int MaxBotRuntimeSeconds {
             get {
                 return ((int)(this["MaxBotRuntimeSeconds"]));
             }
-            set {
-                this["MaxBotRuntimeSeconds"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("place.txt")]
         public string ShipPlacementFile {
             get {
                 return ((string)(this["ShipPlacementFile"]));
             }
-            set {
-                this["ShipPlacementFile"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("command.txt")]
         public string CommandFileTxt {
             get {
                 return ((string)(this["CommandFileTxt"]));
-            }
-            set {
-                this["CommandFileTxt"] = value;
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Battleships.Properties;
 using BotRunner.Harness.ConsoleHarness;
 using BotRunner.Util;
 using Domain.File;
@@ -35,7 +36,7 @@ namespace Battleships
 
             try
             {
-                _engine = new BattleshipEngine {Logger = Logger};
+                _engine = new BattleshipEngine { Logger = Logger };
                 _engine.GameComplete += EngineOnGameComplete;
                 _engine.RoundStarting += WriteStateFiles;
                 _engine.RoundComplete += WriteEngineInfo;
@@ -62,15 +63,17 @@ namespace Battleships
                             botFolder => LoadBot(botFolder, _runLocation, options.NoLimit, options.DebugMode))
                         .Where(player => player != null));
 
-		if (options.ForceRebuild) {
-		    foreach (String botFolder in options.BotFolders) {
-		      System.Console.Write("{0}\n", botFolder);
-		      BuildBot(botFolder).Compile();
-		    }
-		    Logger.LogInfo("done.");		    
-		}
+                if (options.ForceRebuild)
+                {
+                    foreach (String botFolder in options.BotFolders)
+                    {
+                        System.Console.Write("{0}\n", botFolder);
+                        BuildBot(botFolder).Compile();
+                    }
+                    Logger.LogInfo("done.");
+                }
 
-            
+
                 if (players.Count == 0)
                 {
                     for (var i = 0; i < 2; i++)
@@ -85,7 +88,7 @@ namespace Battleships
                     Logger.LogInfo("Registered player " + player.Name);
                 }
 
-                _engine.PrepareGame(players, (MapSizes) mapSize);
+                _engine.PrepareGame(players, (MapSizes)mapSize);
 
                 //WriteStateFiles(_engine.GetGameState(), 0);
                 _engine.StartNewGame();
@@ -222,7 +225,7 @@ namespace Battleships
 
                 Logger.LogInfo("Loaded bot " + botLocation);
 
-                return new BotHarness(botMeta, botLocation, logLocation, noLimit, haltOnError);
+                return new BotHarness(botMeta, botLocation, logLocation, noLimit, haltOnError, EnvironmentSettings);
             }
             catch (Exception ex)
             {
@@ -231,27 +234,44 @@ namespace Battleships
             }
         }
 
-	private BotCompiler BuildBot(String botLocation)
-	{
-	    try
-	    {
-		var botMeta = BotMetaReader.ReadBotMeta(botLocation);
+        private BotCompiler BuildBot(String botLocation)
+        {
+            try
+            {
+                var botMeta = BotMetaReader.ReadBotMeta(botLocation);
 
-		Logger.LogInfo("Loaded bot to build " + botLocation);
+                Logger.LogInfo("Loaded bot to build " + botLocation);
 
-		return new BotCompiler(botMeta, botLocation, Logger);
-	    }
-	    catch (Exception ex)
-	    {
-		Logger.LogException("Failed to build bot " + botLocation, ex);
-		throw new Exception("Failed to build bot " + botLocation + Environment.NewLine + ex);
-	    }
+                return new BotCompiler(botMeta, botLocation, Logger, EnvironmentSettings);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogException("Failed to build bot " + botLocation, ex);
+                throw new Exception("Failed to build bot " + botLocation + Environment.NewLine + ex);
+            }
 
-	}
-      
+        }
+
         private string RoundPath(GameMap gameMap, int round)
         {
             return "Phase " + gameMap.Phase + " - Round " + round;
         }
+
+        public EnvironmentSettings EnvironmentSettings =>
+
+            new EnvironmentSettings()
+            {
+                PathToCargo = Settings.Default.PathToCargo,
+                PathToGolang = Settings.Default.PathToGolang,
+                PathToJava = Settings.Default.PathToJava,
+                PathToMSBuild = Settings.Default.PathToMSBuild,
+                PathToMaven = Settings.Default.PathToMaven,
+                PathToNode = Settings.Default.PathToNode,
+                PathToNpm = Settings.Default.PathToNpm,
+                PathToPython2 = Settings.Default.PathToPython2,
+                PathToPython3 = Settings.Default.PathToPython3,
+                PathToPythonPackageIndex = Settings.Default.PathToPythonPackageIndex,
+                PathToXBuild = Settings.Default.PathToXBuild
+            };
     }
 }

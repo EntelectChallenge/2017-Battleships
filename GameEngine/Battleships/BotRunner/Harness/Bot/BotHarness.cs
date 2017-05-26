@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using BotRunner.Exceptions;
 using BotRunner.Properties;
+using BotRunner.Util;
 using Domain.Bot;
 using Domain.File;
 using Domain.Games;
@@ -31,7 +32,7 @@ namespace TestHarness.TestHarnesses.Bot
         private int _currentRound = 0;
         private int _totalDoNothingCommands;
 
-        public BotHarness(BotMeta meta, string botDir, string workDir, bool noTimeLimit, bool haltOnError)
+        public BotHarness(BotMeta meta, string botDir, string workDir, bool noTimeLimit, bool haltOnError, EnvironmentSettings environmentSettings)
             : base(meta.NickName ?? meta.Author ?? meta.Email)
         {
             BotMeta = meta;
@@ -48,26 +49,26 @@ namespace TestHarness.TestHarnesses.Bot
                 case BotMeta.BotTypes.CSharp:
                 case BotMeta.BotTypes.CPlusPlus:
                 case BotMeta.BotTypes.FSharp:
-                    _botRunner = new DotNetRunner(this);
+                    _botRunner = new DotNetRunner(this, environmentSettings);
                     break;
                 case BotMeta.BotTypes.Python2:
                 case BotMeta.BotTypes.Python3:
-                    _botRunner = new PythonRunner(this);
+                    _botRunner = new PythonRunner(this, environmentSettings);
                     break;
                 case BotMeta.BotTypes.Java:
-                    _botRunner = new JavaRunner(this);
+                    _botRunner = new JavaRunner(this, environmentSettings);
                     break;
                 case BotMeta.BotTypes.Golang:
-                    _botRunner = new GolangRunner(this);
+                    _botRunner = new GolangRunner(this, environmentSettings);
                     break;
                 case BotMeta.BotTypes.JavaScript:
-                    _botRunner = new JavaScriptRunner(this);
+                    _botRunner = new JavaScriptRunner(this, environmentSettings);
                     break;
                 case BotMeta.BotTypes.Julia:
                     _botRunner = new JuliaRunner(this);
                     break;
                 case BotMeta.BotTypes.Rust:
-                    _botRunner = new RustRunner(this);
+                    _botRunner = new RustRunner(this, environmentSettings);
                     break;
                 default:
                     throw new ArgumentException("Invalid bot type " + meta.BotType);

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GameEngine.Properties {
+namespace Battleships.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,82 +25,100 @@ namespace GameEngine.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("7")]
-        public int SmallMapSize {
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\msbuild.exe")]
+        public string PathToMSBuild {
             get {
-                return ((int)(this["SmallMapSize"]));
+                return ((string)(this["PathToMSBuild"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int MediumMapSize {
+        [global::System.Configuration.DefaultSettingValueAttribute("xbuild")]
+        public string PathToXBuild {
             get {
-                return ((int)(this["MediumMapSize"]));
+                return ((string)(this["PathToXBuild"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("14")]
-        public int LargeMapSize {
+        [global::System.Configuration.DefaultSettingValueAttribute("mvn.bat")]
+        public string PathToMaven {
             get {
-                return ((int)(this["LargeMapSize"]));
+                return ((string)(this["PathToMaven"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int PointsHit {
+        [global::System.Configuration.DefaultSettingValueAttribute("java")]
+        public string PathToJava {
             get {
-                return ((int)(this["PointsHit"]));
+                return ((string)(this["PathToJava"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("30")]
-        public int PointsShipSunk {
+        [global::System.Configuration.DefaultSettingValueAttribute("go")]
+        public string PathToGolang {
             get {
-                return ((int)(this["PointsShipSunk"]));
+                return ((string)(this["PathToGolang"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public int PointsPlayerKilled {
+        [global::System.Configuration.DefaultSettingValueAttribute("node.exe")]
+        public string PathToNode {
             get {
-                return ((int)(this["PointsPlayerKilled"]));
+                return ((string)(this["PathToNode"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public int DefaultNumberOfShips {
+        [global::System.Configuration.DefaultSettingValueAttribute("python.exe")]
+        public string PathToPython2 {
             get {
-                return ((int)(this["DefaultNumberOfShips"]));
+                return ((string)(this["PathToPython2"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1.0.0")]
-        public string GameEngineVersion {
+        [global::System.Configuration.DefaultSettingValueAttribute("python.exe")]
+        public string PathToPython3 {
             get {
-                return ((string)(this["GameEngineVersion"]));
+                return ((string)(this["PathToPython3"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public string GameEngineLevel {
+        [global::System.Configuration.DefaultSettingValueAttribute("pip")]
+        public string PathToPythonPackageIndex {
             get {
-                return ((string)(this["GameEngineLevel"]));
+                return ((string)(this["PathToPythonPackageIndex"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("X:\\NodeJS\\npm.cmd")]
+        public string PathToNpm {
+            get {
+                return ((string)(this["PathToNpm"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("cargo")]
+        public string PathToCargo {
+            get {
+                return ((string)(this["PathToCargo"]));
             }
         }
     }
