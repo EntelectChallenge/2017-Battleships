@@ -264,6 +264,7 @@ namespace Battleships
                 PathToCargo = Settings.Default.PathToCargo,
                 PathToGolang = Settings.Default.PathToGolang,
                 PathToJava = Settings.Default.PathToJava,
+			    PathToJulia = Settings.Default.PathToJulia,
                 PathToMSBuild = Settings.Default.PathToMSBuild,
                 PathToMaven = Settings.Default.PathToMaven,
                 PathToNode = Settings.Default.PathToNode,

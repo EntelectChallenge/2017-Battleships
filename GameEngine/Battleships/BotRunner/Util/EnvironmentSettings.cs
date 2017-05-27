@@ -15,6 +15,7 @@ namespace BotRunner.Util
         public string PathToMaven { get; set; }
 
         public string PathToJava { get; set; }
+		public string PathToJulia { get; set; }
         public string PathToGolang { get; set; }
 
         public string PathToNode { get; set; }

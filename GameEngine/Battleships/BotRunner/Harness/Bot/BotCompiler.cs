@@ -31,6 +31,9 @@ namespace TestHarness.TestHarnesses.Bot
                     case BotMeta.BotTypes.Java:
                     _compiler = new JavaCompiler(botMeta, botDir, compileLogger, environmentSettings);
                     break;
+                    case BotMeta.BotTypes.Julia:
+				    _compiler = new JuliaCompiler(botMeta, botDir, compileLogger, environmentSettings);
+                    break;
                     case BotMeta.BotTypes.Python2:
                     case BotMeta.BotTypes.Python3:
                     _compiler = new PythonCompiler(botMeta, botDir, compileLogger, environmentSettings);

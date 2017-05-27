@@ -58,6 +58,15 @@ namespace Battleships.Properties {
                 return ((string)(this["PathToJava"]));
             }
         }
+
+		[global::System.Configuration.ApplicationScopedSettingAttribute()]
+		[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+		[global::System.Configuration.DefaultSettingValueAttribute("julia")]
+		public string PathToJulia {
+			get {
+				return ((string)(this["PathToJulia"]));
+			}
+		}
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

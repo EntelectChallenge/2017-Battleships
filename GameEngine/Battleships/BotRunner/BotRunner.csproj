@@ -54,6 +54,7 @@
     <Compile Include="Harness\Bot\Compilers\GolangCompiler.cs" />
     <Compile Include="Harness\Bot\Compilers\JavaCompiler.cs" />
     <Compile Include="Harness\Bot\Compilers\JavaScriptCompiler.cs" />
+    <Compile Include="Harness\Bot\Compilers\JuliaCompiler.cs" />
     <Compile Include="Harness\Bot\Compilers\PythonCompiler.cs" />
     <Compile Include="Harness\Bot\Compilers\RustCompiler.cs" />
     <Compile Include="Harness\Bot\ICompiler.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Harness\Bot\Runners\GolangRunner.cs" />
     <Compile Include="Harness\Bot\Runners\JavaRunner.cs" />
     <Compile Include="Harness\Bot\Runners\JavaScriptRunner.cs" />
+    <Compile Include="Harness\Bot\Runners\JuliaRunner.cs" />
     <Compile Include="Harness\Bot\Runners\PythonRunner.cs" />
     <Compile Include="Harness\Bot\Runners\RustRunner.cs" />
     <Compile Include="Harness\ConsoleHarness\ConsoleHarness.cs" />

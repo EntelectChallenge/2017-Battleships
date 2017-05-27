@@ -64,6 +64,9 @@ namespace TestHarness.TestHarnesses.Bot
                 case BotMeta.BotTypes.JavaScript:
                     _botRunner = new JavaScriptRunner(this, environmentSettings);
                     break;
+                case BotMeta.BotTypes.Julia:
+                    _botRunner = new JuliaRunner(this);
+                    break;
                 case BotMeta.BotTypes.Rust:
                     _botRunner = new RustRunner(this, environmentSettings);
                     break;
