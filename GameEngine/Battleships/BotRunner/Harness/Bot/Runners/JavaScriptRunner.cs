@@ -29,8 +29,7 @@ namespace TestHarness.TestHarnesses.Bot.Runners
 
         protected override void RunCalibrationTest()
         {
-            var calibrationFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-               @"Calibrations" + Path.DirectorySeparatorChar + "BotCalibrationNode.js");
+            var calibrationFile = _environmentSettings.CalibrationPathToJavaScript;
             var processArgs = String.Format("{0} {1} \"{2}\"", calibrationFile,
                 ParentHarness.BattleshipPlayer.Key, ParentHarness.CurrentWorkingDirectory);
 

@@ -2,6 +2,7 @@
 using System.IO;
 using BotRunner.Properties;
 using BotRunner.Util;
+using Domain.Bot;
 
 namespace TestHarness.TestHarnesses.Bot.Runners
 {
@@ -24,8 +25,11 @@ namespace TestHarness.TestHarnesses.Bot.Runners
 
         protected override void RunCalibrationTest()
         {
-            var calibrationJar = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                @"Calibrations" + Path.DirectorySeparatorChar + "BotCalibrationJava.jar");
+            var calibrationJar = _environmentSettings.CalibrationPathToJava;
+            if (ParentHarness.BotMeta.BotType == BotMeta.BotTypes.Scala)
+            {
+                calibrationJar = _environmentSettings.CalibrationPathToScala;
+            }
             var processArgs = GetProcessArguments(calibrationJar, ParentHarness.BattleshipPlayer.Key, ParentHarness.CurrentWorkingDirectory);
 
             using (var handler = new ProcessHandler(AppDomain.CurrentDomain.BaseDirectory, _environmentSettings.PathToJava, processArgs, ParentHarness.Logger))

@@ -36,14 +36,14 @@ namespace TestHarness.TestHarnesses.Bot.Runners
 
         protected override void RunCalibrationTest()
         {
+            var calibrationBot = _environmentSettings.CalibrationPathToPython3;
             var pythonExecutable = _environmentSettings.PathToPython3;
             if (ParentHarness.BotMeta.BotType == BotMeta.BotTypes.Python2)
             {
+                calibrationBot = _environmentSettings.CalibrationPathToPython2;
                 pythonExecutable = _environmentSettings.PathToPython2;
             }
 
-            var calibrationBot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                @"Calibrations" + Path.DirectorySeparatorChar + "BotCalibrationPython.py");
             var processArgs = GetProcessArguments(calibrationBot, ParentHarness.BattleshipPlayer.Key, ParentHarness.CurrentWorkingDirectory);
 
             using (var handler = new ProcessHandler(AppDomain.CurrentDomain.BaseDirectory, pythonExecutable, processArgs, ParentHarness.Logger))

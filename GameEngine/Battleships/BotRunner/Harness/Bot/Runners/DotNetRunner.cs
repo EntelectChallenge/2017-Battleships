@@ -32,8 +32,7 @@ namespace TestHarness.TestHarnesses.Bot.Runners
 
         protected override void RunCalibrationTest()
         {
-            var calibrationExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                @"Calibrations" + Path.DirectorySeparatorChar + GetCalibrarionExe());
+            var calibrationExe = GetCalibrarionExe();
             var processArgs =
                 String.Format("{0} \"{1}\"", ParentHarness.BattleshipPlayer.Key, ParentHarness.CurrentWorkingDirectory);
 
@@ -55,17 +54,7 @@ namespace TestHarness.TestHarnesses.Bot.Runners
 
         private string GetCalibrarionExe()
         {
-            switch (ParentHarness.BotMeta.BotType)
-            {
-                case BotMeta.BotTypes.CPlusPlus:
-                    return "BotCalibrationCPlusPlus.exe";
-                case BotMeta.BotTypes.FSharp:
-                    return "BotCalibrationFSharp.exe";
-                    case BotMeta.BotTypes.CSharp:
-                default:
-                        return "BotCalibrationDotNet.exe";
-            }
-            
+            return _environmentSettings.CalibrationPathToCSharp;
         }
     }
 }

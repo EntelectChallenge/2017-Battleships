@@ -16,3 +16,4 @@ GameEngine/Battleships/BotRunner/bin/
 GameEngine/Battleships/BotRunner/obj/
 GameEngine/Battleships/packages/
 *~
+Sample Bots/C#/SampleBot/bin/Release/SampleBot.vshost.exe.manifest

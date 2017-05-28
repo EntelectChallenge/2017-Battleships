@@ -56,6 +56,7 @@ namespace TestHarness.TestHarnesses.Bot
                     _botRunner = new PythonRunner(this, environmentSettings);
                     break;
                 case BotMeta.BotTypes.Java:
+                case BotMeta.BotTypes.Scala:
                     _botRunner = new JavaRunner(this, environmentSettings);
                     break;
                 case BotMeta.BotTypes.Golang:
@@ -65,7 +66,7 @@ namespace TestHarness.TestHarnesses.Bot
                     _botRunner = new JavaScriptRunner(this, environmentSettings);
                     break;
                 case BotMeta.BotTypes.Julia:
-                    _botRunner = new JuliaRunner(this);
+                    _botRunner = new JuliaRunner(this, environmentSettings);
                     break;
                 case BotMeta.BotTypes.Rust:
                     _botRunner = new RustRunner(this, environmentSettings);

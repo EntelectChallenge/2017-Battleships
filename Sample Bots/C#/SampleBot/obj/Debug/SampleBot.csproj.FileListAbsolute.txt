@@ -1,2 +1,0 @@
-W:\Projects\100k\2017\Source\Sample Bots\C#\SampleBot\bin\Debug\SampleBot.exe.config
-C:\Development\EntelectChallenge\Sample Bots\C#\SampleBot\bin\Debug\SampleBot.exe.config
