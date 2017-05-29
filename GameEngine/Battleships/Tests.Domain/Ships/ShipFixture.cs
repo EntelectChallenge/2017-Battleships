@@ -5,6 +5,7 @@ using Domain.Games;
 using Domain.Maps;
 using Domain.Players;
 using Domain.Ships;
+using Domain.Weapons;
 using NUnit.Framework;
 using Tests.Domain.Ships.Stubs;
 
@@ -105,7 +106,7 @@ namespace Tests.Domain.Ships
         }
 
         [Test]
-        public void GivenShipWithOneSegment_WhenDamagingSegment_MarksShipAsDestroyed()
+        public void GivenShipWithOneSegment_WhenDamagingSegment_MarksCellsAsDestroyed()
         {
             var ship = new ShipStub(player, 1);
             const int width = 5;
@@ -117,7 +118,7 @@ namespace Tests.Domain.Ships
 
             segmentToDamage.LandShot();
 
-            Assert.True(ship.Destroyed);
+            Assert.True(ship.Cells.All(x => x != null && x.Hit));
         }
 
         [Test]
@@ -137,7 +138,7 @@ namespace Tests.Domain.Ships
         }
 
         [Test]
-        public void GivenShipWithAllButOneSegmentDamaged_WhenDamagingSegment_MarksShipAsDestroyed()
+        public void GivenShipWithAllButOneSegmentDamaged_WhenDamagingSegment_MarksCellsAsDestroyed()
         {
             var ship = new ShipStub(player, 4);
             const int width = 5;
@@ -153,7 +154,34 @@ namespace Tests.Domain.Ships
 
             segmentToDamage.LandShot();
 
-            Assert.True(ship.Destroyed);
+            Assert.True(ship.Cells.All(x => x != null && x.Hit));
+        }
+
+        [Test]
+        public void GivenShipWithAllButOneSegmentDamaged_WhenDamagingSegment_PlayerCanStillShoot()
+        {
+            const int width = 5;
+            const int height = 5;
+            var map = new GameMap("SomePlayer", "SomeOtherPlayer", width, height);
+            map.Place(PlayerType.One, ShipType.Cruiser, new Point(0, 0), Direction.East);
+            map.Place(PlayerType.One, ShipType.Battleship, new Point(0, 1), Direction.East);
+            map.Place(PlayerType.One, ShipType.Carrier, new Point(0, 2), Direction.East);
+            map.Place(PlayerType.One, ShipType.Destroyer, new Point(0, 3), Direction.East);
+            map.Place(PlayerType.One, ShipType.Submarine, new Point(0, 4), Direction.East);
+            map.Place(PlayerType.Two, ShipType.Cruiser, new Point(0, 0), Direction.East);
+            map.Place(PlayerType.Two, ShipType.Battleship, new Point(0, 1), Direction.East);
+            map.Place(PlayerType.Two, ShipType.Carrier, new Point(0, 2), Direction.East);
+            map.Place(PlayerType.Two, ShipType.Destroyer, new Point(0, 3), Direction.East);
+            map.Place(PlayerType.Two, ShipType.Submarine, new Point(0, 4), Direction.East);
+
+            foreach (var cell in map.GetBattleshipPlayer(PlayerType.One).Ships.SelectMany(x => x.Cells))
+            {
+                cell.LandShot();
+            }
+
+            Assert.True(map.GetBattleshipPlayer(PlayerType.One).Ships.SelectMany(x => x.Cells).All(x => x != null && x.Hit));
+            
+            Assert.DoesNotThrow(() => map.Shoot(PlayerType.One, new Point(0,0), WeaponType.SingleShot));
         }
     }
 }

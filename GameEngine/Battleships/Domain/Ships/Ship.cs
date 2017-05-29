@@ -19,7 +19,7 @@ namespace Domain.Ships
         [JsonProperty]
         public IEnumerable<Cell> Cells => this._cells;
 
-        public bool Destroyed => _cells.All(x => x != null && x.Hit);
+        public bool Destroyed { get; set; }
 
         public bool Placed { get; set; }
         

@@ -88,6 +88,7 @@ namespace GameEngine.Engine
             {
                 return false;
             }
+            DestroyShips();
             KillOffPlayers();
             _logger.LogDebug("Round processing complete");
             _roundProcessed = true;
@@ -159,6 +160,18 @@ namespace GameEngine.Engine
                 KillPlayerEntities.Add(battleshipPlayer);
                 _logger.LogDebug($"Killed player {battleshipPlayer}");
             }
+        }
+
+        protected void DestroyShips()
+        {
+            foreach (var player in _gameMap.RegisteredPlayers)
+            {
+                foreach (var playerShip in player.Ships)
+                {
+                    playerShip.Destroyed = playerShip.Cells.All(x => x != null && x.Hit);
+                }
+            }
+            
         }
 
         public void ResetBackToStart()
