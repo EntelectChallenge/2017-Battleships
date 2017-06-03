@@ -10,6 +10,7 @@ import os
 from time import sleep
 from random import randint
 import math
+import numpy as np
 
 logger = logging.getLogger()
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)-7s - [%(funcName)s] %(message)s')
