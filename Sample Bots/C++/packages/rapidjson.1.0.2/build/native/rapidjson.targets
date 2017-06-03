@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="rapidjson_init">
+  <PropertyGroup Label="Default initializers for properties">
+    <Linkage-rapidjson Condition="'$(Linkage-rapidjson)' == ''">dynamic</Linkage-rapidjson>
+    <CallingConvention-rapidjson Condition="'$(CallingConvention-rapidjson)' == ''">cdecl</CallingConvention-rapidjson>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)../..//build/native/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)../..//build/native/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)\default-propertiesui.xml" />
+  </ItemGroup>
+  <UsingTask TaskName="rapidjson_Contains" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" TaskFactory="CodeTaskFactory">
+    <ParameterGroup>
+      <Text Output="false" ParameterType="System.String" />
+      <Library Output="false" Required="true" ParameterType="System.String" />
+      <Value Output="false" Required="true" ParameterType="System.String" />
+      <Result Output="true" ParameterType="System.String" />
+    </ParameterGroup>
+    <Task>
+      <Code>Result = ((Text ?? "").Split(';').Contains(Library) ) ? Value : String.Empty;</Code>
+    </Task>
+  </UsingTask>
+  <Target Name="rapidjson_init">
+    <rapidjson_Contains Text="Linkage-dynamic" Library="rapidjson" Value="dynamic" Condition="'$(Linkage-rapidjson)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-rapidjson" />
+    </rapidjson_Contains>
+    <rapidjson_Contains Text="Linkage-static" Library="rapidjson" Value="static" Condition="'$(Linkage-rapidjson)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-rapidjson" />
+    </rapidjson_Contains>
+    <rapidjson_Contains Text="Linkage-ltcg" Library="rapidjson" Value="ltcg" Condition="'$(Linkage-rapidjson)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-rapidjson" />
+    </rapidjson_Contains>
+    <rapidjson_Contains Text="Linkage-sxs" Library="rapidjson" Value="sxs" Condition="'$(Linkage-rapidjson)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-rapidjson" />
+    </rapidjson_Contains>
+    <rapidjson_Contains Text="CallingConvention-cdecl" Library="rapidjson" Value="cdecl" Condition="'$(CallingConvention-rapidjson)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-rapidjson" />
+    </rapidjson_Contains>
+    <rapidjson_Contains Text="CallingConvention-stdcall" Library="rapidjson" Value="stdcall" Condition="'$(CallingConvention-rapidjson)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-rapidjson" />
+    </rapidjson_Contains>
+    <rapidjson_Contains Text="CallingConvention-fastcall" Library="rapidjson" Value="fastcall" Condition="'$(CallingConvention-rapidjson)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-rapidjson" />
+    </rapidjson_Contains>
+    <rapidjson_Contains Text="CallingConvention-thiscall" Library="rapidjson" Value="thiscall" Condition="'$(CallingConvention-rapidjson)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-rapidjson" />
+    </rapidjson_Contains>
+    <rapidjson_Contains Text="CallingConvention-clrcall" Library="rapidjson" Value="clrcall" Condition="'$(CallingConvention-rapidjson)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-rapidjson" />
+    </rapidjson_Contains>
+  </Target>
+</Project>
