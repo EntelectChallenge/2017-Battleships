@@ -1,6 +1,6 @@
 # 2017-Battleships
 
-The current release is version [1.0.4](https://github.com/EntelectChallenge/2017-Battleships/releases/latest).
+The current release is version [1.0.5](https://github.com/EntelectChallenge/2017-Battleships/releases/latest).
 
 For more information about the challenge see the [Challenge website](http://challenge.entelect.co.za/) .
 
@@ -248,6 +248,11 @@ Players wills be awarded points during the game based on the following.
 1. For killing the enemy player you will be awarded an additional 100 points.
 
 ## Release Notes
+
+### Version 1.0.5 - 04 June 2017
+Change Log:
+
+1. Added C++ bot support.
 
 ### Version 1.0.4 - 29 May 2017
 Change Log:
