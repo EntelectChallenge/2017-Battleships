@@ -47,7 +47,8 @@ namespace TestHarness.TestHarnesses.Bot
                     case BotMeta.BotTypes.FSharp:
                         throw new ArgumentException("F# is not supported (No sample bot submitted)");
                     case BotMeta.BotTypes.CPlusPlus:
-                        throw new ArgumentException("C++ is not supported (No sample bot submitted)");
+                    _compiler = new DotNetCompiler(botMeta, botDir, compileLogger, environmentSettings);
+                    break;
                 default:
                     _compiler = new DotNetCompiler(botMeta, botDir, compileLogger, environmentSettings);
                     break;

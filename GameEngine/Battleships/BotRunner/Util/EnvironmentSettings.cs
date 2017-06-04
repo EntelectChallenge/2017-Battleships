@@ -34,5 +34,6 @@ namespace BotRunner.Util
         public string CalibrationPathToPython2 { get; set; }
         public string CalibrationPathToPython3 { get; set; }
         public string CalibrationPathToRust { get; set; }
+        public string CalibrationPathToCPlusPlus { get; set; }
     }
 }

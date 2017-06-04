@@ -54,7 +54,14 @@ namespace TestHarness.TestHarnesses.Bot.Runners
 
         private string GetCalibrarionExe()
         {
-            return _environmentSettings.CalibrationPathToCSharp;
+            switch (ParentHarness.BotMeta.BotType)
+            {
+                case BotMeta.BotTypes.CPlusPlus:
+                    return _environmentSettings.CalibrationPathToCPlusPlus;
+                case BotMeta.BotTypes.CSharp:
+                default:
+                    return _environmentSettings.CalibrationPathToCSharp;
+            }
         }
     }
 }

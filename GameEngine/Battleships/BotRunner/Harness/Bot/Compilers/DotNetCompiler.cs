@@ -55,7 +55,7 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
         {
             _compileLogger.LogInfo("Compiling bot " + _botMeta.NickName + " in location " + _botMeta.ProjectLocation + " using .Net");
             var executable = Environment.OSVersion.Platform == PlatformID.Unix ? _environmentSettings.PathToXBuild : _environmentSettings.PathToMSBuild;
-            using (var handler = new ProcessHandler(Path.Combine(_botDir, _botMeta.ProjectLocation??""), executable, "/tv:14.0 /t:rebuild /p:Configuration=Release /p:Platform=\"Any CPU\"", _compileLogger))
+            using (var handler = new ProcessHandler(Path.Combine(_botDir, _botMeta.ProjectLocation??""), executable, $"/tv:14.0 /t:rebuild /p:Configuration=Release {GetPlatformVersion()}", _compileLogger))
             {
                 handler.ProcessToRun.ErrorDataReceived += ProcessDataRecieved;
                 handler.ProcessToRun.OutputDataReceived += ProcessDataRecieved;
@@ -67,6 +67,17 @@ namespace TestHarness.TestHarnesses.Bot.Compilers
         void ProcessDataRecieved(object sender, System.Diagnostics.DataReceivedEventArgs e)
         {
             _compileLogger.LogInfo(e.Data);
+        }
+
+        string GetPlatformVersion()
+        {
+            switch (_botMeta.BotType)
+            {
+                    case BotMeta.BotTypes.CPlusPlus:
+                    return "";
+                default:
+                    return "/p:Platform=\"Any CPU\"";
+            }
         }
     }
 }

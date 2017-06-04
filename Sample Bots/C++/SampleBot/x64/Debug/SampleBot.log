@@ -1,0 +1,5 @@
+﻿  stdafx.cpp
+  SampleBot.cpp
+w:\projects\100k\2017\github\2017-batteships\sample bots\c++\samplebot\samplebot.cpp(54): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  SampleBot.vcxproj -> W:\Projects\100k\2017\Github\2017-Batteships\Sample Bots\C++\bin\Debug\SampleBot.exe
+  SampleBot.vcxproj -> W:\Projects\100k\2017\Github\2017-Batteships\Sample Bots\C++\bin\Debug\SampleBot.pdb (Partial PDB)
