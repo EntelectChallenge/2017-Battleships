@@ -125,7 +125,7 @@ namespace TestHarness.TestHarnesses.Bot
                 switch (otherCommand.Code)
                 {
                     case 1:
-                        return new FireShotCommand(otherCommand.Point);
+                        return new FireSingleShotCommand(otherCommand.Point);
                     default:
                         return new DoNothingCommand();
                 }

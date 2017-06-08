@@ -6,15 +6,15 @@ using Domain.Ships;
 
 namespace Domain.Weapons
 {
-    internal class SingleShotWeapon : Weapon
+    public class DoubleShotWeapon : Weapon
     {
-        public SingleShotWeapon(BattleshipPlayer owner, int energyRequired) : base(owner, energyRequired) { }
+        public DoubleShotWeapon(BattleshipPlayer owner, int energyRequired) : base(owner, energyRequired) { }
 
         public override void Shoot(List<Cell> targets, int currentRound)
         {
+            Owner.ShotsHit++;
             foreach (var target in targets)
             {
-                Owner.ShotsHit++;
                 if (!target.LandShot()) continue;
                 Owner.AddPoints(Settings.Default.PointsHit);
                 if (Owner.FirstShotLanded == int.MaxValue)
@@ -26,7 +26,7 @@ namespace Domain.Weapons
 
         public override string ToString()
         {
-            return "Single Shot";
+            return "Double Shot";
         }
     }
 }

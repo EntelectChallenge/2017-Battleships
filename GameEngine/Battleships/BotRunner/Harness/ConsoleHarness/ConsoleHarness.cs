@@ -100,7 +100,7 @@ namespace BotRunner.Harness.ConsoleHarness
             switch (code)
             {
                 case 1:
-                    PublishCommand(new FireShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2]))));
+                    PublishCommand(new FireSingleShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2]))));
                     break;
                 default:
                     PublishCommand(new DoNothingCommand());

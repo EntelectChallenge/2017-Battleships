@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using Domain.Games;
@@ -45,7 +46,7 @@ namespace Tests.Domain.Maps
             const int height = 5;
             var map = new PlayerMap(width, height, this.player);
             var coordinate = new Point(width / 2, height / 2);
-            var ship = ShipStub.FullStub(this.player);
+            var ship = ShipStub.FullStub(this.player, new WeaponStub(player, 0));
 
             map.Place(ship, coordinate, direction);
 
@@ -65,7 +66,7 @@ namespace Tests.Domain.Maps
             var map = new PlayerMap(width, height, this.player);
             var coordinate = new Point(width / 2, height / 2);
             var otherPlayer = new BattleshipPlayer("OtherPlayer", 'A', PlayerType.One);
-            var ship = ShipStub.FullStub(otherPlayer);
+            var ship = ShipStub.FullStub(otherPlayer, new WeaponStub(player, 1));
 
             Assert.Throws<InvalidOperationException>(() => map.Place(ship, coordinate, Direction.East));
         }
@@ -78,12 +79,12 @@ namespace Tests.Domain.Maps
             var map = new PlayerMap(width, height, this.player);
             var coordinate = new Point(width / 2, height / 2);
             var otherPlayer = new BattleshipPlayer("OtherPlayer", 'A', PlayerType.One);
-            var weapon = new WeaponStub(otherPlayer);
+            var weapon = new WeaponStub(otherPlayer, 0);
 
-            map.Shoot(coordinate, weapon);
+            map.Shoot(weapon, new List<Point> {coordinate}, 1);
 
             Assert.True(weapon.ShootCalled);
-            Assert.NotNull(weapon.Target);
+            Assert.NotNull(weapon.Targets);
         }
 
         [Test]
@@ -93,9 +94,9 @@ namespace Tests.Domain.Maps
             const int height = 5;
             var map = new PlayerMap(width, height, this.player);
             var coordinate = new Point(width / 2, height / 2);
-            var weapon = new WeaponStub(this.player);
+            var weapon = new WeaponStub(this.player,1);
 
-            Assert.Throws<InvalidOperationException>(() => map.Shoot(coordinate, weapon));
+            Assert.Throws<InvalidOperationException>(() => map.Shoot(weapon, new List<Point> { coordinate }, 1));
         }
 
         [Test]
@@ -106,9 +107,9 @@ namespace Tests.Domain.Maps
             var map = new PlayerMap(width, height, this.player);
             var coordinate = new Point(-1, -1);
             var otherPlayer = new BattleshipPlayer("OtherPlayer", 'A', PlayerType.One);
-            var weapon = new WeaponStub(otherPlayer);
+            var weapon = new WeaponStub(otherPlayer, 0);
 
-            Assert.Throws<ArgumentException>(() => map.Shoot(coordinate, weapon));
+            Assert.Throws<ArgumentException>(() => map.Shoot(weapon, new List<Point> { coordinate }, 1));
         }
 
         [Test]
@@ -119,7 +120,7 @@ namespace Tests.Domain.Maps
             const int height = 1;
             var map = new PlayerMap(width, height, this.player);
             var coordinate = new Point(width / 2, height / 2);
-            var ship = ShipStub.FullStub(this.player);
+            var ship = ShipStub.FullStub(this.player, new WeaponStub(player, 1));
 
             try
             {
@@ -143,7 +144,7 @@ namespace Tests.Domain.Maps
             const int height = 1;
             var map = new PlayerMap(width, height, this.player);
             var coordinate = new Point(width / 2, height / 2);
-            var ship = ShipStub.FullStub(this.player);
+            var ship = ShipStub.FullStub(this.player, new WeaponStub(player, 1));
 
             Assert.Throws<InvalidOperationException>(() => map.Place(ship, coordinate, direction));
         }
@@ -156,7 +157,7 @@ namespace Tests.Domain.Maps
             const int height = 5;
             var map = new PlayerMap(width, height, this.player);
             var coordinate = new Point(width / 2, height / 2);
-            var ship = ShipStub.FullStub(this.player);
+            var ship = ShipStub.FullStub(this.player, new WeaponStub(player, 1));
 
             Assert.Throws<InvalidOperationException>(() => map.Place(ship, coordinate, direction));
         }
@@ -168,10 +169,10 @@ namespace Tests.Domain.Maps
             const int height = 5;
             var map = new PlayerMap(width, height, this.player);
             var coordinate = new Point(width / 2, height / 2);
-            var ship = ShipStub.FullStub(this.player);
+            var ship = ShipStub.FullStub(this.player, new WeaponStub(player, 1));
             map.Place(ship, coordinate, Direction.East);
 
-            var overLappingShip = ShipStub.FullStub(this.player);
+            var overLappingShip = ShipStub.FullStub(this.player, new WeaponStub(player, 1));
 
             try
             {
@@ -197,10 +198,10 @@ namespace Tests.Domain.Maps
             const int height = 5;
             var map = new PlayerMap(width, height, this.player);
             var coordinate = new Point(width / 2, height / 2);
-            var ship = ShipStub.FullStub(this.player);
+            var ship = ShipStub.FullStub(this.player, new WeaponStub(player, 1));
             map.Place(ship, coordinate, Direction.West);
 
-            var overLappingShip = ShipStub.FullStub(this.player);
+            var overLappingShip = ShipStub.FullStub(this.player, new WeaponStub(player, 1));
 
             Assert.Throws<InvalidOperationException>(() => map.Place(overLappingShip, coordinate, Direction.East));
         }

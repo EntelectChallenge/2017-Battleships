@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using Domain.Games;
 using Domain.Players;
 using Domain.Ships;
@@ -111,21 +112,24 @@ namespace Domain.Maps
             ship.Place(point, direction, this);
         }
 
-        internal bool Shoot(Point coordinate, Weapon weapon)
+        internal void Shoot(Weapon weapon, List<Point> areaOfEffect, int currentRound)
         {
             if (this.Owner == weapon.Owner)
             {
                 throw new InvalidOperationException($"Can't shoot at your own map.");
             }
 
-            if (!this.cells.ContainsKey(coordinate))
+            foreach (var coordinate in areaOfEffect)
             {
-                throw new ArgumentException("Coordinates are out of bounds.", nameof(coordinate));
+                if (!this.cells.ContainsKey(coordinate))
+                {
+                    throw new ArgumentException("Coordinates are out of bounds.", nameof(coordinate));
+                }
             }
 
-            var target = this.cells[coordinate];
+            var targets = this.Cells.Where(x => areaOfEffect.Any(y => y.X == x.X && y.Y == x.Y)).ToList();
 
-            return weapon.Shoot(target);
+            weapon.Shoot(targets, currentRound);
         }
 
         public Ship GetShipAtPoint(Point point)

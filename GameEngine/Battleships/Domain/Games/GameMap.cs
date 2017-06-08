@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using Domain.Exceptions;
 using Domain.Maps;
 using Domain.Players;
 using Domain.Ships;
 using Domain.Weapons;
 using Newtonsoft.Json;
+using InvalidOperationException = System.InvalidOperationException;
 
 namespace Domain.Games
 {
@@ -72,7 +73,7 @@ namespace Domain.Games
             this.Phase = 1;
         }
 
-        public bool Shoot(PlayerType player, Point target, WeaponType weaponType)
+        public void Shoot(PlayerType player, List<Point> targets, WeaponType weaponType)
         {
             var actor = this._players[player];
             var targetMap = this._opponentMaps[player];
@@ -82,7 +83,17 @@ namespace Domain.Games
             {
                 throw new InvalidOperationException("All your ships must be placed before you are allowed to shoot");
             }
-            return targetMap.Shoot(target, actor.GetWeapon(weaponType));
+
+            var weapon = actor.GetWeapon(weaponType);
+
+            if (actor.Energy >= weapon.EnergyRequired)
+            {
+                targetMap.Shoot(weapon, targets, CurrentRound);
+            }
+            else
+            {
+                throw new InsufficientEnergyException("The player does not have sufficient energy to use the selected weapon");
+            }
         }
 
 

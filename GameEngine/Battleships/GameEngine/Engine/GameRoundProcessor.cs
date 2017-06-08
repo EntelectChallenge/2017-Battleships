@@ -12,6 +12,7 @@ using GameEngine.Commands.PlayerCommands;
 using GameEngine.Common;
 using GameEngine.Exceptions;
 using GameEngine.Loggers;
+using GameEngine.Properties;
 
 namespace GameEngine.Engine
 {
@@ -89,10 +90,31 @@ namespace GameEngine.Engine
                 return false;
             }
             DestroyShips();
+            AddEnergyToPlayers();
             KillOffPlayers();
             _logger.LogDebug("Round processing complete");
             _roundProcessed = true;
             return proccessed;
+        }
+
+        /// <summary>
+        /// Adds 2/3/4 points of energy to each player, depending on the current size of the map
+        /// </summary>
+        protected void AddEnergyToPlayers()
+        {
+            var energyToAdd = 2;
+            if (_gameMap.MapSize == Settings.Default.MediumMapSize)
+            {
+                energyToAdd = 3;
+            }
+            else if (_gameMap.MapSize == Settings.Default.LargeMapSize)
+            {
+                energyToAdd = 4;
+            }
+            foreach (var player in _gameMap.RegisteredPlayers)
+            {
+                player.Energy += energyToAdd;
+            }
         }
 
         /// <summary>

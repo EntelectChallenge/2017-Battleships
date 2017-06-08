@@ -40,7 +40,7 @@ namespace Domain.Players
         [JsonProperty]
         public int Points { get; private set; }
 
-        [JsonIgnore]
+        [JsonProperty]
         public int Energy { get; set; }
 
         [JsonProperty]
@@ -76,15 +76,16 @@ namespace Domain.Players
 
         public BattleshipPlayer(string name, char key, PlayerType type)
         {
+            //TODO: Change energy required based on map size
             this.Name = name;
             this.PlayerType = type;
-            this.Submarine = new Submarine(this, ShipType.Submarine);
-            this.Destroyer = new Destroyer(this, ShipType.Destroyer);
-            this.Cruiser = new Cruiser(this, ShipType.Cruiser);
-            this.Carrier = new Carrier(this, ShipType.Carrier);
-            this.Battleship = new Battleship(this, ShipType.Battleship);
+            this.Submarine = new Submarine(this, ShipType.Submarine, new SeekerMissleWeapon(this, 10));
+            this.Destroyer = new Destroyer(this, ShipType.Destroyer, null);
+            this.Cruiser = new Cruiser(this, ShipType.Cruiser, new DoubleShotWeapon(this, 6));
+            this.Carrier = new Carrier(this, ShipType.Carrier, new ScatterShotWeapon(this, 8));
+            this.Battleship = new Battleship(this, ShipType.Battleship, new CrossShotWeapon(this, 12));
             this.Points = 0;
-            this.Energy = 0;
+            this.Energy = 3;
             this.IsWinner = false;
             this.FailedFirstPhaseCommands = 0;
             this.Ships = new List<Ship>

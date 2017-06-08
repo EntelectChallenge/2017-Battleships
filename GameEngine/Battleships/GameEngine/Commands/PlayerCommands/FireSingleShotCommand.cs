@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
-
 using Domain.Games;
 using Domain.Maps;
 using Domain.Players;
@@ -11,30 +11,22 @@ using GameEngine.Properties;
 
 namespace GameEngine.Commands.PlayerCommands
 {
-    public class FireShotCommand : ICommand
+    public class FireSingleShotCommand : ICommand
     {
         private readonly Point _point;
 
-        public FireShotCommand(Point point)
+        public FireSingleShotCommand(Point point)
         {
             this._point = point;
         }
+
         public void PerformCommand(GameMap gameMap, BattleshipPlayer player)
         {
             try
             {
                 var alreadyDestroyed = gameMap.WasShipDestroyed(player.PlayerType, _point);
-                var shotLanded = gameMap.Shoot(player.PlayerType, _point, WeaponType.SingleShot);
+                gameMap.Shoot(player.PlayerType, new List<Point>() {_point}, WeaponType.SingleShot);
                 player.ShotsFired++;
-                if (shotLanded)
-                {
-                    player.ShotsHit++;
-                    player.AddPoints(Settings.Default.PointsHit);
-                    if (player.FirstShotLanded == int.MaxValue)
-                    {
-                        player.FirstShotLanded = gameMap.CurrentRound;
-                    }
-                }
 
                 var destroyed = gameMap.WasShipDestroyed(player.PlayerType, _point);
                 if (!alreadyDestroyed && destroyed)
