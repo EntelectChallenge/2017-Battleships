@@ -12,7 +12,7 @@ namespace Tests.Domain.Players
         {
             var name = "TestName";
 
-            var player = new BattleshipPlayer(name, 'A', PlayerType.One);
+            var player = new BattleshipPlayer(name, 'A', PlayerType.One, 10);
 
             Assert.AreEqual(name, player.Name);
         }
@@ -22,7 +22,7 @@ namespace Tests.Domain.Players
         {
             var name = "TestName";
 
-            var player = new BattleshipPlayer(name, 'A', PlayerType.One);
+            var player = new BattleshipPlayer(name, 'A', PlayerType.One, 10);
 
             Assert.IsNotNull(player.Battleship);
             Assert.IsNotNull(player.Carrier);

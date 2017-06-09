@@ -2,14 +2,13 @@
 using Domain.Maps;
 using Domain.Players;
 using Domain.Properties;
+using Domain.Ships;
 
 namespace Domain.Weapons
 {
-    public class CrossShotWeapon : Weapon
+    public class DiagonalCrossShotWeapon : Weapon
     {
-        public CrossShotWeapon(BattleshipPlayer owner, int energyRequired) : base(owner, energyRequired)
-        {
-        }
+        public DiagonalCrossShotWeapon(BattleshipPlayer owner, int energyRequired) : base(owner, energyRequired) { }
 
         public override void Shoot(List<Cell> targets, int currentRound)
         {
@@ -37,7 +36,7 @@ namespace Domain.Weapons
 
         public override string ToString()
         {
-            return "Cross Shot";
+            return "Diagonal Cross Shot";
         }
     }
 }

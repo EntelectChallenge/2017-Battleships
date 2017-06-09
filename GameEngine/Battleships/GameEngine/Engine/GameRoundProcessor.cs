@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Domain.Games;
 using Domain.Players;
 using Domain.Ships;
@@ -102,18 +101,21 @@ namespace GameEngine.Engine
         /// </summary>
         protected void AddEnergyToPlayers()
         {
-            var energyToAdd = 2;
-            if (_gameMap.MapSize == Settings.Default.MediumMapSize)
+            if (_gameMap.Phase == 2)
             {
-                energyToAdd = 3;
-            }
-            else if (_gameMap.MapSize == Settings.Default.LargeMapSize)
-            {
-                energyToAdd = 4;
-            }
-            foreach (var player in _gameMap.RegisteredPlayers)
-            {
-                player.Energy += energyToAdd;
+                var energyToAdd = 2;
+                if (_gameMap.MapSize == Settings.Default.MediumMapSize)
+                {
+                    energyToAdd = 3;
+                }
+                else if (_gameMap.MapSize == Settings.Default.LargeMapSize)
+                {
+                    energyToAdd = 4;
+                }
+                foreach (var player in _gameMap.RegisteredPlayers)
+                {
+                    player.Energy += energyToAdd;
+                }
             }
         }
 
@@ -136,7 +138,8 @@ namespace GameEngine.Engine
                 {
                     if (_gameMap.Phase == 1 && !(command.Value is PlaceShipCommand))
                     {
-                        throw new InvalidCommandException($"There was a problem during the placement of player's {command.Key.BattleshipPlayer} ships (DoNothing), the round will be played over");
+                        throw new InvalidCommandException(
+                            $"There was a problem during the placement of player's {command.Key.BattleshipPlayer} ships (DoNothing), the round will be played over");
                     }
 
                     command.Value.PerformCommand(_gameMap, command.Key.BattleshipPlayer);
@@ -193,7 +196,6 @@ namespace GameEngine.Engine
                     playerShip.Destroyed = playerShip.Cells.All(x => x != null && x.Hit);
                 }
             }
-            
         }
 
         public void ResetBackToStart()

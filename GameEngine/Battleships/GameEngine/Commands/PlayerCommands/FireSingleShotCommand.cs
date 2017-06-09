@@ -24,15 +24,7 @@ namespace GameEngine.Commands.PlayerCommands
         {
             try
             {
-                var alreadyDestroyed = gameMap.WasShipDestroyed(player.PlayerType, _point);
                 gameMap.Shoot(player.PlayerType, new List<Point>() {_point}, WeaponType.SingleShot);
-                player.ShotsFired++;
-
-                var destroyed = gameMap.WasShipDestroyed(player.PlayerType, _point);
-                if (!alreadyDestroyed && destroyed)
-                {
-                    player.AddPoints(Settings.Default.PointsShipSunk);
-                }
             }
             catch (Exception exception)
             {

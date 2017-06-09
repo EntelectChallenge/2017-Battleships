@@ -35,7 +35,7 @@ namespace Tests.Domain.Maps
         [SetUp]
         public void SetUp()
         {
-            this.player = new BattleshipPlayer("SomePlayer", 'A', PlayerType.One);
+            this.player = new BattleshipPlayer("SomePlayer", 'A', PlayerType.One, 10);
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace Tests.Domain.Maps
             const int height = 5;
             var map = new PlayerMap(width, height, this.player);
             var coordinate = new Point(width / 2, height / 2);
-            var otherPlayer = new BattleshipPlayer("OtherPlayer", 'A', PlayerType.One);
+            var otherPlayer = new BattleshipPlayer("OtherPlayer", 'A', PlayerType.One, 10);
             var ship = ShipStub.FullStub(otherPlayer, new WeaponStub(player, 1));
 
             Assert.Throws<InvalidOperationException>(() => map.Place(ship, coordinate, Direction.East));
@@ -78,7 +78,7 @@ namespace Tests.Domain.Maps
             const int height = 5;
             var map = new PlayerMap(width, height, this.player);
             var coordinate = new Point(width / 2, height / 2);
-            var otherPlayer = new BattleshipPlayer("OtherPlayer", 'A', PlayerType.One);
+            var otherPlayer = new BattleshipPlayer("OtherPlayer", 'A', PlayerType.One, 10);
             var weapon = new WeaponStub(otherPlayer, 0);
 
             map.Shoot(weapon, new List<Point> {coordinate}, 1);
@@ -106,7 +106,7 @@ namespace Tests.Domain.Maps
             const int height = 5;
             var map = new PlayerMap(width, height, this.player);
             var coordinate = new Point(-1, -1);
-            var otherPlayer = new BattleshipPlayer("OtherPlayer", 'A', PlayerType.One);
+            var otherPlayer = new BattleshipPlayer("OtherPlayer", 'A', PlayerType.One, 10);
             var weapon = new WeaponStub(otherPlayer, 0);
 
             Assert.Throws<ArgumentException>(() => map.Shoot(weapon, new List<Point> { coordinate }, 1));
@@ -209,7 +209,7 @@ namespace Tests.Domain.Maps
         [Test]
         public void GivenPlayer_WhenConstructing_AddsPlayerAsOwner()
         {
-            var owner = new BattleshipPlayer("TestPlayer", 'A', PlayerType.One);
+            var owner = new BattleshipPlayer("TestPlayer", 'A', PlayerType.One, 10);
             const int width = 5;
             const int height = 5;
 

@@ -21,7 +21,7 @@ namespace Tests.Domain.Ships
         [SetUp]
         public void SetUp()
         {
-            this.player = new BattleshipPlayer("SomePlayer", 'A', PlayerType.One);
+            this.player = new BattleshipPlayer("SomePlayer", 'A', PlayerType.One, 10);
         }
 
     [Test]

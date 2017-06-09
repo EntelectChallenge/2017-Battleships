@@ -30,8 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -77,8 +78,9 @@
     <Compile Include="Ships\Ship.cs" />
     <Compile Include="Ships\Submarine.cs" />
     <Compile Include="Weapons\CrossShotWeapon.cs" />
+    <Compile Include="Weapons\DiagonalCrossShotWeapon.cs" />
     <Compile Include="Weapons\DoubleShotWeapon.cs" />
-    <Compile Include="Weapons\ScatterShotWeapon.cs" />
+    <Compile Include="Weapons\CornerShotWeapon.cs" />
     <Compile Include="Weapons\SeekerMissleWeapon.cs" />
     <Compile Include="Weapons\SingleShotWeapon.cs" />
     <Compile Include="Weapons\Weapon.cs" />

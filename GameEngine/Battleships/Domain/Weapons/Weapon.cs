@@ -42,8 +42,9 @@ namespace Domain.Weapons
     {
         SingleShot,
         DoubleShot,
-        ScatterShot,
+        CornerShot,
         SeekerMissle,
+        DiagonalCrossShot,
         CrossShot
     }
 }

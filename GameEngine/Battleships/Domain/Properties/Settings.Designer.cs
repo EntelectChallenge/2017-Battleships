@@ -49,5 +49,32 @@ namespace Domain.Properties {
                 return ((int)(this["PointsPlayerKilled"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public int SmallMapSize {
+            get {
+                return ((int)(this["SmallMapSize"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int MediumMapSize {
+            get {
+                return ((int)(this["MediumMapSize"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("14")]
+        public int LargeMapSize {
+            get {
+                return ((int)(this["LargeMapSize"]));
+            }
+        }
     }
 }

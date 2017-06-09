@@ -55,8 +55,8 @@ namespace Domain.Games
             this.MapSize = mapHeight;
             this.RegisteredPlayers = new List<BattleshipPlayer>();
 
-            var playerOne = new BattleshipPlayer(playerOneName, 'A', PlayerType.One);
-            var playerTwo = new BattleshipPlayer(playerTwoName, 'B', PlayerType.Two);
+            var playerOne = new BattleshipPlayer(playerOneName, 'A', PlayerType.One, mapHeight);
+            var playerTwo = new BattleshipPlayer(playerTwoName, 'B', PlayerType.Two, mapHeight);
 
             this._players[PlayerType.One] = playerOne;
             this._players[PlayerType.Two] = playerTwo;
@@ -89,6 +89,7 @@ namespace Domain.Games
             if (actor.Energy >= weapon.EnergyRequired)
             {
                 targetMap.Shoot(weapon, targets, CurrentRound);
+                actor.Energy -= weapon.EnergyRequired;
             }
             else
             {

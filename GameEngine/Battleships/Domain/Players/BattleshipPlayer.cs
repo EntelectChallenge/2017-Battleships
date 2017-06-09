@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Domain.Games;
 using Domain.Maps;
+using Domain.Properties;
 using Domain.Ships;
 using Domain.Weapons;
 using Newtonsoft.Json;
@@ -58,6 +59,8 @@ namespace Domain.Players
         [JsonIgnore]
         public int FirstShotLanded { get; set; }
 
+        [JsonIgnore] private int _mapSize;
+
         public void AddPoints(int points)
         {
             this.Points += points;
@@ -74,16 +77,16 @@ namespace Domain.Players
             get { return this.Ships.Count(x => !x.Destroyed); }
         }
 
-        public BattleshipPlayer(string name, char key, PlayerType type)
+        public BattleshipPlayer(string name, char key, PlayerType type, int mapSize)
         {
-            //TODO: Change energy required based on map size
+            this._mapSize = mapSize;
             this.Name = name;
             this.PlayerType = type;
-            this.Submarine = new Submarine(this, ShipType.Submarine, new SeekerMissleWeapon(this, 10));
-            this.Destroyer = new Destroyer(this, ShipType.Destroyer, null);
-            this.Cruiser = new Cruiser(this, ShipType.Cruiser, new DoubleShotWeapon(this, 6));
-            this.Carrier = new Carrier(this, ShipType.Carrier, new ScatterShotWeapon(this, 8));
-            this.Battleship = new Battleship(this, ShipType.Battleship, new CrossShotWeapon(this, 12));
+            this.Submarine = new Submarine(this, ShipType.Submarine, new SeekerMissleWeapon(this, EnergyRequiredForWeapon(WeaponType.SeekerMissle)));
+            this.Destroyer = new Destroyer(this, ShipType.Destroyer, new DoubleShotWeapon(this, EnergyRequiredForWeapon(WeaponType.DoubleShot)));
+            this.Cruiser = new Cruiser(this, ShipType.Cruiser, new CrossShotWeapon(this, EnergyRequiredForWeapon(WeaponType.CrossShot)));
+            this.Carrier = new Carrier(this, ShipType.Carrier, new CornerShotWeapon(this, EnergyRequiredForWeapon(WeaponType.CornerShot)));
+            this.Battleship = new Battleship(this, ShipType.Battleship, new DiagonalCrossShotWeapon(this, EnergyRequiredForWeapon(WeaponType.DiagonalCrossShot)));
             this.Points = 0;
             this.Energy = 3;
             this.IsWinner = false;
@@ -146,6 +149,48 @@ namespace Domain.Players
             {
                 ship.Placed = false;
             }
+        }
+
+        //2 energy for small map
+        //3 energy for medium map
+        //4 energy for large map
+        private int EnergyRequiredForWeapon(WeaponType type)
+        {
+            var energyRequired = 0;
+            switch (type)
+            {
+                //6 rounds
+                case WeaponType.DoubleShot:
+                    energyRequired = _mapSize == Settings.Default.SmallMapSize
+                        ? 12
+                        : (_mapSize == Settings.Default.MediumMapSize ? 18 : 24);
+                    break;
+                //10 Rounds
+                case WeaponType.CornerShot:
+                    energyRequired = _mapSize == Settings.Default.SmallMapSize
+                        ? 20
+                        : (_mapSize == Settings.Default.MediumMapSize ? 30 : 40);
+                    break;
+                //10 Rounds
+                case WeaponType.SeekerMissle:
+                    energyRequired = _mapSize == Settings.Default.SmallMapSize
+                        ? 20
+                        : (_mapSize == Settings.Default.MediumMapSize ? 30 : 40);
+                    break;
+                //12 Rounds
+                case WeaponType.DiagonalCrossShot:
+                    energyRequired = _mapSize == Settings.Default.SmallMapSize
+                        ? 24
+                        : (_mapSize == Settings.Default.MediumMapSize ? 36 : 48);
+                    break;
+                //14 Rounds
+                case WeaponType.CrossShot:
+                    energyRequired = _mapSize == Settings.Default.SmallMapSize
+                        ? 28
+                        : (_mapSize == Settings.Default.MediumMapSize ? 42 : 56);
+                    break;
+            }
+            return energyRequired;
         }
     }
 }

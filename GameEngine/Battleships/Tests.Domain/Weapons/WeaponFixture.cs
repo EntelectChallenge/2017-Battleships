@@ -35,7 +35,7 @@ namespace Tests.Domain.Weapons
                 }
             }
 
-            this.player = new BattleshipPlayer("TestPlayer", 'A', PlayerType.One);
+            this.player = new BattleshipPlayer("TestPlayer", 'A', PlayerType.One, 10);
         }
 
 
