@@ -103,5 +103,32 @@ namespace GameEngine.Properties {
                 return ((string)(this["GameEngineLevel"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int EnergySmallMap {
+            get {
+                return ((int)(this["EnergySmallMap"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int EnergyMediumMap {
+            get {
+                return ((int)(this["EnergyMediumMap"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int EnergyLargeMap {
+            get {
+                return ((int)(this["EnergyLargeMap"]));
+            }
+        }
     }
 }

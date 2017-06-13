@@ -21,7 +21,7 @@ namespace ReferenceBot.Domain.State
         [JsonProperty]
         public int Points { get; private set; }
 
-        [JsonIgnore]
+        [JsonProperty]
         public int Energy { get; set; }
 
         [JsonProperty]

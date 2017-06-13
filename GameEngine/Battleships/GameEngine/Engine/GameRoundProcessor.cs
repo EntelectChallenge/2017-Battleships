@@ -103,14 +103,14 @@ namespace GameEngine.Engine
         {
             if (_gameMap.Phase == 2)
             {
-                var energyToAdd = 2;
+                var energyToAdd = Settings.Default.EnergySmallMap;
                 if (_gameMap.MapSize == Settings.Default.MediumMapSize)
                 {
-                    energyToAdd = 3;
+                    energyToAdd = Settings.Default.EnergyMediumMap;
                 }
                 else if (_gameMap.MapSize == Settings.Default.LargeMapSize)
                 {
-                    energyToAdd = 4;
+                    energyToAdd = Settings.Default.EnergyLargeMap;
                 }
                 foreach (var player in _gameMap.RegisteredPlayers)
                 {

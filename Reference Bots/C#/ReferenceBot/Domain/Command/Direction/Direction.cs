@@ -6,6 +6,7 @@
         North,
         East,
         South,
-        West
+        West,
+        None
     }
 }

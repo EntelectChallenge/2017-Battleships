@@ -7,7 +7,7 @@ namespace Domain.Weapons
 {
     public class CrossShotWeapon : Weapon
     {
-        public CrossShotWeapon(BattleshipPlayer owner, int energyRequired) : base(owner, energyRequired)
+        public CrossShotWeapon(BattleshipPlayer owner, int energyRequired, WeaponType weaponType) : base(owner, energyRequired, weaponType)
         {
         }
 

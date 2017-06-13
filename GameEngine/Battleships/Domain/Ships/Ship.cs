@@ -29,7 +29,7 @@ namespace Domain.Ships
         public ShipType ShipType { get; }
 
         [JsonProperty]
-        public List<Weapon> Weapons => new List<Weapon> {new SingleShotWeapon(Owner, 1)};
+        public List<Weapon> Weapons { get; set; }
 
         private Ship()
         {
@@ -39,14 +39,13 @@ namespace Domain.Ships
 
         protected Ship(BattleshipPlayer owner, int segmentCount, ShipType shipType, Weapon weapon) : this()
         {
-            this.Weapons.Add(weapon);
             this.ShipType = shipType;
             this.Owner = owner;
             if (segmentCount <= 0)
             {
                 throw new ArgumentException("Ship can't have zero or negative cells", nameof(segmentCount));
             }
-
+            this.Weapons = new List<Weapon> { new SingleShotWeapon(Owner, 1, WeaponType.SingleShot), weapon };
             this._cells = new Cell[segmentCount];
         }
 

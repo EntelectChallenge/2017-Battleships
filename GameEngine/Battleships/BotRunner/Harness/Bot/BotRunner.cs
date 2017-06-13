@@ -126,6 +126,18 @@ namespace TestHarness.TestHarnesses.Bot
                 {
                     case 1:
                         return new FireSingleShotCommand(otherCommand.Point);
+                    case 2:
+                        return new FireDoubleShotCommand(otherCommand.Point, otherCommand.Direction);
+                    case 3:
+                        return new FireCornerrShotCommand(otherCommand.Point);
+                    case 4:
+                        //Diagonal cross shot
+                        return new FireCrossShotCommand(otherCommand.Point, true);
+                    case 5:
+                        //Horizontal and vertical cross shot
+                        return new FireCrossShotCommand(otherCommand.Point, false);
+                    case 6:
+                        return new FireSeekerMissleCommand(otherCommand.Point);
                     default:
                         return new DoNothingCommand();
                 }
@@ -146,12 +158,15 @@ namespace TestHarness.TestHarnesses.Bot
                 return null;
 
             var basicCommand = File.ReadAllText(commandLocation).Split(',');
-            if (basicCommand.Length != 3)
+            if (basicCommand.Length > 4)
             {
-                throw new ArgumentException("There needs to be 3 numbers seperated by commas in the general command file");
+                throw new ArgumentException("There needs to be 4 numbers seperated by commas in the general command file");
             }
+            
+            var argumentFour = basicCommand.Length == 3 ? null : basicCommand[3];
+
             return new GeneralCommand(Convert.ToInt32(basicCommand[0]), Convert.ToInt32(basicCommand[1]),
-                Convert.ToInt32(basicCommand[2]));
+                Convert.ToInt32(basicCommand[2]), argumentFour);
         }
 
         private StringToPlaceShipCommand GetBotPlaceCommandFromFile()

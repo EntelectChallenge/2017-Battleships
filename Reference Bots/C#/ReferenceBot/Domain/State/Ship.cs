@@ -20,6 +20,9 @@ namespace ReferenceBot.Domain.State
         public ShipType ShipType { get; set; }
 
         [JsonProperty]
+        public int EnergyRequired { get; set; }
+
+        [JsonProperty]
         public List<Weapon> Weapons { get; set; }
         [JsonProperty]
         public List<Cell> Cells { get; set; }

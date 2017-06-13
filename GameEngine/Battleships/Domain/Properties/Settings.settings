@@ -20,5 +20,14 @@
     <Setting Name="LargeMapSize" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">14</Value>
     </Setting>
+    <Setting Name="EnergySmallMap" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="EnergyMediumMap" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="EnergyLargMap" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

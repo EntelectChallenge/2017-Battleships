@@ -17,15 +17,13 @@ namespace Domain.Weapons
         public WeaponType WeaponType { get; set; }
 
         [JsonProperty]
-        public Ship Ship { get; set; }
-
-        [JsonProperty]
         public int EnergyRequired { get; }
 
-        protected Weapon(BattleshipPlayer owner, int energyRequired)
+        protected Weapon(BattleshipPlayer owner, int energyRequired, WeaponType weaponType)
         {
             this.EnergyRequired = energyRequired;
             this.Owner = owner;
+            this.WeaponType = weaponType;
         }
 
         public abstract void Shoot(List<Cell> targets, int currentRound);

@@ -12,8 +12,8 @@ namespace Tests.Domain.Maps.Stubs
 
         public List<Cell> Targets { get; private set; }
 
-        public WeaponStub(BattleshipPlayer owner, int energyRequired)
-            : base(owner, energyRequired)
+        public WeaponStub(BattleshipPlayer owner, int energyRequired, WeaponType weaponType)
+            : base(owner, energyRequired, weaponType)
         {
         }
 

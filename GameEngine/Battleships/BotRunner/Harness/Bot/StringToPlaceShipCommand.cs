@@ -72,7 +72,7 @@ namespace TestHarness.TestHarnesses.Bot
             }
         }
 
-        private Direction ConvertoToDirection(string direction)
+        public static Direction ConvertoToDirection(string direction)
         {
             var lowerCase = direction.ToLower();
             lowerCase = lowerCase.Replace("\r","");

@@ -8,7 +8,7 @@ namespace Domain.Weapons
 {
     public class DiagonalCrossShotWeapon : Weapon
     {
-        public DiagonalCrossShotWeapon(BattleshipPlayer owner, int energyRequired) : base(owner, energyRequired) { }
+        public DiagonalCrossShotWeapon(BattleshipPlayer owner, int energyRequired, WeaponType weaponType) : base(owner, energyRequired, weaponType) { }
 
         public override void Shoot(List<Cell> targets, int currentRound)
         {

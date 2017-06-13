@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>B "W:\Projects\100k\2017\Source\GameEngine\Battleships\Battleships\bin\Debug\Replays\2017-04-08 10-05-09-319\Phase 1 - Round 0\B"</StartArguments>
+    <StartArguments>"B" "C:\Development\Entelect Challenge\2017-Battleships\GameEngine\Battleships\Battleships\bin\Debug\Replays\2017-06-13 08-57-45-760\Phase 2 - Round 8\B"</StartArguments>
   </PropertyGroup>
 </Project>

@@ -14,6 +14,7 @@ namespace Domain.Players
     {
         [JsonProperty]
         public int FailedFirstPhaseCommands { get; set; }
+
         [JsonProperty]
         public string Name { get; }
 
@@ -82,25 +83,32 @@ namespace Domain.Players
             this._mapSize = mapSize;
             this.Name = name;
             this.PlayerType = type;
-            this.Submarine = new Submarine(this, ShipType.Submarine, new SeekerMissleWeapon(this, EnergyRequiredForWeapon(WeaponType.SeekerMissle)));
-            this.Destroyer = new Destroyer(this, ShipType.Destroyer, new DoubleShotWeapon(this, EnergyRequiredForWeapon(WeaponType.DoubleShot)));
-            this.Cruiser = new Cruiser(this, ShipType.Cruiser, new CrossShotWeapon(this, EnergyRequiredForWeapon(WeaponType.CrossShot)));
-            this.Carrier = new Carrier(this, ShipType.Carrier, new CornerShotWeapon(this, EnergyRequiredForWeapon(WeaponType.CornerShot)));
-            this.Battleship = new Battleship(this, ShipType.Battleship, new DiagonalCrossShotWeapon(this, EnergyRequiredForWeapon(WeaponType.DiagonalCrossShot)));
+            this.Submarine = new Submarine(this, ShipType.Submarine,
+                new SeekerMissleWeapon(this, EnergyRequiredForWeapon(WeaponType.SeekerMissle),
+                    WeaponType.SeekerMissle));
+            this.Destroyer = new Destroyer(this, ShipType.Destroyer,
+                new DoubleShotWeapon(this, EnergyRequiredForWeapon(WeaponType.DoubleShot), WeaponType.DoubleShot));
+            this.Cruiser = new Cruiser(this, ShipType.Cruiser,
+                new CrossShotWeapon(this, EnergyRequiredForWeapon(WeaponType.CrossShot), WeaponType.CrossShot));
+            this.Carrier = new Carrier(this, ShipType.Carrier,
+                new CornerShotWeapon(this, EnergyRequiredForWeapon(WeaponType.CornerShot), WeaponType.CornerShot));
+            this.Battleship = new Battleship(this, ShipType.Battleship,
+                new DiagonalCrossShotWeapon(this, EnergyRequiredForWeapon(WeaponType.DiagonalCrossShot),
+                    WeaponType.DiagonalCrossShot));
             this.Points = 0;
             this.Energy = 3;
             this.IsWinner = false;
             this.FailedFirstPhaseCommands = 0;
             this.Ships = new List<Ship>
             {
-                Submarine,
-                Destroyer,
-                Battleship,
-                Carrier,
-                Cruiser
+                this.Submarine,
+                this.Destroyer,
+                this.Battleship,
+                this.Carrier,
+                this.Cruiser
             };
             this.Key = key;
-            
+
             this.FirstShotLanded = int.MaxValue;
         }
 
@@ -110,19 +118,21 @@ namespace Domain.Players
         }
 
         public string PrintShips()
-        { 
+        {
             return $"[{string.Join(",", Ships.Where(x => !x.Destroyed).Select(x => x.ToString()))}]";
         }
 
-        public string PrintAllWeapons()
+        public string PrintAvailableWeapons()
         {
-            return string.Join(",", Ships.SelectMany(x => x.Weapons).Select(x => x.WeaponType.ToString()).Distinct());
+            return
+                $"[{string.Join(",", Ships.Where(x => !x.Destroyed).SelectMany(x => x.Weapons).Select(x => x.WeaponType.ToString()).Distinct())}]";
         }
 
         public Weapon GetWeapon(WeaponType weaponType)
         {
-            var weapon = Ships.Where(x => !x.Destroyed).SelectMany(x => x.Weapons).FirstOrDefault(x => x.WeaponType == weaponType);
-            if(weapon == null)
+            var weapon = Ships.Where(x => !x.Destroyed).SelectMany(x => x.Weapons)
+                .FirstOrDefault(x => x.WeaponType == weaponType);
+            if (weapon == null)
                 throw new ArgumentException($"Player has no active ships capable of firing weapon {weaponType}");
 
             return weapon;
@@ -156,38 +166,54 @@ namespace Domain.Players
         //4 energy for large map
         private int EnergyRequiredForWeapon(WeaponType type)
         {
-            var energyRequired = 0;
+            var energyRequired = 1;
+            int rounds;
             switch (type)
             {
-                //6 rounds
+                //8 rounds
                 case WeaponType.DoubleShot:
+                    rounds = 8;
                     energyRequired = _mapSize == Settings.Default.SmallMapSize
-                        ? 12
-                        : (_mapSize == Settings.Default.MediumMapSize ? 18 : 24);
+                        ? rounds * Settings.Default.EnergySmallMap
+                        : (_mapSize == Settings.Default.MediumMapSize
+                            ? rounds * Settings.Default.EnergyMediumMap
+                            : rounds * Settings.Default.EnergyLargMap);
                     break;
                 //10 Rounds
                 case WeaponType.CornerShot:
+                    rounds = 10;
                     energyRequired = _mapSize == Settings.Default.SmallMapSize
-                        ? 20
-                        : (_mapSize == Settings.Default.MediumMapSize ? 30 : 40);
+                        ? rounds * Settings.Default.EnergySmallMap
+                        : (_mapSize == Settings.Default.MediumMapSize
+                            ? rounds * Settings.Default.EnergyMediumMap
+                            : rounds * Settings.Default.EnergyLargMap);
                     break;
                 //10 Rounds
                 case WeaponType.SeekerMissle:
+                    rounds = 10;
                     energyRequired = _mapSize == Settings.Default.SmallMapSize
-                        ? 20
-                        : (_mapSize == Settings.Default.MediumMapSize ? 30 : 40);
+                        ? rounds * Settings.Default.EnergySmallMap
+                        : (_mapSize == Settings.Default.MediumMapSize
+                            ? rounds * Settings.Default.EnergyMediumMap
+                            : rounds * Settings.Default.EnergyLargMap);
                     break;
                 //12 Rounds
                 case WeaponType.DiagonalCrossShot:
+                    rounds = 12;
                     energyRequired = _mapSize == Settings.Default.SmallMapSize
-                        ? 24
-                        : (_mapSize == Settings.Default.MediumMapSize ? 36 : 48);
+                        ? rounds * Settings.Default.EnergySmallMap
+                        : (_mapSize == Settings.Default.MediumMapSize
+                            ? rounds * Settings.Default.EnergyMediumMap
+                            : rounds * Settings.Default.EnergyLargMap);
                     break;
                 //14 Rounds
                 case WeaponType.CrossShot:
+                    rounds = 14;
                     energyRequired = _mapSize == Settings.Default.SmallMapSize
-                        ? 28
-                        : (_mapSize == Settings.Default.MediumMapSize ? 42 : 56);
+                        ? rounds * Settings.Default.EnergySmallMap
+                        : (_mapSize == Settings.Default.MediumMapSize
+                            ? rounds * Settings.Default.EnergyMediumMap
+                            : rounds * Settings.Default.EnergyLargMap);
                     break;
             }
             return energyRequired;

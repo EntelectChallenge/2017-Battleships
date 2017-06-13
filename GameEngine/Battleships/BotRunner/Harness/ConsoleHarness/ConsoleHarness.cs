@@ -91,7 +91,7 @@ namespace BotRunner.Harness.ConsoleHarness
             {
                 line = Console.ReadLine();
                 if (string.IsNullOrEmpty(line)) continue;
-                if (line.Split(',').Length != 3)
+                if (line.Split(',').Length >= 4)
                 {
                     line = null;
                 }
@@ -101,6 +101,23 @@ namespace BotRunner.Harness.ConsoleHarness
             {
                 case 1:
                     PublishCommand(new FireSingleShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2]))));
+                    break;
+                case 2:
+                    PublishCommand(new FireDoubleShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2])), StringToPlaceShipCommand.ConvertoToDirection(line.Split(',')[3])));
+                    break;
+                case 3:
+                    PublishCommand(new FireCornerrShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2]))));;
+                    break;
+                case 4:
+                    //Diagonal cross shot
+                    PublishCommand(new FireCrossShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2])), true));
+                    break;
+                case 5:
+                    //Horizontal and vertical cross shot
+                    PublishCommand(new FireCrossShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2])), false));
+                    break;
+                case 6:
+                    PublishCommand(new FireSeekerMissleCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2]))));
                     break;
                 default:
                     PublishCommand(new DoNothingCommand());
