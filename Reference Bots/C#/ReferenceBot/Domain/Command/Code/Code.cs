@@ -4,10 +4,11 @@
     {
         DoNothing = 0,
         FireShot = 1,
-        DoubleShot = 2,
-        CornerShot = 3,
-        CrossShotDiagonal = 4,
-        CrossShotHorizontal = 5,
-        SeekerMissle = 6
+        DoubleShotVertical = 2,
+        DoubleShotHorizontal = 3,
+        CornerShot = 4,
+        CrossShotDiagonal = 5,
+        CrossShotHorizontal = 6,
+        SeekerMissle = 7
     }
 }

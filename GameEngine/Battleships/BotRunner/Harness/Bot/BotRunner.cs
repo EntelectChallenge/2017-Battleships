@@ -5,6 +5,7 @@ using System.Linq;
 using BotRunner.Exceptions;
 using BotRunner.Properties;
 using BotRunner.Util;
+using Domain.Maps;
 using GameEngine.Commands;
 using GameEngine.Commands.PlayerCommands;
 using Newtonsoft.Json;
@@ -127,16 +128,16 @@ namespace TestHarness.TestHarnesses.Bot
                     case 1:
                         return new FireSingleShotCommand(otherCommand.Point);
                     case 2:
-                        return new FireDoubleShotCommand(otherCommand.Point, otherCommand.Direction);
+                        return new FireDoubleShotCommand(otherCommand.Point, Direction.North);
                     case 3:
-                        return new FireCornerrShotCommand(otherCommand.Point);
+                        return new FireDoubleShotCommand(otherCommand.Point, Direction.East);
                     case 4:
-                        //Diagonal cross shot
-                        return new FireCrossShotCommand(otherCommand.Point, true);
+                        return new FireCornerrShotCommand(otherCommand.Point);
                     case 5:
-                        //Horizontal and vertical cross shot
-                        return new FireCrossShotCommand(otherCommand.Point, false);
+                        return new FireCrossShotCommand(otherCommand.Point, true);
                     case 6:
+                        return new FireCrossShotCommand(otherCommand.Point, false);
+                    case 7:
                         return new FireSeekerMissleCommand(otherCommand.Point);
                     default:
                         return new DoNothingCommand();
@@ -158,15 +159,13 @@ namespace TestHarness.TestHarnesses.Bot
                 return null;
 
             var basicCommand = File.ReadAllText(commandLocation).Split(',');
-            if (basicCommand.Length > 4)
+            if (basicCommand.Length > 3)
             {
-                throw new ArgumentException("There needs to be 4 numbers seperated by commas in the general command file");
+                throw new ArgumentException("There needs to be 3 numbers seperated by commas in the general command file");
             }
-            
-            var argumentFour = basicCommand.Length == 3 ? null : basicCommand[3];
 
             return new GeneralCommand(Convert.ToInt32(basicCommand[0]), Convert.ToInt32(basicCommand[1]),
-                Convert.ToInt32(basicCommand[2]), argumentFour);
+                Convert.ToInt32(basicCommand[2]));
         }
 
         private StringToPlaceShipCommand GetBotPlaceCommandFromFile()

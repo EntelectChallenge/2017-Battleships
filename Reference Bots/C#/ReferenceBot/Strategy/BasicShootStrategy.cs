@@ -17,7 +17,6 @@ namespace ReferenceBot.Strategy
 
         private int energyPerRound = 2;
 
-
         public Command ExecuteStrategy(GameState gameState)
         {
             return RandomShotCommand(gameState);
@@ -72,7 +71,7 @@ namespace ReferenceBot.Strategy
 
             if (doubleShotWeaponEnergyRequired != null && currentEnergy >= doubleShotWeaponEnergyRequired)
             {
-                return new Command(Code.DoubleShot, x, y, Direction.North);
+                return new Command(Code.DoubleShotVertical, x, y);
             }
 
             return new Command(Code.FireShot, x, y);

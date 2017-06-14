@@ -26,7 +26,7 @@ public class BasicShootStrategy {
                 .filter(cell -> cell.Damaged || cell.Missed).findFirst();
 
         if (!lastShot.isPresent()) {
-            return new Command(Code.FIRESHOT, 0, 0);
+            return new Command(Code.FIRE_SHOT, 0, 0);
         }
 
         int x = lastShot.get().X;
@@ -49,11 +49,11 @@ public class BasicShootStrategy {
         if(destroyerAvailable.isPresent()) {
             int energyRequired = destroyerAvailable.get().Weapons.stream().filter(z -> z.WeaponType == WeaponType.DoubleShot).findFirst().get().EnergyRequired;
             if(currentEnergy >= energyRequired) {
-                return new Command(Code.DOUBLESHOT ,x, y, Direction.North);
+                return new Command(Code.DOUBLE_SHOT_HORIZONTAL ,x, y);
             }
         }
 
-        return new Command(Code.FIRESHOT, x, y);
+        return new Command(Code.FIRE_SHOT, x, y);
     }
 
     private Command alternateRandomShot(GameState gameState) {
@@ -61,8 +61,8 @@ public class BasicShootStrategy {
         Optional<OpponentCell> availableCell = opponentCells.stream().filter(x -> !x.Damaged && !x.Missed).findFirst();
 
         if (!availableCell.isPresent()) {
-            return new Command(Code.FIRESHOT, ThreadLocalRandom.current().nextInt(0, gameState.PlayerMap.MapWidth), ThreadLocalRandom.current().nextInt(gameState.PlayerMap.MapHeight));
+            return new Command(Code.FIRE_SHOT, ThreadLocalRandom.current().nextInt(0, gameState.PlayerMap.MapWidth), ThreadLocalRandom.current().nextInt(gameState.PlayerMap.MapHeight));
         }
-        return new Command(Code.FIRESHOT, availableCell.get().X, availableCell.get().Y);
+        return new Command(Code.FIRE_SHOT, availableCell.get().X, availableCell.get().Y);
     }
 }

@@ -84,7 +84,15 @@ namespace BotRunner.Harness.ConsoleHarness
             Console.WriteLine();
             Console.WriteLine("Command from player " + Name + " pending");
             Console.WriteLine("To send through a command please pass through the following <code>,<x>,<y>");
-            Console.WriteLine("Possible codes: 1 - Fireshot, 0 - Do Nothing (please pass through coordinates if code 1 is your choice)");
+            Console.WriteLine("Possible codes: " +
+                              "\n0 - Do Nothing (please pass through coordinates still)" +
+                              "\n1 - Fireshot, " +
+                              "\n2 - Fire Double Shot Vertical" +
+                              "\n3 - Fire Corner Shot Horizontal" +
+                              "\n4 - Fire Corner Shot" +
+                              "\n5 - Fire Horizontal Cross Shot" +
+                              "\n6 - Fire Diagonal Cross Shot" +
+                              "\n7 - Fire Seeker Missle");
             Console.WriteLine();
             string line = null;
             while (string.IsNullOrEmpty(line))
@@ -103,20 +111,25 @@ namespace BotRunner.Harness.ConsoleHarness
                     PublishCommand(new FireSingleShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2]))));
                     break;
                 case 2:
-                    PublishCommand(new FireDoubleShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2])), StringToPlaceShipCommand.ConvertoToDirection(line.Split(',')[3])));
+                    //Vertical Double Shot
+                    PublishCommand(new FireDoubleShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2])),Direction.North));
                     break;
                 case 3:
-                    PublishCommand(new FireCornerrShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2]))));;
+                    //Horizontal Double Shot
+                    PublishCommand(new FireDoubleShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2])), Direction.East));
                     break;
                 case 4:
+                    PublishCommand(new FireCornerrShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2]))));;
+                    break;
+                case 5:
                     //Diagonal cross shot
                     PublishCommand(new FireCrossShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2])), true));
                     break;
-                case 5:
+                case 6:
                     //Horizontal and vertical cross shot
                     PublishCommand(new FireCrossShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2])), false));
                     break;
-                case 6:
+                case 7:
                     PublishCommand(new FireSeekerMissleCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2]))));
                     break;
                 default:
