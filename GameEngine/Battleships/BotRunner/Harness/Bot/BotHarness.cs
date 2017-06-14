@@ -172,7 +172,7 @@ namespace TestHarness.TestHarnesses.Bot
 
         private void ClearRoundFiles()
         {
-            /*var dir = Path.Combine(CurrentWorkingDirectory, Settings.Default.StateFileName);
+            var dir = Path.Combine(CurrentWorkingDirectory, Settings.Default.StateFileName);
 
             if (File.Exists(dir))
                 File.Delete(dir);
@@ -180,7 +180,7 @@ namespace TestHarness.TestHarnesses.Bot
             dir = Path.Combine(CurrentWorkingDirectory, Settings.Default.MapFileName);
 
             if (File.Exists(dir))
-                File.Delete(dir);*/
+                File.Delete(dir);
         }
 
         private void RemoveCommandFile(bool restoreContent = false)
