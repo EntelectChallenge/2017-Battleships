@@ -2,8 +2,12 @@ package za.co.entelect.challenge.strategy;
 
 import za.co.entelect.challenge.domain.command.Command;
 import za.co.entelect.challenge.domain.command.code.Code;
+import za.co.entelect.challenge.domain.command.direction.Direction;
+import za.co.entelect.challenge.domain.command.ship.ShipType;
 import za.co.entelect.challenge.domain.state.GameState;
 import za.co.entelect.challenge.domain.state.OpponentCell;
+import za.co.entelect.challenge.domain.state.Ship;
+import za.co.entelect.challenge.domain.state.WeaponType;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -36,6 +40,17 @@ public class BasicShootStrategy {
         }
         if (y >= gameState.PlayerMap.MapWidth) {
             return alternateRandomShot(gameState);
+        }
+
+        int currentEnergy = gameState.PlayerMap.Owner.Energy;
+
+        Optional<Ship> destroyerAvailable = gameState.PlayerMap.Owner.Ships.stream().filter(z -> z.ShipType == ShipType.Destroyer && !z.Destroyed).findFirst();
+
+        if(destroyerAvailable.isPresent()) {
+            int energyRequired = destroyerAvailable.get().Weapons.stream().filter(z -> z.WeaponType == WeaponType.DoubleShot).findFirst().get().EnergyRequired;
+            if(currentEnergy >= energyRequired) {
+                return new Command(Code.DOUBLESHOT ,x, y, Direction.North);
+            }
         }
 
         return new Command(Code.FIRESHOT, x, y);

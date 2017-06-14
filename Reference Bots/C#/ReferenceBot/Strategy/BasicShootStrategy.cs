@@ -72,7 +72,7 @@ namespace ReferenceBot.Strategy
 
             if (doubleShotWeaponEnergyRequired != null && currentEnergy >= doubleShotWeaponEnergyRequired)
             {
-                return new Command(Code.CornerShot, x, y, Direction.North);
+                return new Command(Code.DoubleShot, x, y, Direction.North);
             }
 
             return new Command(Code.FireShot, x, y);

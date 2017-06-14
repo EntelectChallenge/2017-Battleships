@@ -1,14 +1,23 @@
 package za.co.entelect.challenge.domain.command;
 
 import za.co.entelect.challenge.domain.command.code.Code;
+import za.co.entelect.challenge.domain.command.direction.Direction;
 
 public class Command {
 
     private Point coordinate;
     private Code commandCode;
+    private Direction direction;
 
     public Command(Code code, int x, int y) {
 
+        this.commandCode = code;
+        this.coordinate = new Point(x, y);
+    }
+
+    public Command(Code code, int x, int y, Direction direction) {
+
+        this.direction = direction;
         this.commandCode = code;
         this.coordinate = new Point(x, y);
     }
@@ -35,7 +44,10 @@ public class Command {
 
     @Override
     public String toString() {
-
-        return String.format("%s,%s,%s", commandCode.getValue(), coordinate.getX(), coordinate.getY());
+        if (direction == null) {
+            return String.format("%s,%s,%s", commandCode.getValue(), coordinate.getX(), coordinate.getY());
+        } else {
+            return String.format("%s,%s,%s,%s", commandCode.getValue(), coordinate.getX(), coordinate.getY(), direction);
+        }
     }
 }

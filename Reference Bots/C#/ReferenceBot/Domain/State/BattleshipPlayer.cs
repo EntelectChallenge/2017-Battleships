@@ -11,15 +11,16 @@ namespace ReferenceBot.Domain.State
     public class BattleshipPlayer
     {
         [JsonProperty]
-        public int FailedFirstRoundCommands { get; set; }
+        public int FailedFirstPhaseCommands { get; set; }
+
         [JsonProperty]
-        public string Name { get; }
-        
+        public string Name { set; get; }
+
         [JsonProperty]
-        public List<Ship> Ships { get; }
-        
+        public List<Ship> Ships { set; get; }
+
         [JsonProperty]
-        public int Points { get; private set; }
+        public int Points { get; set; }
 
         [JsonProperty]
         public int Energy { get; set; }
@@ -41,6 +42,5 @@ namespace ReferenceBot.Domain.State
 
         [JsonProperty]
         public char Key { get; set; }
-
     }
 }

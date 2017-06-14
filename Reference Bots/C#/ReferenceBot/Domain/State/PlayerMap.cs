@@ -13,7 +13,6 @@ namespace ReferenceBot.Domain.State
     {
         [JsonProperty]
         public BattleshipPlayer Owner { get; set; }
-
         [JsonProperty]
         public List<Cell> Cells { get; set; }
         [JsonProperty]

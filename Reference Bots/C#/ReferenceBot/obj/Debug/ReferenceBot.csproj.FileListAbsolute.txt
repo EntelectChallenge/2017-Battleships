@@ -26,4 +26,3 @@ C:\Development\Entelect Challenge\2017-Battleships\Reference Bots\C#\ReferenceBo
 C:\Development\Entelect Challenge\2017-Battleships\Reference Bots\C#\ReferenceBot\bin\Debug\ReferenceBot.pdb
 C:\Development\Entelect Challenge\2017-Battleships\Reference Bots\C#\ReferenceBot\bin\Debug\Newtonsoft.Json.dll
 C:\Development\Entelect Challenge\2017-Battleships\Reference Bots\C#\ReferenceBot\bin\Debug\Newtonsoft.Json.xml
-C:\Development\Entelect Challenge\2017-Battleships\Reference Bots\C#\ReferenceBot\obj\Debug\ReferenceBot.csprojResolveAssemblyReference.cache
