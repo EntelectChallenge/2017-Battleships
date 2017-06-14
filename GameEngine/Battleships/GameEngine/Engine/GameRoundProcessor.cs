@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Domain.Games;
 using Domain.Players;
 using Domain.Ships;
@@ -12,6 +11,7 @@ using GameEngine.Commands.PlayerCommands;
 using GameEngine.Common;
 using GameEngine.Exceptions;
 using GameEngine.Loggers;
+using GameEngine.Properties;
 
 namespace GameEngine.Engine
 {
@@ -89,10 +89,34 @@ namespace GameEngine.Engine
                 return false;
             }
             DestroyShips();
+            AddEnergyToPlayers();
             KillOffPlayers();
             _logger.LogDebug("Round processing complete");
             _roundProcessed = true;
             return proccessed;
+        }
+
+        /// <summary>
+        /// Adds 2/3/4 points of energy to each player, depending on the current size of the map
+        /// </summary>
+        protected void AddEnergyToPlayers()
+        {
+            if (_gameMap.Phase == 2)
+            {
+                var energyToAdd = Settings.Default.EnergySmallMap;
+                if (_gameMap.MapSize == Settings.Default.MediumMapSize)
+                {
+                    energyToAdd = Settings.Default.EnergyMediumMap;
+                }
+                else if (_gameMap.MapSize == Settings.Default.LargeMapSize)
+                {
+                    energyToAdd = Settings.Default.EnergyLargeMap;
+                }
+                foreach (var player in _gameMap.RegisteredPlayers)
+                {
+                    player.Energy += energyToAdd;
+                }
+            }
         }
 
         /// <summary>
@@ -114,7 +138,8 @@ namespace GameEngine.Engine
                 {
                     if (_gameMap.Phase == 1 && !(command.Value is PlaceShipCommand))
                     {
-                        throw new InvalidCommandException($"There was a problem during the placement of player's {command.Key.BattleshipPlayer} ships (DoNothing), the round will be played over");
+                        throw new InvalidCommandException(
+                            $"There was a problem during the placement of player's {command.Key.BattleshipPlayer} ships (DoNothing), the round will be played over");
                     }
 
                     command.Value.PerformCommand(_gameMap, command.Key.BattleshipPlayer);
@@ -171,7 +196,6 @@ namespace GameEngine.Engine
                     playerShip.Destroyed = playerShip.Cells.All(x => x != null && x.Hit);
                 }
             }
-            
         }
 
         public void ResetBackToStart()

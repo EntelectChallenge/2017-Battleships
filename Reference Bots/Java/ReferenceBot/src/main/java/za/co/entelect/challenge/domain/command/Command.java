@@ -35,7 +35,6 @@ public class Command {
 
     @Override
     public String toString() {
-
         return String.format("%s,%s,%s", commandCode.getValue(), coordinate.getX(), coordinate.getY());
     }
 }

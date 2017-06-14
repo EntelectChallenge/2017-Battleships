@@ -172,10 +172,11 @@ namespace GameEngine.Renderers
             //Prints player info only
             sb.AppendLine("---------------------------")
                 .AppendLine($"Player Name: {player.Name}")
+                .AppendLine($"Available Energy: {player.Energy}")
                 .AppendLine($"Shots: {player.ShotsFired}")
                 .AppendLine($"Hit: {player.ShotsHit}")
                 .AppendLine($"Points: {player.Points}")
-                .AppendLine($"Arsenal: {player.PrintAllWeapons()}")
+                .AppendLine($"Arsenal: {player.PrintAvailableWeapons()}")
                 .AppendLine($"Ships: {player.PrintShips()}")
                 .AppendLine($"Status: {(!player.Killed ? "Alive" : "Dead")}");
 

@@ -14,7 +14,7 @@ namespace ReferenceBot.Domain.Command
         public Code CommandCode { get; set; }
 
         public Point Coordinate { get; set; }
-
+        
         public override string ToString()
         {
             return $"{(int)CommandCode},{Coordinate.X},{Coordinate.Y}";

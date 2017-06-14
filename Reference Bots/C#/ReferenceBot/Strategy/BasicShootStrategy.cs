@@ -4,12 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReferenceBot.Domain.Command;
+using ReferenceBot.Domain.Command.Ship;
 using ReferenceBot.Domain.State;
 
 namespace ReferenceBot.Strategy
 {
     public class BasicShootStrategy
     {
+        private const int smallMapSize = 7;
+        private const int mediumMapSize = 10;
+        private const int largeMapSize = 14;
+
+        private int energyPerRound = 2;
+
         public Command ExecuteStrategy(GameState gameState)
         {
             return RandomShotCommand(gameState);
@@ -42,6 +49,29 @@ namespace ReferenceBot.Strategy
             if (y >= gameState.PlayerMap.MapWidth)
             {
                 return AlternateRandomShot(gameState);
+            }
+
+            switch (gameState.MapDimension)
+            {
+                case mediumMapSize:
+                    energyPerRound = 3;
+                    break;
+                case largeMapSize:
+                    energyPerRound = 4;
+                    break;
+            }
+
+            var currentEnergy = gameState.PlayerMap.Owner.Energy;
+
+            var destroyerAvailable =
+                gameState.PlayerMap.Owner.Ships.FirstOrDefault(a => a.ShipType == ShipType.Destroyer && !a.Destroyed);
+
+            var doubleShotWeaponEnergyRequired = destroyerAvailable?.Weapons
+                .Single(c => c.WeaponType == WeaponType.DoubleShot).EnergyRequired;
+
+            if (doubleShotWeaponEnergyRequired != null && currentEnergy >= doubleShotWeaponEnergyRequired)
+            {
+                return new Command(Code.DoubleShotVertical, x, y);
             }
 
             return new Command(Code.FireShot, x, y);

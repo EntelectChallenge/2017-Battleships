@@ -11,11 +11,19 @@ namespace ReferenceBot.Domain.State
     public class Weapon
     {
         [JsonConverter(typeof(StringEnumConverter))]
-        public WeaponType WeaponType;
+        public WeaponType WeaponType { get; set; }
+
+        [JsonProperty]
+        public int EnergyRequired { get; set; }
     }
 
     public enum WeaponType
     {
-        SingleShot
+        SingleShot,
+        DoubleShot,
+        CornerShot,
+        SeekerMissle,
+        DiagonalCrossShot,
+        CrossShot
     }
 }

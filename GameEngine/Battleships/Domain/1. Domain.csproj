@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bot\BotMeta.cs" />
+    <Compile Include="Exceptions\InsufficientEnergyException.cs" />
     <Compile Include="Exceptions\InvalidOperationException.cs" />
     <Compile Include="Exceptions\LocationOutOfBoundsException.cs" />
     <Compile Include="File\FileHelper.cs" />
@@ -65,17 +66,32 @@
     <Compile Include="Meta\RoundInfo.cs" />
     <Compile Include="Players\BattleshipPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
     <Compile Include="Ships\Battleship.cs" />
     <Compile Include="Ships\Carrier.cs" />
     <Compile Include="Ships\Cruiser.cs" />
     <Compile Include="Ships\Destroyer.cs" />
     <Compile Include="Ships\Ship.cs" />
     <Compile Include="Ships\Submarine.cs" />
+    <Compile Include="Weapons\CrossShotWeapon.cs" />
+    <Compile Include="Weapons\DiagonalCrossShotWeapon.cs" />
+    <Compile Include="Weapons\DoubleShotWeapon.cs" />
+    <Compile Include="Weapons\CornerShotWeapon.cs" />
+    <Compile Include="Weapons\SeekerMissleWeapon.cs" />
     <Compile Include="Weapons\SingleShotWeapon.cs" />
     <Compile Include="Weapons\Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -48,11 +48,16 @@
     <Compile Include="Commands\CommandTransaction.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\PlayerCommands\DoNothingCommand.cs" />
-    <Compile Include="Commands\PlayerCommands\FireShotCommand.cs" />
+    <Compile Include="Commands\PlayerCommands\FireCrossShotCommand.cs" />
+    <Compile Include="Commands\PlayerCommands\FireDoubleShotCommand.cs" />
+    <Compile Include="Commands\PlayerCommands\FireCornerrShotCommand.cs" />
+    <Compile Include="Commands\PlayerCommands\FireSeekerMissleCommand.cs" />
+    <Compile Include="Commands\PlayerCommands\FireSingleShotCommand.cs" />
     <Compile Include="Commands\PlayerCommands\PlaceShipCommand.cs" />
     <Compile Include="Common\Player.cs" />
     <Compile Include="Engine\BattleshipEngine.cs" />
     <Compile Include="Engine\GameRoundProcessor.cs" />
+    <Compile Include="Exceptions\DestroyedShipException.cs" />
     <Compile Include="Exceptions\InvalidCommandException.cs" />
     <Compile Include="Loggers\CombinedLogger.cs" />
     <Compile Include="Loggers\ConsoleLogger.cs" />

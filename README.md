@@ -180,9 +180,25 @@ These are the simplified rules.  More in depth rules are further down.
 3. After a successful phase 1, a player can pass through one of the following commands
 	* Do Nothing - nothing will happen
 	* Fire Shot- Fires a shot at the given location
-4. A shot will damage a ship if it hits, else it will just hit the water and do nothing.
-5. A player earns points for each successful shot landed and for completely destroying an enemy's ship.
-6. A player is victorious if he destroy's all of the enemy's ships first, in the case of a tie the winner will be the player who landed the first shot successfully, if it is still a tie it will be the player who had the least amount of first phase failed commands.
+	* Fire Double Shot - Fires two shots given a center location
+	* Fire Corner Shot - Fires four shots given a center location
+	* Fire Cross Shot Diagonal - Fires five shots given a center location
+	* Fire Cross Shot Horizontal - Fires five shots given a center location
+	* Fire Seeker Missle - Finds the nearst ship given a center location in a 5 x 5 block of cells
+4. After each round energy is added to the player depending on the size of the map.
+	* Small Map = 2 Energy per round
+	* Medium Map = 3 Energy per round
+	* Large Map = 4 Energy per round
+5. Each ship has two weapons, a single shot weapon and a special weapon, unique to that ship, each weapon requires energy to use, the unique weapon can only be used if the ship is not destroyed and the player has enough energy.
+	* Single Shot - All ships - Requires 1 energy to use
+	* Double Shot - Destroyer - Requires 8 rounds worth of energy to use
+	* Corner Shot - Carrier - Requires 10 rounds worth of energy to use
+	* Cross Shot Diagonal - BattleShip - Requires 12 rounds worth of energy to use
+	* Cross Shot Horizontal - Crusier - Requires 14 rounds worth of energy to use
+	* Seeker Missle - Submarine  - Requires 10 rounds worth of energy to use
+6. A shot will damage a ship if it hits, else it will just hit the water and do nothing.
+7. A player earns points for each successful shot landed and for completely destroying an enemy's ship.
+8. A player is victorious if he destroy's all of the enemy's ships first, in the case of a tie the winner will be the player who landed the first shot successfully, if it is still a tie it will be the player who had the least amount of first phase failed commands.
 
 # The Rules to rule them all
 ### Map Generation
@@ -204,7 +220,12 @@ Players can either be console players or bots.  Both follow the same game engine
 3. During the first phase a player can only pass through the PlaceShipCommand, if another Command is sent through or the player fails to place their ships, their FailedFirstPhaseCommands counter will be incremented, if this reaches 5 they will be killed off.
 4. After the first phase is done, each player can send through one of the following commands.
 	* Do Nothing - This will skip their turn, after 20 DoNothing Commands the player will be killed off to protect the game engine from faulty bots.
-	* Fire Shot Command - This will fire a shot at the enemy's map, if the shot is successful and hits an opposing ship, the player will be awarded points, if the shot destroys an enemy ship, they will be awarded additinal points for sinking the ship.
+	* Fire Shot Command - This will fire a shot at the enemy's map, if the shot is successful and hits an opposing ship, the player will be awarded points, if the shot destroys an enemy ship, they will be awarded additinal points for sinking the ship. (3 x 1 cells) or (1 x 3 cells)
+	* Fire Double Shot Command - This will fire two shots at the enemy's map given a center point and a direction, the direction will determine whether the shots are horizontal or vertical. The Shots will be one block to the west and east or the north and south of the center point. (3 x 3 cells)
+	* Fire Corner Shot Command - This will fire four shots at the enemy's map, given a center point the shots will be one block to the north-west, north-east, south-east and south-west of the center point. (3 x 3 cells)
+	* Fire Cross Shot Diagonal Command - This will fire five shots givn a center point, with four being the same as the corner shot and inclusive of the center point. (3 x 3 cells)
+	* Fire Cross Shot Horizontal Command - This will fire five shots, same as the CrossShotDiagonal, but in a horizontal and vertical cross. (3 x 3 cells)
+	* Fire Seeker Missle Command - This will fire a missle at target area, finding the nearest ship cell in a 5 x 5 block of cells , if there is no ship the center point given will be the target of the missle. 
 5. Bot players will have the following additional rules
 	* Bot processes will be forcefully terminated after 4 seconds
 	* Bots will not be allowed to exceed a total execution time of 2 seconds
@@ -224,14 +245,19 @@ The following rules describe how the game engine will run and process the game
 1. The game is split up into 2 phases:
 	* Phase 1: the placing of the ships phase. During this phase, each player has 5 chances to place their ships on the map. If a player is not successful they will receive an increase to their failed first phase counter, if this reaches 5 they will be killed off.
 	* Phase 2: firing shots at the opponent's map. During this phase each player takes a shot at the opposing player's map                 in hope of hitting a ship and destroying all of the enemy's ships first.
-2. The game contains the following entities:
+2. After each round of phase 2, each player will receive energy depending on the size of the map.
+	* Small Map = 2 Energy per round
+	* Medium Map = 3 Energy per round
+	* Large Map = 4 Energy per round
+3. The game contains the following entities:
 	* Empty space
 	* Player Ship
-2. An empty space can be occupied by a ship.
+3. An empty space can be occupied by a ship.
 4. A space occupied by a ship that is hit will be marked as hit (The player who landed the shot will have their shots landed counter increased).
 5. A space not occupied by a ship that is fired at will be marked as missed (The player who missed the shot will have their shots fired counter increased, regardless if it is a hit or a miss).
 6. The game engine will process rounds in the following order:
 	* Process Player Commands (Depending on the phase)
+	* Add Energy to players, given the size of the map
 	* Kill off Players (A player will be killed if all of his ships are destroyed)
 7. If all of a player's ships are destroyed they will be eliminated and the opposing player will be the winner.
 8. If both players are killed at the same time, the following will be used to determine a winner:
@@ -248,6 +274,27 @@ Players wills be awarded points during the game based on the following.
 1. For killing the enemy player you will be awarded an additional 100 points.
 
 ## Release Notes
+
+### Version 1.1.0 - 14 June 2017
+Change Log:
+
+1. Added new weapons to each ship.
+	* Double Shot - Destroyer - Requires 8 rounds worth of energy to use
+	* Corner Shot - Carrier - Requires 10 rounds worth of energy to use
+	* Cross Shot Diagonal - BattleShip - Requires 12 rounds worth of energy to use
+	* Cross Shot Horizontal - Crusier - Requires 14 rounds worth of energy to use
+	* Seeker Missle - Submarine  - Requires 10 rounds worth of energy to use
+2. Added new commands and command codes.
+	* FireDoubleShotCommand
+	* FireCornerShotCommand
+	* FireCrossShotCommand
+	* FireSeekerMissleCommand
+3. Added energy to players at the end of each round, depending on the map size selected.
+	* Small Map - 2 Energy
+	* Medium Map - 3 Energy 
+	* Large Map - 4 Energy
+4. Updated Console Harness to allow the new commands
+5. Updated C# and Java Reference Bot to make use of the double (Each time it has energy and the destroyer is still available)
 
 ### Version 1.0.5 - 04 June 2017
 Change Log:

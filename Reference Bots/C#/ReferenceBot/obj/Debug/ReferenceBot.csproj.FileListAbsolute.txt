@@ -18,3 +18,11 @@ W:\Projects\100k\2017\Github\2017-Batteships\Reference Bots\C#\ReferenceBot\bin\
 W:\Projects\100k\2017\Github\2017-Batteships\Reference Bots\C#\ReferenceBot\obj\Debug\ReferenceBot.csprojResolveAssemblyReference.cache
 W:\Projects\100k\2017\Github\2017-Batteships\Reference Bots\C#\ReferenceBot\obj\Debug\ReferenceBot.exe
 W:\Projects\100k\2017\Github\2017-Batteships\Reference Bots\C#\ReferenceBot\obj\Debug\ReferenceBot.pdb
+C:\Development\Entelect Challenge\2017-Battleships\Reference Bots\C#\ReferenceBot\bin\Debug\ReferenceBot.exe.config
+C:\Development\Entelect Challenge\2017-Battleships\Reference Bots\C#\ReferenceBot\obj\Debug\ReferenceBot.exe
+C:\Development\Entelect Challenge\2017-Battleships\Reference Bots\C#\ReferenceBot\obj\Debug\ReferenceBot.pdb
+C:\Development\Entelect Challenge\2017-Battleships\Reference Bots\C#\ReferenceBot\bin\Debug\bot.json
+C:\Development\Entelect Challenge\2017-Battleships\Reference Bots\C#\ReferenceBot\bin\Debug\ReferenceBot.exe
+C:\Development\Entelect Challenge\2017-Battleships\Reference Bots\C#\ReferenceBot\bin\Debug\ReferenceBot.pdb
+C:\Development\Entelect Challenge\2017-Battleships\Reference Bots\C#\ReferenceBot\bin\Debug\Newtonsoft.Json.dll
+C:\Development\Entelect Challenge\2017-Battleships\Reference Bots\C#\ReferenceBot\bin\Debug\Newtonsoft.Json.xml

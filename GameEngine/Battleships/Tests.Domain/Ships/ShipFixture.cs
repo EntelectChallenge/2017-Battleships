@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using Domain.Games;
@@ -7,6 +8,7 @@ using Domain.Players;
 using Domain.Ships;
 using Domain.Weapons;
 using NUnit.Framework;
+using Tests.Domain.Maps.Stubs;
 using Tests.Domain.Ships.Stubs;
 
 namespace Tests.Domain.Ships
@@ -19,7 +21,7 @@ namespace Tests.Domain.Ships
         [SetUp]
         public void SetUp()
         {
-            this.player = new BattleshipPlayer("SomePlayer", 'A', PlayerType.One);
+            this.player = new BattleshipPlayer("SomePlayer", 'A', PlayerType.One, 10);
         }
 
     [Test]
@@ -27,7 +29,7 @@ namespace Tests.Domain.Ships
         {
             const int segmentCount = 4;
 
-            Ship ship = new ShipStub(player, segmentCount);
+            Ship ship = new ShipStub(player, segmentCount, new WeaponStub(player, 1, WeaponType.SingleShot));
 
             Assert.AreEqual(segmentCount, ship.Cells.Count());
         }
@@ -37,7 +39,7 @@ namespace Tests.Domain.Ships
         {
             const int segmentCount = 4;
 
-            Ship ship = new ShipStub(player, segmentCount);
+            Ship ship = new ShipStub(player, segmentCount, new WeaponStub(player, 1, WeaponType.SingleShot));
 
             Assert.AreEqual(player, ship.Owner);
         }
@@ -47,7 +49,7 @@ namespace Tests.Domain.Ships
         {
             const int segmentCount = 4;
 
-            Ship ship = new ShipStub(player, segmentCount);
+            Ship ship = new ShipStub(player, segmentCount, new WeaponStub(player, 1, WeaponType.SingleShot));
             const int width = 5;
             const int height = 5;
             var map = new PlayerMap(width, height, this.player);
@@ -62,13 +64,13 @@ namespace Tests.Domain.Ships
         [TestCase(-1)]
         public void GivenShip_WhenConstructingWithNegativeOrZeroSegmentCount_ThrowsException(int segmentCount)
         {
-            Assert.Throws<ArgumentException>(() => new ShipStub(player, segmentCount));
+            Assert.Throws<ArgumentException>(() => new ShipStub(player, segmentCount, new WeaponStub(player, 1, WeaponType.SingleShot)));
         }
 
         [Test]
         public void GivenCarrier_WhenConstructing_CreatesFiveSegements()
         {
-            var carrier = new Carrier(player, ShipType.Carrier);
+            var carrier = new Carrier(player, ShipType.Carrier, new WeaponStub(player, 0, WeaponType.SingleShot));
 
             Assert.AreEqual(5, carrier.Cells.Count());
         }
@@ -76,7 +78,7 @@ namespace Tests.Domain.Ships
         [Test]
         public void GivenBattleship_WhenConstructing_CreatesFourSegments()
         {
-            var battleship = new Battleship(player, ShipType.Battleship);
+            var battleship = new Battleship(player, ShipType.Battleship, new WeaponStub(player, 0, WeaponType.SingleShot));
 
             Assert.AreEqual(4, battleship.Cells.Count());
         }
@@ -84,7 +86,7 @@ namespace Tests.Domain.Ships
         [Test]
         public void GivenCruiser_WhenConstructing_CreatesThreeSegments()
         {
-            var cruiser = new Cruiser(player, ShipType.Cruiser);
+            var cruiser = new Cruiser(player, ShipType.Cruiser, new WeaponStub(player, 0, WeaponType.SingleShot));
 
             Assert.AreEqual(3, cruiser.Cells.Count());
         }
@@ -92,7 +94,7 @@ namespace Tests.Domain.Ships
         [Test]
         public void GivenSubmarine_WhenConstructing_CreatesThreeSegments()
         {
-            var submarine = new Submarine(player, ShipType.Submarine);
+            var submarine = new Submarine(player, ShipType.Submarine, new WeaponStub(player, 0, WeaponType.SingleShot));
 
             Assert.AreEqual(3, submarine.Cells.Count());
         }
@@ -100,7 +102,7 @@ namespace Tests.Domain.Ships
         [Test]
         public void GivenDestroyer_WhenConstructing_CreatesTwoSegments()
         {
-            var destroyer = new Destroyer(player, ShipType.Destroyer);
+            var destroyer = new Destroyer(player, ShipType.Destroyer, new WeaponStub(player, 0, WeaponType.SingleShot));
 
             Assert.AreEqual(2, destroyer.Cells.Count());
         }
@@ -108,7 +110,7 @@ namespace Tests.Domain.Ships
         [Test]
         public void GivenShipWithOneSegment_WhenDamagingSegment_MarksCellsAsDestroyed()
         {
-            var ship = new ShipStub(player, 1);
+            var ship = new ShipStub(player, 1, new WeaponStub(player, 1, WeaponType.SingleShot));
             const int width = 5;
             const int height = 5;
             var map = new PlayerMap(width, height, this.player);
@@ -124,7 +126,7 @@ namespace Tests.Domain.Ships
         [Test]
         public void GivenShipWithAllSegmentsUnDamaged_WhenDamagingSegment_DoesNotMarkShipAsDestroyed()
         {
-            var ship = new ShipStub(player, 2);
+            var ship = new ShipStub(player, 2, new WeaponStub(player, 1, WeaponType.SingleShot));
             const int width = 5;
             const int height = 5;
             var map = new PlayerMap(width, height, this.player);
@@ -140,7 +142,7 @@ namespace Tests.Domain.Ships
         [Test]
         public void GivenShipWithAllButOneSegmentDamaged_WhenDamagingSegment_MarksCellsAsDestroyed()
         {
-            var ship = new ShipStub(player, 4);
+            var ship = new ShipStub(player, 4, new WeaponStub(player, 1, WeaponType.SingleShot));
             const int width = 5;
             const int height = 5;
             var map = new PlayerMap(width, height, this.player);
@@ -181,7 +183,7 @@ namespace Tests.Domain.Ships
 
             Assert.True(map.GetBattleshipPlayer(PlayerType.One).Ships.SelectMany(x => x.Cells).All(x => x != null && x.Hit));
             
-            Assert.DoesNotThrow(() => map.Shoot(PlayerType.One, new Point(0,0), WeaponType.SingleShot));
+            Assert.DoesNotThrow(() => map.Shoot(PlayerType.One, new List<Point> { new Point(0,0)}, WeaponType.SingleShot));
         }
     }
 }

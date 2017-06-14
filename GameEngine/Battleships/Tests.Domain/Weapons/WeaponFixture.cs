@@ -3,6 +3,7 @@ using System.Drawing;
 using Domain.Games;
 using Domain.Maps;
 using Domain.Players;
+using Domain.Ships;
 using Domain.Weapons;
 using NUnit.Framework;
 using Tests.Domain.Weapons.Stubs;
@@ -34,19 +35,9 @@ namespace Tests.Domain.Weapons
                 }
             }
 
-            this.player = new BattleshipPlayer("TestPlayer", 'A', PlayerType.One);
+            this.player = new BattleshipPlayer("TestPlayer", 'A', PlayerType.One, 10);
         }
 
-        [Test]
-        public void GivenSingleShotWeapon_WhenShootingAtWeaponTarget_CallsLandShotOnTarget()
-        {
-            var weaponTargetStub = new WeaponTargetStub();
-            var weapon = new SingleShotWeapon(this.player);
-
-            weapon.Shoot(weaponTargetStub);
-
-            Assert.True(weaponTargetStub.LandShotCalled);
-        }
 
         public WeaponFixture()
         {
