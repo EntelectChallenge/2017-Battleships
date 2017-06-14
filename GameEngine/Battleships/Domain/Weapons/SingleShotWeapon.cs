@@ -8,17 +8,20 @@ namespace Domain.Weapons
 {
     internal class SingleShotWeapon : Weapon
     {
-        public SingleShotWeapon(BattleshipPlayer owner, int energyRequired, WeaponType weaponType) : base(owner, energyRequired, weaponType) { }
+        public SingleShotWeapon(BattleshipPlayer owner, int energyRequired, WeaponType weaponType) : base(owner,
+            energyRequired, weaponType)
+        {
+        }
 
         public override void Shoot(List<Cell> targets, int currentRound)
         {
-            foreach (var target in targets)
-            {
-                Owner.ShotsFired++;
-                
-                var alreadyDestroyed = target.OccupiedBy?.Destroyed ?? false;
-                if (!target.LandShot()) continue;
+            var target = targets[0];
 
+            Owner.ShotsFired++;
+
+            var alreadyDestroyed = target.OccupiedBy?.Destroyed ?? false;
+            if (target.LandShot())
+            {
                 Owner.ShotsHit++;
 
                 Owner.AddPoints(Settings.Default.PointsHit);

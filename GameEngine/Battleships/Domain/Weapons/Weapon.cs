@@ -7,6 +7,9 @@ using Newtonsoft.Json.Converters;
 
 namespace Domain.Weapons
 {
+    /// <summary>
+    /// The actual calculation for which targets to shoot at is done in the corresponding command classes.
+    /// </summary>
     public abstract class Weapon
     {
         [JsonIgnore]
