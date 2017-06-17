@@ -32,7 +32,7 @@ namespace GameEngine.Commands.PlayerCommands
                 {
                     if (player.Ships.Any(x => x.ShipType == ShipType.Battleship && !x.Destroyed))
                     {
-                        opponentsMap.Cells
+                        crossShot = opponentsMap.Cells
                             .Where(cell => (cell.X == _centerPoint.X && cell.Y == _centerPoint.Y)
                                            || (cell.X + 1 == _centerPoint.X && cell.Y - 1 == _centerPoint.Y)
                                            || (cell.X - 1 == _centerPoint.X && cell.Y - 1 == _centerPoint.Y)
@@ -52,7 +52,7 @@ namespace GameEngine.Commands.PlayerCommands
                 {
                     if (player.Ships.Any(x => x.ShipType == ShipType.Cruiser && !x.Destroyed))
                     {
-                        opponentsMap.Cells
+                        crossShot = opponentsMap.Cells
                             .Where(cell => (cell.X == _centerPoint.X && cell.Y == _centerPoint.Y)
                                            || (cell.X + 1 == _centerPoint.X && cell.Y == _centerPoint.Y)
                                            || (cell.X == _centerPoint.X && cell.Y - 1 == _centerPoint.Y)
