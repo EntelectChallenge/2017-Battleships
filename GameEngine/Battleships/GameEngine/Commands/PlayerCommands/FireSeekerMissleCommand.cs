@@ -32,7 +32,7 @@ namespace GameEngine.Commands.PlayerCommands
                     {
                         distance = Math.Sqrt(Math.Pow((x.X - _centerPoint.X), 2) + Math.Pow(x.Y - _centerPoint.Y, 2)),
                         cell = x
-                    }).OrderBy(x => x.distance).First(x => x.distance <= 2);
+                    }).OrderBy(x => x.distance).FirstOrDefault(x => x.distance <= 2);
 
                     var cellToHit = cellInRage == null
                         ? new Point(_centerPoint.X, _centerPoint.Y)
