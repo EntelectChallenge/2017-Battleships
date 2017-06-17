@@ -28,7 +28,7 @@ namespace GameEngine.Commands.PlayerCommands
                     var cornerShot =
                         opponentsMap.Cells.Where(cell => (cell.X + 1 == _centerPoint.X && cell.Y - 1 == _centerPoint.Y)
                                                          || (cell.X - 1 == _centerPoint.X && cell.Y - 1 == _centerPoint.Y)
-                                                         || (cell.X + 1 == _centerPoint.X && cell.Y - 1 == _centerPoint.Y)
+                                                         || (cell.X + 1 == _centerPoint.X && cell.Y + 1 == _centerPoint.Y)
                                                          || (cell.X - 1 == _centerPoint.X && cell.Y + 1 == _centerPoint.Y)).Select(x => new Point(x.X, x.Y)).ToList();
                     gameMap.Shoot(player.PlayerType, cornerShot, WeaponType.CornerShot);
                 }
