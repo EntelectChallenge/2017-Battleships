@@ -184,7 +184,7 @@ These are the simplified rules.  More in depth rules are further down.
 	* Fire Corner Shot - Fires four shots given a center location
 	* Fire Cross Shot Diagonal - Fires five shots given a center location
 	* Fire Cross Shot Horizontal - Fires five shots given a center location
-	* Fire Seeker Missle - Finds the nearst ship given a center location in a 5 x 5 block of cells
+	* Fire Seeker Missle - Finds the nearst ship with an eclidian distance of 2 units or less away, given a center location 
 4. After each round energy is added to the player depending on the size of the map.
 	* Small Map = 2 Energy per round
 	* Medium Map = 3 Energy per round
@@ -225,7 +225,7 @@ Players can either be console players or bots.  Both follow the same game engine
 	* Fire Corner Shot Command - This will fire four shots at the enemy's map, given a center point the shots will be one block to the north-west, north-east, south-east and south-west of the center point. (3 x 3 cells)
 	* Fire Cross Shot Diagonal Command - This will fire five shots givn a center point, with four being the same as the corner shot and inclusive of the center point. (3 x 3 cells)
 	* Fire Cross Shot Horizontal Command - This will fire five shots, same as the CrossShotDiagonal, but in a horizontal and vertical cross. (3 x 3 cells)
-	* Fire Seeker Missle Command - This will fire a missle at target area, finding the nearest ship cell in a 5 x 5 block of cells , if there is no ship the center point given will be the target of the missle. 
+	* Fire Seeker Missle Command - This will fire a missle at target area, finding the nearest ship cell with an eclidian distance of 2 units or less away from the center point given , if there is no ship the center point given will be the target of the missle. 
 5. Bot players will have the following additional rules
 	* Bot processes will be forcefully terminated after 4 seconds
 	* Bots will not be allowed to exceed a total execution time of 2 seconds
@@ -274,6 +274,12 @@ Players wills be awarded points during the game based on the following.
 1. For killing the enemy player you will be awarded an additional 100 points.
 
 ## Release Notes
+
+### Version 1.1.1 - 22 June 2017
+Change Log:
+
+1.	Fixed readme for seeker missle
+2.	Added Tests for all weapon commands
 
 ### Version 1.1.0 - 14 June 2017
 Change Log:
