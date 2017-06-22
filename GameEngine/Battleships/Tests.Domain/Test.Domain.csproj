@@ -82,6 +82,10 @@
       <Project>{9A0FEB3F-B67C-4300-87A4-DA9BE8F81088}</Project>
       <Name>1. Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GameEngine\2. GameEngine.csproj">
+      <Project>{4B3FEF3B-945E-4D02-8ED4-8F20CBE7041E}</Project>
+      <Name>2. GameEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
