@@ -1,6 +1,6 @@
 # 2017-Battleships
 
-The current release is version [1.0.5](https://github.com/EntelectChallenge/2017-Battleships/releases/latest).
+The current release is version [1.1.1](https://github.com/EntelectChallenge/2017-Battleships/releases/latest).
 
 For more information about the challenge see the [Challenge website](http://challenge.entelect.co.za/) .
 
@@ -278,12 +278,6 @@ Players wills be awarded points during the game based on the following.
 ### Version 1.1.1 - 22 June 2017
 Change Log:
 
-1.	Fixed readme for seeker missle
-2.	Added Tests for all weapon commands
-
-### Version 1.1.0 - 14 June 2017
-Change Log:
-
 1. Added new weapons to each ship.
 	* Double Shot - Destroyer - Requires 8 rounds worth of energy to use
 	* Corner Shot - Carrier - Requires 10 rounds worth of energy to use
@@ -301,6 +295,8 @@ Change Log:
 	* Large Map - 4 Energy
 4. Updated Console Harness to allow the new commands
 5. Updated C# and Java Reference Bot to make use of the double (Each time it has energy and the destroyer is still available)
+6. Fixed readme for seeker missle
+7. Added Tests for all weapon commands
 
 ### Version 1.0.5 - 04 June 2017
 Change Log:
