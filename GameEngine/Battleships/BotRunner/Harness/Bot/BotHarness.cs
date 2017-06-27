@@ -133,6 +133,7 @@ namespace TestHarness.TestHarnesses.Bot
             }
             if (_totalDoNothingCommands >= 20)
             {
+                BotUnresponsive();
                 Logger.LogInfo(
                     "Bot sent to many do nothing commands, something is most likely going wrong, please fix your bot. The player's ships will all be marked as destroyed and killed off.");
                 BattleshipPlayer.Killoff();
@@ -167,6 +168,7 @@ namespace TestHarness.TestHarnesses.Bot
 
             WriteLogs();
             RemoveCommandFile(true);
+            BotCommandPublished(command);
             PublishCommand(command);
         }
 
@@ -256,5 +258,40 @@ namespace TestHarness.TestHarnesses.Bot
         {
             return $"Phase {gameMap.Phase} - Round {round}";
         }
+
+
+        #region Tournament Methods
+
+        public virtual void BotMaxExecution(long executionTime)
+        {
+            
+        }
+
+        public virtual void BotExecutionTime(long executionTime)
+        {
+            
+        }
+
+        public virtual void BotExecutionTimeLimitExceeded()
+        {
+            
+        }
+
+        public virtual void BotCommandPublished(ICommand command)
+        {
+            
+        }
+
+        public virtual void BotEncounteredExecutionException()
+        {
+
+        }
+
+        public virtual void BotUnresponsive()
+        {
+
+        }
+
+        #endregion
     }
 }
