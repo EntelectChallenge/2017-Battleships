@@ -28,15 +28,30 @@ namespace GameEngine.Commands.PlayerCommands
 
                     var occupiedCells = opponentsMap.Cells.Where(cell => cell.Occupied).ToList();
 
-                    var cellInRage = occupiedCells.Select(x => new
+                    var cellsInRange = occupiedCells.Select(x => new
                     {
                         distance = Math.Sqrt(Math.Pow((x.X - _centerPoint.X), 2) + Math.Pow(x.Y - _centerPoint.Y, 2)),
                         cell = x
-                    }).OrderBy(x => x.distance).FirstOrDefault(x => x.distance <= 2);
+                    }).OrderBy(x => x.distance);
 
-                    var cellToHit = cellInRage == null
+                    var cellInRange = cellsInRange.FirstOrDefault(x => x.distance < 1d);
+
+                    if (cellInRange == null)
+                    {
+                        cellInRange = cellsInRange.FirstOrDefault(x => x.distance < 1.4d);
+                    }
+                    if (cellInRange == null)
+                    {
+                        cellInRange = cellsInRange.FirstOrDefault(x => x.distance > 1.4d && x.distance < 2d);
+                    }
+                    if (cellInRange == null)
+                    {
+                        cellInRange = cellsInRange.FirstOrDefault(x => x.distance <= 2d);
+                    }
+
+                    var cellToHit = cellInRange == null
                         ? new Point(_centerPoint.X, _centerPoint.Y)
-                        : new Point(cellInRage.cell.X, cellInRage.cell.Y);
+                        : new Point(cellInRange.cell.X, cellInRange.cell.Y);
 
                     gameMap.Shoot(player.PlayerType, new List<Point> {cellToHit}, WeaponType.SeekerMissle);
                 }
