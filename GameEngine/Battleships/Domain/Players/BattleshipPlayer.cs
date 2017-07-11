@@ -96,7 +96,7 @@ namespace Domain.Players
                 new DiagonalCrossShotWeapon(this, EnergyRequiredForWeapon(WeaponType.DiagonalCrossShot),
                     WeaponType.DiagonalCrossShot));
             this.Points = 0;
-            this.Energy = 3;
+            this.Energy = Settings.Default.SmallMapSize == mapSize ? 2 : Settings.Default.MediumMapSize == mapSize ? 3 : 4;
             this.IsWinner = false;
             this.FailedFirstPhaseCommands = 0;
             this.Ships = new List<Ship>
