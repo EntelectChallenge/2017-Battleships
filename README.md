@@ -1,6 +1,6 @@
 # 2017-Battleships
 
-The current release is version [1.1.1](https://github.com/EntelectChallenge/2017-Battleships/releases/latest).
+The current release is version [1.1.2](https://github.com/EntelectChallenge/2017-Battleships/releases/latest).
 
 For more information about the challenge see the [Challenge website](http://challenge.entelect.co.za/) .
 
@@ -274,6 +274,11 @@ Players wills be awarded points during the game based on the following.
 1. For killing the enemy player you will be awarded an additional 100 points.
 
 ## Release Notes
+
+### Version 1.1.2 - 07 July 2017
+Change Log:
+1. Changed order of searching for a seeker missile target
+2. Fixed issue with starting energy not lining up with mapsize
 
 ### Version 1.1.1 - 22 June 2017
 Change Log:
