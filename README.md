@@ -184,7 +184,7 @@ These are the simplified rules.  More in depth rules are further down.
 	* Fire Corner Shot - Fires four shots given a center location
 	* Fire Cross Shot Diagonal - Fires five shots given a center location
 	* Fire Cross Shot Horizontal - Fires five shots given a center location
-	* Fire Seeker Missle - Finds the nearst ship with an eclidian distance of 2 units or less away, given a center location 
+	* Fire Seeker Missile - Finds the nearst ship with an eclidian distance of 2 units or less away, given a center location 
 4. After each round energy is added to the player depending on the size of the map.
 	* Small Map = 2 Energy per round
 	* Medium Map = 3 Energy per round
@@ -195,7 +195,7 @@ These are the simplified rules.  More in depth rules are further down.
 	* Corner Shot - Carrier - Requires 10 rounds worth of energy to use
 	* Cross Shot Diagonal - BattleShip - Requires 12 rounds worth of energy to use
 	* Cross Shot Horizontal - Crusier - Requires 14 rounds worth of energy to use
-	* Seeker Missle - Submarine  - Requires 10 rounds worth of energy to use
+	* Seeker Missile - Submarine  - Requires 10 rounds worth of energy to use
 6. A shot will damage a ship if it hits, else it will just hit the water and do nothing.
 7. A player earns points for each successful shot landed and for completely destroying an enemy's ship.
 8. A player is victorious if he destroy's all of the enemy's ships first, in the case of a tie the winner will be the player who landed the first shot successfully, if it is still a tie it will be the player who had the least amount of first phase failed commands.
@@ -225,7 +225,7 @@ Players can either be console players or bots.  Both follow the same game engine
 	* Fire Corner Shot Command - This will fire four shots at the enemy's map, given a center point the shots will be one block to the north-west, north-east, south-east and south-west of the center point. (3 x 3 cells)
 	* Fire Cross Shot Diagonal Command - This will fire five shots givn a center point, with four being the same as the corner shot and inclusive of the center point. (3 x 3 cells)
 	* Fire Cross Shot Horizontal Command - This will fire five shots, same as the CrossShotDiagonal, but in a horizontal and vertical cross. (3 x 3 cells)
-	* Fire Seeker Missle Command - This will fire a missle at target area, finding the nearest ship cell with an eclidian distance of 2 units or less away from the center point given , if there is no ship the center point given will be the target of the missle. 
+	* Fire Seeker Missile Command - This will fire a missile at target area, finding the nearest ship cell with an eclidian distance of 2 units or less away from the center point given , if there is no ship the center point given will be the target of the missile. 
 5. Bot players will have the following additional rules
 	* Bot processes will be forcefully terminated after 4 seconds
 	* Bots will not be allowed to exceed a total execution time of 2 seconds
@@ -288,19 +288,19 @@ Change Log:
 	* Corner Shot - Carrier - Requires 10 rounds worth of energy to use
 	* Cross Shot Diagonal - BattleShip - Requires 12 rounds worth of energy to use
 	* Cross Shot Horizontal - Crusier - Requires 14 rounds worth of energy to use
-	* Seeker Missle - Submarine  - Requires 10 rounds worth of energy to use
+	* Seeker Missile - Submarine  - Requires 10 rounds worth of energy to use
 2. Added new commands and command codes.
 	* FireDoubleShotCommand
 	* FireCornerShotCommand
 	* FireCrossShotCommand
-	* FireSeekerMissleCommand
+	* FireSeekerMissileCommand
 3. Added energy to players at the end of each round, depending on the map size selected.
 	* Small Map - 2 Energy
 	* Medium Map - 3 Energy 
 	* Large Map - 4 Energy
 4. Updated Console Harness to allow the new commands
 5. Updated C# and Java Reference Bot to make use of the double (Each time it has energy and the destroyer is still available)
-6. Fixed readme for seeker missle
+6. Fixed readme for seeker missile
 7. Added Tests for all weapon commands
 
 ### Version 1.0.5 - 04 June 2017
