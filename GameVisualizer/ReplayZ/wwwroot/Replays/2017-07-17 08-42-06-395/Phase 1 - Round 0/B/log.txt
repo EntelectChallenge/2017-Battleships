@@ -1,0 +1,24 @@
+
+17-07-2017 08:42:08:606 - I: 	Executing process  B "C:\AOC\Personal\entelect2017\Run\Runner\bin\Debug\Replays\2017-07-17 08-42-06-395\Phase 1 - Round 0\B"
+17-07-2017 08:42:08:621 - E: 	Failed to run calibration test System.InvalidOperationException: Cannot start process because a file name has not been provided.
+   at System.Diagnostics.Process.Start()
+   at BotRunner.Util.ProcessHandler.StartProcessCommon() in C:\AOC\Personal\entelect2017\Battleships\BotRunner\Util\ProcessHandler.cs:line 87
+   at BotRunner.Util.ProcessHandler.RunProcess() in C:\AOC\Personal\entelect2017\Battleships\BotRunner\Util\ProcessHandler.cs:line 79
+   at TestHarness.TestHarnesses.Bot.Runners.DotNetRunner.RunCalibrationTest() in C:\AOC\Personal\entelect2017\Battleships\BotRunner\Harness\Bot\Runners\DotNetRunner.cs:line 41
+   at TestHarness.TestHarnesses.Bot.BotRunner.CalibrateBot() in C:\AOC\Personal\entelect2017\Battleships\BotRunner\Harness\Bot\BotRunner.cs:line 41
+17-07-2017 08:42:08:621 - I: 	Bot calibration complete and can run an additional 5ms due to environment startup
+17-07-2017 08:42:08:621 - D: 	Executing bot with following commands ../../../../Bots/RaezorDroidV2/bin/Debug/bots/b\..\..\RaezorDroidV2.exe B "C:\AOC\Personal\entelect2017\Run\Runner\bin\Debug\Replays\2017-07-17 08-42-06-395\Phase 1 - Round 0\B" tournament
+17-07-2017 08:42:08:621 - I: 	Executing process ../../../../Bots/RaezorDroidV2/bin/Debug/bots/b\..\..\RaezorDroidV2.exe B "C:\AOC\Personal\entelect2017\Run\Runner\bin\Debug\Replays\2017-07-17 08-42-06-395\Phase 1 - Round 0\B" tournament
+17-07-2017 08:42:08:643 - I: 	Bot has 4000ms to run before it will be forcefully killed
+17-07-2017 08:42:08:675 - I: 	Output from bot: Executing Bot with arguments: (B) (C:\AOC\Personal\entelect2017\Run\Runner\bin\Debug\Replays\2017-07-17 08-42-06-395\Phase 1 - Round 0\B) (tournament)
+17-07-2017 08:42:08:860 - I: 	Output from bot: [RaezorDroid.Engine.Bot.RaezorBot] - Placeship command: Battleship 4 3 South
+17-07-2017 08:42:08:860 - I: 	Output from bot: Carrier 3 5 South
+17-07-2017 08:42:08:860 - I: 	Output from bot: Cruiser 4 12 South
+17-07-2017 08:42:08:860 - I: 	Output from bot: Destroyer 7 11 South
+17-07-2017 08:42:08:860 - I: 	Output from bot: Submarine 5 0 East
+17-07-2017 08:42:08:860 - I: 	Output from bot: [RaezorDroid.Engine.Bot.RaezorBot] - ResetCurrentGameStatus Executing...
+17-07-2017 08:42:08:891 - I: 	Output from bot: [RaezorDroid.Engine.Bot.RaezorBot] - Working Directory: C:\AOC\Personal\entelect2017\Run\Runner\bin\Debug\Replays\2017-07-17 08-42-06-395\Phase 1 - Round 0\B
+17-07-2017 08:42:08:891 - I: 	Output from bot: [BOT]	Bot finished in 217 ms.
+17-07-2017 08:42:08:906 - I: 	Output from bot: 
+17-07-2017 08:42:08:906 - E: 	Output from bot: 
+17-07-2017 08:42:08:906 - I: 	Your bots total execution time was 00:00:00.2832923

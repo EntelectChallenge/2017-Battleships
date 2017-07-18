@@ -1,0 +1,31 @@
+
+17-07-2017 08:43:13:702 - D: 	Executing bot with following commands ../../../../Bots/RaezorDroidV2/bin/Debug/bots/b\..\..\RaezorDroidV2.exe B "C:\AOC\Personal\entelect2017\Run\Runner\bin\Debug\Replays\2017-07-17 08-42-06-395\Phase 2 - Round 74\B" tournament
+17-07-2017 08:43:13:702 - I: 	Executing process ../../../../Bots/RaezorDroidV2/bin/Debug/bots/b\..\..\RaezorDroidV2.exe B "C:\AOC\Personal\entelect2017\Run\Runner\bin\Debug\Replays\2017-07-17 08-42-06-395\Phase 2 - Round 74\B" tournament
+17-07-2017 08:43:13:718 - I: 	Bot has 4000ms to run before it will be forcefully killed
+17-07-2017 08:43:13:755 - I: 	Output from bot: Executing Bot with arguments: (B) (C:\AOC\Personal\entelect2017\Run\Runner\bin\Debug\Replays\2017-07-17 08-42-06-395\Phase 2 - Round 74\B) (tournament)
+17-07-2017 08:43:13:918 - I: 	Output from bot: [RaezorDroid.Engine.Bot.RaezorBot] - Working Directory: C:\AOC\Personal\entelect2017\Run\Runner\bin\Debug\Replays\2017-07-17 08-42-06-395\Phase 2 - Round 74\B
+17-07-2017 08:43:13:940 - I: 	Output from bot: [RaezorDroid.Engine.Bot.RaezorBot] - Make Move Started...
+17-07-2017 08:43:13:940 - I: 	Output from bot: [RaezorDroid.Engine.Bot.RaezorBot] - Calculate Executing...
+17-07-2017 08:43:13:940 - I: 	Output from bot: [RaezorDroid.Strategy.CalculationMode.RaezorCalculationMode] - LastCommandExecuted is NOT NULL...
+17-07-2017 08:43:13:940 - I: 	Output from bot: [RaezorDroid.Engine.State.RZState] - EnemyKilled (False)
+17-07-2017 08:43:13:940 - I: 	Output from bot: [RaezorDroid.Engine.State.RZState] - EnemyShipHit (True)
+17-07-2017 08:43:13:940 - I: 	Output from bot: [RaezorDroid.Strategy.CalculationMode.RaezorCalculationMode] - EnemyShipHit...
+17-07-2017 08:43:13:956 - I: 	Output from bot: [RaezorDroid.Engine.State.RZState] - ShotHitOnCell north found (8,7)
+17-07-2017 08:43:13:956 - I: 	Output from bot: [RaezorDroid.Engine.State.RZState] - ShotHitOnCell east found (9,6)
+17-07-2017 08:43:13:956 - I: 	Output from bot: [RaezorDroid.Engine.State.RZState] - ShotHitOnCell south found (8,5)
+17-07-2017 08:43:13:956 - I: 	Output from bot: [RaezorDroid.Engine.State.RZState] - ShotHitOnCell west found (7,6)
+17-07-2017 08:43:13:956 - I: 	Output from bot: [RaezorDroid.Engine.Bot.RaezorBot] - Best Move Executing...
+17-07-2017 08:43:13:956 - I: 	Output from bot: [RaezorDroid.Strategy.HuntMode.RaezorBasicHuntMode] - FirePriorityList Executing...
+17-07-2017 08:43:13:956 - I: 	Output from bot: [RaezorDroid.Strategy.HuntMode.RaezorBasicHuntMode] - HighPriorityCells count (0)
+17-07-2017 08:43:13:956 - I: 	Output from bot: [RaezorDroid.Strategy.HuntMode.RaezorBasicHuntMode] - MediumPriorityCells count (3)
+17-07-2017 08:43:13:956 - I: 	Output from bot: [RaezorDroid.Strategy.HuntMode.RaezorBasicHuntMode] - LowPriorityCells count (0)
+17-07-2017 08:43:13:956 - I: 	Output from bot: [RaezorDroid.Strategy.HuntMode.RaezorBasicHuntMode] - MediumPriorityCells found (8,5)
+17-07-2017 08:43:13:956 - I: 	Output from bot: [RaezorDroid.Engine.Bot.RaezorBot] - Make Shot Executing...
+17-07-2017 08:43:13:956 - I: 	Output from bot: [RaezorDroid.Engine.State.RZState] - MakeShot (8,5)
+17-07-2017 08:43:13:956 - I: 	Output from bot: [RaezorDroid.Engine.Bot.RaezorBot] - Command: 1,8,5
+17-07-2017 08:43:13:956 - I: 	Output from bot: [RaezorDroid.Engine.State.RZState] - MakeShot (8,5)
+17-07-2017 08:43:13:987 - I: 	Output from bot: [RaezorDroid.Engine.Bot.RaezorBot] - Working Directory: C:\AOC\Personal\entelect2017\Run\Runner\bin\Debug\Replays\2017-07-17 08-42-06-395\Phase 2 - Round 74\B
+17-07-2017 08:43:13:987 - I: 	Output from bot: [BOT]	Bot finished in 235 ms.
+17-07-2017 08:43:13:987 - I: 	Output from bot: 
+17-07-2017 08:43:13:987 - E: 	Output from bot: 
+17-07-2017 08:43:13:987 - I: 	Your bots total execution time was 00:00:00.2952453

@@ -1,0 +1,12 @@
+
+17-07-2017 08:42:06:610 - I: 	Loaded bot ../../../../Bots/RaezorDroidV1/bin/Debug/bots/a
+17-07-2017 08:42:06:621 - I: 	Loaded bot ../../../../Bots/RaezorDroidV2/bin/Debug/bots/b
+17-07-2017 08:42:06:632 - I: 	Registered player RaezorDroidV1 A
+17-07-2017 08:42:06:633 - I: 	Registered player RaezorDroidV2 B
+17-07-2017 08:42:06:778 - I: 		OK!
+17-07-2017 08:42:08:606 - I: 	Added Command PlaceShipCommand for Player RaezorDroidV1 A
+17-07-2017 08:42:08:906 - I: 	Added Command PlaceShipCommand for Player RaezorDroidV2 B
+17-07-2017 08:42:08:922 - D: 	Beginning round processing
+17-07-2017 08:42:08:922 - D: 	Processing Player Commands
+17-07-2017 08:42:08:935 - D: 	Killing off players who have no ships left
+17-07-2017 08:42:08:936 - D: 	Round processing complete

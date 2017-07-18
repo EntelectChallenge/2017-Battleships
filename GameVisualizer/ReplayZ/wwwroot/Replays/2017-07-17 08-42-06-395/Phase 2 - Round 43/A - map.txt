@@ -1,0 +1,55 @@
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Game Version : 1.0.0
+Game Level : 1
+Round Number : 43
+Map Dimensions : 14 x 14
+Phase : 2
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+############## Player
+~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
+~~~~~dd~~~~~~~
+~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
+~~~~~~~SSS~~~~
+~RRr~~~~~~~~~~
+~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
+~~bbbb~~~~~~~~
+~~~~ccCCC~~~~~
+############## Opponent
+~~!~~~~~~~~~~~
+~!~~~~~~~~~~~!
+!~~~~~~~~~~~!~
+~~~~~~~~~~~!~~
+~~~~~~~~~~!~~~
+~~~~~~~~~!~~~~
+~~~~~~~~!~~~~~
+~~~!~~~!~~~~~~
+~~!*!~!~~~~~~~
+~~!*!!~~~~~~~~
+~~!**!~~~~~~~~
+~~!**!~~~~~~~~
+~~!**!!!~~~~~~
+~!~!****!!~~~!
+##############
+
+---------------------------
+Player Name: RaezorDroidV1 A
+Available Energy: 129
+Shots: 42
+Hit: 12
+Points: 120
+Arsenal: [SingleShot,SeekerMissle,CornerShot,CrossShot]
+Ships: [Submarine,Carrier,Cruiser]
+Status: Alive
+---------------------------
+Opponent: RaezorDroidV2 B
+Points: 90
+Ships: [Destroyer,Cruiser]
+Status: Alive
+---------------------------
