@@ -1,0 +1,457 @@
+﻿<!DOCTYPE html>
+<html ng-app="ReplayZ">
+<head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <title>Entelect ReplayZ</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-reboot.min.css" rel="stylesheet" />
+    <link href="css/tether.min.css" rel="stylesheet" />
+    <link href="css/dashboard.css" rel="stylesheet" />
+</head>
+<body ng-controller="ReplayZController as vm">
+    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+        <a class="navbar-brand" href="#">{{vm.name}}</a>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mr-2"></li>
+                <li class="nav-item pt-2">
+                    <label class="custom-control custom-checkbox" style="color:white;">
+                        <input type="checkbox" class="custom-control-input" ng-model="vm.showFiles">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">{{vm.showFiles ? 'Showing' : 'Hiding'}} Files</span>
+                    </label>
+                </li>
+                <li class="nav-item mr-2"></li>
+                <li class="nav-item pt-2">
+                    <label class="custom-control custom-checkbox" style="color:white;">
+                        <input type="checkbox" class="custom-control-input" ng-model="vm.showReplays">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">{{vm.showReplays ? 'Showing' : 'Hiding'}} Replays</span>
+                    </label>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                Created by RAEZOR
+            </span>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 sidebar" ng-if="vm.showFiles">
+                <div class="list-group">
+                    <a href="#" ng-repeat="replay in vm.replayList" ng-click="vm.selectReplay(replay.folderName)"
+                       class="list-group-item list-group-item-action flex-column align-items-start {{vm.selectedReplayItem == replay.folderName ? 'active' : ''}}">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{replay.folderName}}</h5>
+                            <small>{{replay.totalFoldersInFolder}} Rounds</small>
+                        </div>
+                        <p class="mb-1">
+                            <div ng-show="replay.gameState.player1Map.owner.points > replay.gameState.player2Map.owner.points">
+                                <b><i>{{replay.gameState.player1Map.owner.name}} ({{replay.gameState.player1Map.owner.points}})</i></b>
+                                VS
+                                <i>{{replay.gameState.player2Map.owner.name}} ({{replay.gameState.player2Map.owner.points}})</i>
+                            </div>
+                            <div ng-show="replay.gameState.player1Map.owner.points < replay.gameState.player2Map.owner.points">
+                                <i>{{replay.gameState.player1Map.owner.name}} ({{replay.gameState.player1Map.owner.points}})</i>
+                                VS
+                                <b><i>{{replay.gameState.player2Map.owner.name}} ({{replay.gameState.player2Map.owner.points}})</i></b>
+                            </div>
+                            <div ng-show="replay.gameState.player1Map.owner.points == replay.gameState.player2Map.owner.points">
+                                <i>{{replay.gameState.player1Map.owner.name}} ({{replay.gameState.player1Map.owner.points}})</i>
+                                VS
+                                <i>{{replay.gameState.player2Map.owner.name}} ({{replay.gameState.player2Map.owner.points}})</i>
+                            </div>
+                        </p>
+                        <small>Map Size ({{replay.gameState.player2Map.mapWidth}} X {{replay.gameState.player2Map.mapHeight}})</small>
+                    </a>
+                </div>
+            </nav>
+            <nav class="col-md-1 offset-md-{{vm.showFiles ? '2' : '0'}} sidebar" ng-if="vm.showReplays">
+                <ul class="list-group">
+                    <li ng-repeat="round in vm.roundsList" ng-click="vm.selectRound(round.folderName)"
+                        class="list-group-item {{vm.selectedRoundItem == round.folderName ? 'active' : ''}}">{{round.folderName}}</li>
+                </ul>
+            </nav>
+            <main class="col-md-{{vm.showFiles && vm.showReplays ? '9' : vm.showFiles ? '10' : vm.showReplays ? '11' : '12'}}
+                  offset-md-{{vm.showFiles && vm.showReplays ? '3' : vm.showFiles ? '2' : vm.showReplays ? '1' : '0'}}
+                  pt-3" ng-show="vm.selectedReplayItem && vm.selectedRoundItem">
+                <div class="progress" ng-if="vm.selectedReplayItem && vm.selectedRoundItem">
+                    <div class="progress-bar {{vm.summary.state.Phase == '1' ? 'bg-warning' : 'bg-success'}}" role="progressbar" style="width: {{(vm.summary.state.Round / vm.roundsList.length) * 100}}%"
+                         aria-valuenow="{{(vm.summary.state.Round / vm.roundsList.length) * 100}}"
+                         aria-valuemin="0"
+                         aria-valuemax="{{vm.roundsList.length}}"></div>
+                </div>
+                <br />
+                <div class="float-left">
+                    <input type="button" value="Previous Round" class="form-control" ng-click="vm.prevRound()" />
+                </div>
+                <div class="float-right">
+                    <input type="button" value="Next Round" class="form-control" ng-click="vm.nextRound()" />
+                </div>
+
+                <h1 class="text-center">{{vm.selectedReplayItem}}</h1>
+                <div class="float-right">
+                    <div class="btn-group">
+                        <input type="button" class="form-control btn-{{vm.simulation == 0 ? 'warning' : 'secondary'}} btn-sm" ng-click="vm.simulate(0)" value="No Simulation"/>
+                        <input type="button" class="form-control btn-{{vm.simulation == 0.5 ? 'warning' : 'secondary'}} btn-sm" ng-click="vm.simulate(0.5)" value="Half Second" />
+                        <input type="button" class="form-control btn-{{vm.simulation == 1 ? 'warning' : 'secondary'}} btn-sm" ng-click="vm.simulate(1)" value="1 Second" />
+                        <input type="button" class="form-control btn-{{vm.simulation == 2 ? 'warning' : 'secondary'}} btn-sm" ng-click="vm.simulate(2)" value="2 Seconds" />
+                        <input type="button" class="form-control btn-{{vm.simulation == 3 ? 'warning' : 'secondary'}} btn-sm" ng-click="vm.simulate(3)" value="3 Seconds" />
+                    </div>
+                </div>
+
+                <h4>{{vm.selectedRoundItem}}</h4>
+
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#grid" role="tab">Grid</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#playerFiles" role="tab">Player Files</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#enigneFiles" role="tab">Engine Files</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#stats" role="tab">Stats</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="grid" role="tabpanel">
+                        <div class="row mt-2">
+                            <!-- Nav tabs -->
+                            <div class="card-deck">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">{{vm.playerA.state.PlayerMap.Owner.Name}}</h4>
+                                        <p class="card-text">{{vm.summary.roundInfo.Players[0].Author}}</p>
+                                    </div>
+                                    <div class="card-block">
+                                        <div>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" ng-model="vm.playerA.showShips">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Show Ships</span>
+                                            </label>
+                                            <div class="float-right">
+                                                <div ng-switch="vm.playerB.command.split(',')[0]">
+                                                    <div ng-switch-when="0">
+                                                        <h4><span class="badge badge-pill badge-default">Do Nothing</span></h4>
+                                                    </div>
+                                                    <div ng-switch-when="1">
+                                                        <h4><span class="badge badge-pill badge-default">Fire Shot</span></h4>
+                                                    </div>
+                                                    <div ng-switch-when="2">
+                                                        <h4><span class="badge badge-pill badge-primary">Double Shot Vertical</span></h4>
+                                                    </div>
+                                                    <div ng-switch-when="3">
+                                                        <h4><span class="badge badge-pill badge-primary">Double Shot Horizontal</span></h4>
+                                                    </div>
+                                                    <div ng-switch-when="4">
+                                                        <h4><span class="badge badge-pill badge-success">Corner Shot</span></h4>
+                                                    </div>
+                                                    <div ng-switch-when="5">
+                                                        <h4><span class="badge badge-pill badge-info">Cross Shot Diagonal</span></h4>
+                                                    </div>
+                                                    <div ng-switch-when="6">
+                                                        <h4><span class="badge badge-pill badge-warning">Cross Shot Horizontal</span></h4>
+                                                    </div>
+                                                    <div ng-switch-when="7">
+                                                        <h4><span class="badge badge-pill badge-danger">Seeker Missle</span></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <canvas id="playerAships" width="502" height="505"></canvas>
+                                    </div>
+                                    <div class="card-footer">
+                                        <p class="float-left">Points <b>({{vm.summary.state.Player1Map.Owner.Points}})</b></p>
+                                        <p class="float-right">Energy <b>({{vm.summary.state.Player1Map.Owner.Energy}})</b></p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">{{vm.playerB.state.PlayerMap.Owner.Name}}</h4>
+                                        <p class="card-text">{{vm.summary.roundInfo.Players[1].Author}}</p>
+                                    </div>
+                                    <div class="card-block">
+                                        <div>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" ng-model="vm.playerB.showShips">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Show Ships</span>
+                                            </label>
+                                            <div class="float-right">
+                                                <div ng-switch="vm.playerA.command.split(',')[0]">
+                                                    <div ng-switch-when="0">
+                                                        <h4><span class="badge badge-pill badge-default">Do Nothing</span></h4>
+                                                    </div>
+                                                    <div ng-switch-when="1">
+                                                        <h4><span class="badge badge-pill badge-default">Fire Shot</span></h4>
+                                                    </div>
+                                                    <div ng-switch-when="2">
+                                                        <h4><span class="badge badge-pill badge-primary">Double Shot Vertical</span></h4>
+                                                    </div>
+                                                    <div ng-switch-when="3">
+                                                        <h4><span class="badge badge-pill badge-primary">Double Shot Horizontal</span></h4>
+                                                    </div>
+                                                    <div ng-switch-when="4">
+                                                        <h4><span class="badge badge-pill badge-success">Corner Shot</span></h4>
+                                                    </div>
+                                                    <div ng-switch-when="5">
+                                                        <h4><span class="badge badge-pill badge-info">Cross Shot Diagonal</span></h4>
+                                                    </div>
+                                                    <div ng-switch-when="6">
+                                                        <h4><span class="badge badge-pill badge-warning">Cross Shot Horizontal</span></h4>
+                                                    </div>
+                                                    <div ng-switch-when="7">
+                                                        <h4><span class="badge badge-pill badge-danger">Seeker Missle</span></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <canvas id="playerBships" width="505" height="505"></canvas>
+                                    </div>
+                                    <div class="card-footer">
+                                        <p class="float-left">Points <b>({{vm.summary.state.Player2Map.Owner.Points}})</b></p>
+                                        <p class="float-right">Energy <b>({{vm.summary.state.Player2Map.Owner.Energy}})</b></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="playerFiles" role="tabpanel">
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <h3>Player A</h3>
+                                <div id="playerA" role="tablist" aria-multiselectable="true">
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="playerAheadingZero">
+                                            <h5 class="mb-0">
+                                                <a data-toggle="collapse" data-parent="#playerA" href="#playerAcollapseZero" aria-expanded="true" aria-controls="playerAcollapseZero">
+                                                    place.txt
+                                                </a>
+                                            </h5>
+                                        </div>
+
+                                        <div id="playerAcollapseZero" class="collapse show" role="tabpanel" aria-labelledby="playerAheadingZero">
+                                            <div class="card-block">
+                                                <textarea class="form-control" rows="5" ng-model="vm.playerA.place"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="playerAheadingOne">
+                                            <h5 class="mb-0">
+                                                <a data-toggle="collapse" data-parent="#playerA" href="#playerAcollapseOne" aria-expanded="false" aria-controls="playerAcollapseOne">
+                                                    command.txt
+                                                </a>
+                                            </h5>
+                                        </div>
+
+                                        <div id="playerAcollapseOne" class="collapse" role="tabpanel" aria-labelledby="playerAheadingOne">
+                                            <div class="card-block">
+                                                <textarea class="form-control" rows="5" ng-model="vm.playerA.command"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="playerAheadingTwo">
+                                            <h5 class="mb-0">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#playerA" href="#playerAcollapseTwo" aria-expanded="false" aria-controls="playerAcollapseTwo">
+                                                    log.txt
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div id="playerAcollapseTwo" class="collapse" role="tabpanel" aria-labelledby="playerAheadingTwo">
+                                            <div class="card-block">
+                                                <textarea class="form-control" rows="15" ng-model="vm.playerA.log"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="playerAheadingThree">
+                                            <h5 class="mb-0">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#playerA" href="#playerAcollapseThree" aria-expanded="false" aria-controls="playerAcollapseThree">
+                                                    map.txt
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div id="playerAcollapseThree" class="collapse" role="tabpanel" aria-labelledby="playerAheadingThree">
+                                            <div class="card-block">
+                                                <textarea class="form-control" rows="15" ng-model="vm.playerA.map"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="playerAheadingFour">
+                                            <h5 class="mb-0">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#playerA" href="#playerAcollapseFour" aria-expanded="false" aria-controls="playerAcollapseFour">
+                                                    state.json
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div id="playerAcollapseFour" class="collapse" role="tabpanel" aria-labelledby="playerAheadingFour">
+                                            <div class="card-block">
+                                                <textarea class="form-control" rows="15">{{vm.playerA.state}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h3>Player B</h3>
+                                <div id="playerB" role="tablist" aria-multiselectable="true">
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="playerBheadingZero">
+                                            <h5 class="mb-0">
+                                                <a data-toggle="collapse" data-parent="#playerB" href="#playerBcollapseZero" aria-expanded="true" aria-controls="playerBcollapseZero">
+                                                    place.txt
+                                                </a>
+                                            </h5>
+                                        </div>
+
+                                        <div id="playerBcollapseZero" class="collapse show" role="tabpanel" aria-labelledby="playerBheadingZero">
+                                            <div class="card-block">
+                                                <textarea class="form-control" rows="5" ng-model="vm.playerB.place"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="playerBheadingOne">
+                                            <h5 class="mb-0">
+                                                <a data-toggle="collapse" data-parent="#playerB" href="#playerBcollapseOne" aria-expanded="false" aria-controls="playerBcollapseOne">
+                                                    command.txt
+                                                </a>
+                                            </h5>
+                                        </div>
+
+                                        <div id="playerBcollapseOne" class="collapse" role="tabpanel" aria-labelledby="playerBheadingOne">
+                                            <div class="card-block">
+                                                <textarea class="form-control" rows="5" ng-model="vm.playerB.command"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="playerBheadingTwo">
+                                            <h5 class="mb-0">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#playerB" href="#playerBcollapseTwo" aria-expanded="false" aria-controls="playerBcollapseTwo">
+                                                    log.txt
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div id="playerBcollapseTwo" class="collapse" role="tabpanel" aria-labelledby="playerBheadingTwo">
+                                            <div class="card-block">
+                                                <textarea class="form-control" rows="15" ng-model="vm.playerB.log"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="playerBheadingThree">
+                                            <h5 class="mb-0">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#playerB" href="#playerBcollapseThree" aria-expanded="false" aria-controls="playerBcollapseThree">
+                                                    map.txt
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div id="playerBcollapseThree" class="collapse" role="tabpanel" aria-labelledby="playerBheadingThree">
+                                            <div class="card-block">
+                                                <textarea class="form-control" rows="15" ng-model="vm.playerB.map"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="playerBheadingFour">
+                                            <h5 class="mb-0">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#playerB" href="#playerBcollapseFour" aria-expanded="false" aria-controls="playerBcollapseFour">
+                                                    state.json
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div id="playerBcollapseFour" class="collapse" role="tabpanel" aria-labelledby="playerBheadingFour">
+                                            <div class="card-block">
+                                                <textarea class="form-control" rows="15">{{vm.playerB.state}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="enigneFiles" role="tabpanel">
+                        <div class="container mt-2">
+                            <h3>Summary</h3>
+                            <div id="summary" role="tablist" aria-multiselectable="true">
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="summaryheadingOne">
+                                        <h5 class="mb-0">
+                                            <a data-toggle="collapse" data-parent="#summary" href="#summarycollapseOne" aria-expanded="true" aria-controls="summarycollapseOne">
+                                                engine.log
+                                            </a>
+                                        </h5>
+                                    </div>
+
+                                    <div id="summarycollapseOne" class="collapse show" role="tabpanel" aria-labelledby="summaryheadingOne">
+                                        <div class="card-block">
+                                            <textarea class="form-control" rows="20" ng-model="vm.summary.engine"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="summaryheadingTwo">
+                                        <h5 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#summary" href="#summarycollapseTwo" aria-expanded="false" aria-controls="summarycollapseTwo">
+                                                roundInfo.json
+                                            </a>
+                                        </h5>
+                                    </div>
+                                    <div id="summarycollapseTwo" class="collapse" role="tabpanel" aria-labelledby="summaryheadingTwo">
+                                        <div class="card-block">
+                                            <textarea class="form-control" rows="20">{{vm.summary.roundInfo}}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="summaryheadingThree">
+                                        <h5 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#summary" href="#summarycollapseThree" aria-expanded="false" aria-controls="summarycollapseThree">
+                                                state.json
+                                            </a>
+                                        </h5>
+                                    </div>
+                                    <div id="summarycollapseThree" class="collapse" role="tabpanel" aria-labelledby="summaryheadingThree">
+                                        <div class="card-block">
+                                            <textarea class="form-control" rows="20">{{vm.summary.state}}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="stats" role="tabpanel">Stats comming soon...</div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="app/controller.js"></script>
+    <script>
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+        } else {
+            alert('The File APIs are not fully supported in this browser.');
+        }
+    </script>
+</body>
+</html>

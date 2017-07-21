@@ -1,0 +1,28 @@
+
+17-07-2017 08:42:30:309 - D: 	Executing bot with following commands ../../../../Bots/RaezorDroidV1/bin/Debug/bots/a\..\..\RaezorDroidV1.exe A "C:\AOC\Personal\entelect2017\Run\Runner\bin\Debug\Replays\2017-07-17 08-42-06-395\Phase 2 - Round 25\A"
+17-07-2017 08:42:30:309 - I: 	Executing process ../../../../Bots/RaezorDroidV1/bin/Debug/bots/a\..\..\RaezorDroidV1.exe A "C:\AOC\Personal\entelect2017\Run\Runner\bin\Debug\Replays\2017-07-17 08-42-06-395\Phase 2 - Round 25\A"
+17-07-2017 08:42:30:330 - I: 	Bot has 4000ms to run before it will be forcefully killed
+17-07-2017 08:42:30:508 - I: 	Output from bot: [BOT]	Working Directory: C:\AOC\Personal\entelect2017\Run\Runner\bin\Debug\Replays\2017-07-17 08-42-06-395\Phase 2 - Round 25\A
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Engine.Bot.RaezorBot - Make Move Started...
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Engine.Bot.RaezorBot - Calculate Executing...
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Strategy.CalculationMode.RaezorCalculationMode - LastCommandExecuted is NOT NULL...
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Engine.State.CurrentGameStatus - EnemyShipHit (Current Points 90, Total Points 90) - False
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Engine.State.CurrentGameStatus - EnemyShipSunk (Current Points 90, Total Points 90) - False
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Strategy.CalculationMode.RaezorCalculationMode - EnemyShipHit false...
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Engine.Bot.RaezorBot - Best Move Executing...
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Strategy.HuntMode.RaezorBasicHuntMode - FirePriorityList Executing...
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Strategy.HuntMode.RaezorBasicHuntMode - HighPriorityCells count (0)
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Strategy.HuntMode.RaezorBasicHuntMode - MediumPriorityCells count (3)
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Strategy.HuntMode.RaezorBasicHuntMode - LowPriorityCells count (0)
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Strategy.HuntMode.RaezorBasicHuntMode - MediumPriorityCells found (4,5)
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Engine.Bot.RaezorBot - Make Shot Executing...
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Engine.State.CurrentGameStatus - MakeShot (4,5)
+17-07-2017 08:42:30:530 - I: 	Output from bot: [BOT]	Command: 1,4,5
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Engine.Bot.RaezorBot - UpdateCurrentGameStatus Executing...
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Engine.State.CurrentGameStatus - EnemyShipSunk (Current Points 90, Total Points 90) - False
+17-07-2017 08:42:30:530 - I: 	Output from bot: INFO: RaezorDroid.Engine.State.CurrentGameStatus - EnemyKilled (Current Points 90, Total Points 90) - False
+17-07-2017 08:42:30:561 - I: 	Output from bot: [BOT]	Working Directory: C:\AOC\Personal\entelect2017\Run\Runner\bin\Debug\Replays\2017-07-17 08-42-06-395\Phase 2 - Round 25\A
+17-07-2017 08:42:30:561 - I: 	Output from bot: [BOT]	Bot finished in 193 ms.
+17-07-2017 08:42:30:561 - I: 	Output from bot: 
+17-07-2017 08:42:30:561 - E: 	Output from bot: 
+17-07-2017 08:42:30:561 - I: 	Your bots total execution time was 00:00:00.2533615
