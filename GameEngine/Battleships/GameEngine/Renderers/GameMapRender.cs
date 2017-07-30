@@ -112,7 +112,9 @@ namespace GameEngine.Renderers
                 for (var x = 0; x <= mapWidth; x++)
                 {
                     var cell = playerMap.GetCellAtPoint(new Point(x, y));
-                    sb.Append(cell.Occupied ? GetShipSymbol(cell.OccupiedBy.ShipType, cell.Damaged) : '~');
+                    sb.Append(cell.Shielded && !cell.Occupied ? '$' 
+                        : cell.Shielded && cell.ShieldHit ? '@' 
+                        : cell.Occupied ? GetShipSymbol(cell.OccupiedBy.ShipType, cell.Damaged) : '~');
                 }
                 sb.AppendLine();
             }
@@ -124,7 +126,9 @@ namespace GameEngine.Renderers
                 for (var x = 0; x <= mapWidth; x++)
                 {
                     var cell = opponentMap.GetCellAtPoint(new Point(x, y));
-                    sb.Append(cell.Damaged ? '*' : cell.Missed ? '!' : '~');
+                    sb.Append(cell.Shielded && cell.ShieldHit ? '@' 
+                        : cell.Damaged ? '*' 
+                        : cell.Missed ? '!' : '~');
                 }
                 sb.AppendLine();
             }
@@ -141,6 +145,8 @@ namespace GameEngine.Renderers
                 sb.AppendLine("~: Water");
                 sb.AppendLine("!: Miss");
                 sb.AppendLine("*: Hit");
+                sb.AppendLine("$: Active Shield");
+                sb.AppendLine("@: Shield hit");
                 sb.AppendLine("[B,C,R,S,D]: Healthy Ships");
                 sb.AppendLine("[b,c,r,s,d]: Damaged Ships");
                 sb.AppendLine("B-b: BattleShip");

@@ -90,10 +90,16 @@ namespace GameEngine.Engine
             }
             DestroyShips();
             AddEnergyToPlayers();
+            UpdateShields();
             KillOffPlayers();
             _logger.LogDebug("Round processing complete");
             _roundProcessed = true;
             return proccessed;
+        }
+
+        protected void UpdateShields()
+        {
+            
         }
 
         /// <summary>

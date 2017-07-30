@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Domain.Abilities;
 using Domain.Games;
 using Domain.Maps;
 using Domain.Properties;
@@ -62,6 +63,9 @@ namespace Domain.Players
 
         [JsonIgnore] private int _mapSize;
 
+        [JsonProperty]
+        public Shield Shield { get; set; }
+
         public void AddPoints(int points)
         {
             this.Points += points;
@@ -108,7 +112,7 @@ namespace Domain.Players
                 this.Cruiser
             };
             this.Key = key;
-
+            this.Shield = new Shield();
             this.FirstShotLanded = int.MaxValue;
         }
 
