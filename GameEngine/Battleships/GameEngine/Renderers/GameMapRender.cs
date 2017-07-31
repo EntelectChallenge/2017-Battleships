@@ -113,8 +113,7 @@ namespace GameEngine.Renderers
                 for (var x = 0; x <= mapWidth; x++)
                 {
                     var cell = playerMap.GetCellAtPoint(new Point(x, y));
-                    sb.Append(cell.Shielded && !cell.Occupied ? '$' 
-                        : cell.Shielded && cell.ShieldHit ? '@' 
+                    sb.Append(cell.Shielded && cell.ShieldHit ? '@' 
                         : cell.Occupied ? GetShipSymbol(cell.OccupiedBy.ShipType, cell.Damaged) : '~');
                 }
                 sb.AppendLine();
@@ -146,7 +145,6 @@ namespace GameEngine.Renderers
                 sb.AppendLine("~: Water");
                 sb.AppendLine("!: Miss");
                 sb.AppendLine("*: Hit");
-                sb.AppendLine("$: Active Shield");
                 sb.AppendLine("@: Shield hit");
                 sb.AppendLine("[B,C,R,S,D]: Healthy Ships");
                 sb.AppendLine("[b,c,r,s,d]: Damaged Ships");
@@ -186,8 +184,9 @@ namespace GameEngine.Renderers
                 .AppendLine($"Arsenal: {player.PrintAvailableWeapons()}")
                 .AppendLine($"Ships: {player.PrintShips()}")
                 .AppendLine($"Status: {(!player.Killed ? "Alive" : "Dead")}")
-                .AppendLine($"Shield Status: {(player.Shield.Active ? "Actived" : "Deactivated")}")
-                .AppendLine($"Shield Charges: {player.Shield.CurrentCharges}");
+                .AppendLine($"Shield: (Status: {(player.Shield.Active ? "Activated" : "Deactivated")}, " +
+                            $"Charges: {player.Shield.CurrentCharges}), " +
+                            $"Center Point: {(player.Shield.Active ? "X:" + player.Shield.CenterPoint.X + "," + "Y:" + player.Shield.CenterPoint.Y : "No Shield")}");
 
             //Prints opponents info
             sb.AppendLine("---------------------------")

@@ -109,9 +109,10 @@ namespace GameEngine.Engine
                     if (!shield.Active)
                     {
                         
-                        if (difference != 0 && difference % 5 == 0)
+                        if (difference != 0 && difference % shield.ChargeTime == 0)
                         {
                             shield.CurrentCharges++;
+                            shield.GrowRadius();
                         }
                     }
                     else

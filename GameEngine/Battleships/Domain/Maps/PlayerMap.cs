@@ -13,23 +13,24 @@ namespace Domain.Maps
 {
     public class PlayerMap
     {
-        [JsonIgnore]
-        private readonly IDictionary<Point, Cell> cells;
+        [JsonIgnore] private readonly IDictionary<Point, Cell> cells;
+
         [JsonProperty]
         public IEnumerable<Cell> Cells => this.cells.Values;
-        
+
         [JsonProperty]
         public BattleshipPlayer Owner { get; }
 
         [JsonProperty]
         public int MapWidth { get; }
+
         [JsonProperty]
         public int MapHeight { get; }
 
         public bool IsReady()
         {
             return Owner.AllShippsPlaced();
-        } 
+        }
 
         private PlayerMap()
         {
@@ -85,7 +86,7 @@ namespace Domain.Maps
             {
                 throw new InvalidOperationException($"Can't place a ship going in the {direction} direction.");
             }
-            
+
             return ship.CanPlace(point, direction, this);
         }
 
@@ -165,7 +166,7 @@ namespace Domain.Maps
 
         public void PlaceShield(Point centerPoint, int currentRound)
         {
-            const int shieldSize = 2;
+            var shieldSize = Owner.Shield.CurrentRadius;
 
             var startX = Math.Max(centerPoint.X - shieldSize, 0);
             var endX = Math.Min(centerPoint.X + shieldSize, MapWidth - 1);
@@ -184,6 +185,7 @@ namespace Domain.Maps
 
             Owner.Shield.RoundLastUsed = currentRound;
             Owner.Shield.Active = true;
+            Owner.Shield.CenterPoint = centerPoint;
         }
     }
 }

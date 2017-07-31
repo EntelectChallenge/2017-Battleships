@@ -112,7 +112,7 @@ namespace Domain.Players
                 this.Cruiser
             };
             this.Key = key;
-            this.Shield = new Shield();
+            this.Shield = new Shield(mapSize);
             this.FirstShotLanded = int.MaxValue;
         }
 
@@ -192,9 +192,9 @@ namespace Domain.Players
                             ? rounds * Settings.Default.EnergyMediumMap
                             : rounds * Settings.Default.EnergyLargMap);
                     break;
-                //10 Rounds
+                //12 Rounds
                 case WeaponType.SeekerMissle:
-                    rounds = 10;
+                    rounds = 12;
                     energyRequired = _mapSize == Settings.Default.SmallMapSize
                         ? rounds * Settings.Default.EnergySmallMap
                         : (_mapSize == Settings.Default.MediumMapSize

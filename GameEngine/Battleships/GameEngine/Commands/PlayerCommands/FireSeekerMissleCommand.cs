@@ -26,7 +26,7 @@ namespace GameEngine.Commands.PlayerCommands
                 {
                     var opponentsMap = gameMap.GetOpponetMap(player.PlayerType);
 
-                    var occupiedCells = opponentsMap.Cells.Where(cell => cell.Occupied).ToList();
+                    var occupiedCells = opponentsMap.Cells.Where(cell => cell.Occupied && !cell.Hit).ToList();
 
                     var cellsInRange = occupiedCells.Select(x => new
                     {
