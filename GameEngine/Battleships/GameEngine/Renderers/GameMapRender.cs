@@ -65,7 +65,8 @@ namespace GameEngine.Renderers
                         Damaged = x.Damaged,
                         Missed = x.Missed,
                         Y = x.Y,
-                        X = x.X
+                        X = x.X,
+                        ShieldHit = x.ShieldHit
                     }).ToList(),
                     Name = opponentsMap.Owner.Name,
                     Alive = !opponentsMap.Owner.Killed,
@@ -184,7 +185,9 @@ namespace GameEngine.Renderers
                 .AppendLine($"Points: {player.Points}")
                 .AppendLine($"Arsenal: {player.PrintAvailableWeapons()}")
                 .AppendLine($"Ships: {player.PrintShips()}")
-                .AppendLine($"Status: {(!player.Killed ? "Alive" : "Dead")}");
+                .AppendLine($"Status: {(!player.Killed ? "Alive" : "Dead")}")
+                .AppendLine($"Shield Status: {(player.Shield.Active ? "Actived" : "Deactivated")}")
+                .AppendLine($"Shield Charges: {player.Shield.CurrentCharges}");
 
             //Prints opponents info
             sb.AppendLine("---------------------------")

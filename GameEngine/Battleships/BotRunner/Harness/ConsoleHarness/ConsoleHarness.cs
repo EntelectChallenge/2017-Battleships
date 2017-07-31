@@ -92,7 +92,8 @@ namespace BotRunner.Harness.ConsoleHarness
                               "\n4 - Fire Corner Shot" +
                               "\n5 - Fire Horizontal Cross Shot" +
                               "\n6 - Fire Diagonal Cross Shot" +
-                              "\n7 - Fire Seeker Missle");
+                              "\n7 - Fire Seeker Missle" +
+                              "\n8 - Place shield");
             Console.WriteLine();
             string line = null;
             while (string.IsNullOrEmpty(line))
@@ -131,6 +132,9 @@ namespace BotRunner.Harness.ConsoleHarness
                     break;
                 case 7:
                     PublishCommand(new FireSeekerMissleCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2]))));
+                    break;
+                case 8:
+                    PublishCommand(new PlaceShieldCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2]))));
                     break;
                 default:
                     PublishCommand(new DoNothingCommand());

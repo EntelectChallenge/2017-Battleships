@@ -99,7 +99,31 @@ namespace GameEngine.Engine
 
         protected void UpdateShields()
         {
-            
+            if (_gameMap.Phase == 2)
+            {
+                foreach (var player in _gameMap.RegisteredPlayers)
+                {
+                    var shield = player.Shield;
+                    var currentRound = _gameMap.CurrentRound;
+                    var difference = currentRound - shield.RoundLastUsed;
+                    if (!shield.Active)
+                    {
+                        
+                        if (difference != 0 && difference % 5 == 0)
+                        {
+                            shield.CurrentCharges++;
+                        }
+                    }
+                    else
+                    {
+                        if (difference != 0 &&--shield.CurrentCharges == 0)
+                        {
+                            shield.Active = false;
+                            _gameMap.RemoveShield(player.PlayerType);
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>

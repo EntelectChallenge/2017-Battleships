@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abilities\Shield.cs" />
     <Compile Include="Bot\BotMeta.cs" />
     <Compile Include="Exceptions\InsufficientEnergyException.cs" />
     <Compile Include="Exceptions\InvalidOperationException.cs" />

@@ -12,7 +12,6 @@ namespace Domain.Abilities
         public int RoundLastUsed { get; set; }
         public int CurrentCharges { get; set; }
         public bool Active { get; set; }
-
         public Shield()
         {
             this.ChargeTime = 5;

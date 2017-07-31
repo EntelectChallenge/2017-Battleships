@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using Domain.Games;
 using Domain.Players;
+using Domain.Properties;
 using Domain.Ships;
 using Domain.Weapons;
 using Newtonsoft.Json;
@@ -151,6 +152,38 @@ namespace Domain.Maps
         public Cell GetCellAtPoint(Point point)
         {
             return cells[point];
+        }
+
+        public void RemoveShield()
+        {
+            foreach (var keyValueCell in cells)
+            {
+                keyValueCell.Value.Shielded = false;
+                keyValueCell.Value.ShieldHit = false;
+            }
+        }
+
+        public void PlaceShield(Point centerPoint, int currentRound)
+        {
+            const int shieldSize = 2;
+
+            var startX = Math.Max(centerPoint.X - shieldSize, 0);
+            var endX = Math.Min(centerPoint.X + shieldSize, MapWidth - 1);
+
+            var startY = Math.Max(centerPoint.Y - shieldSize, 0);
+            var endY = Math.Min(centerPoint.Y + shieldSize, MapHeight - 1);
+
+            for (var x = startX; x <= endX; x++)
+            {
+                for (var y = startY; y <= endY; y++)
+                {
+                    var point = new Point(x, y);
+                    cells[point].ApplyShield();
+                }
+            }
+
+            Owner.Shield.RoundLastUsed = currentRound;
+            Owner.Shield.Active = true;
         }
     }
 }
