@@ -1,6 +1,6 @@
 # 2017-Battleships
 
-The current release is version [1.1.2](https://github.com/EntelectChallenge/2017-Battleships/releases/latest).
+The current release is version [1.2.0](https://github.com/EntelectChallenge/2017-Battleships/releases/latest).
 
 For more information about the challenge see the [Challenge website](http://challenge.entelect.co.za/) .
 
@@ -212,9 +212,9 @@ These are the simplified rules.  More in depth rules are further down.
 4. For every charge the shield protection radius will grow by one.
 5. The shield will protect a square of cells, given the protection radius of the shield.
 6. The shield has a max radius protection size, depending on the size of the map.
-	a. Small map will be a max radius of 1 unit: so a 3 x 3 block will be covered.
-	b. Medium Map will be a max radius of 2 units: so a 5 x 5 block will be covered.
-	c. Large Map will be a max radius of 3 units: so a 7 x 7 block will be covered.
+	* Small map will be a max radius of 1 unit: so a 3 x 3 block will be covered.
+	* Medium Map will be a max radius of 2 units: so a 5 x 5 block will be covered.
+	* Large Map will be a max radius of 3 units: so a 7 x 7 block will be covered.
 7. The shield will prevent any shots from hitting the cell underneath the shield.
 8. A shielded cell will only say it is shielded if it was hit.
 9. Only one shield can be activated at a time.
