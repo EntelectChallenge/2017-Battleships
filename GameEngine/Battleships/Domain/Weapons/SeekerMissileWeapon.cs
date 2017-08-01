@@ -10,9 +10,9 @@ namespace Domain.Weapons
     /// This will fire a shot at the calculated position, given a center point in a 5 x 5 block of cells
     /// The target is the closest ship cell in a 5 x 5 block of cells, regardless whether the cell has already been hit
     /// </summary>
-    internal class SeekerMissleWeapon : Weapon
+    internal class SeekerMissileWeapon : Weapon
     {
-        public SeekerMissleWeapon(BattleshipPlayer owner, int energyRequired, WeaponType weaponType) : base(owner, energyRequired, weaponType) { }
+        public SeekerMissileWeapon(BattleshipPlayer owner, int energyRequired, WeaponType weaponType) : base(owner, energyRequired, weaponType) { }
 
         public override void Shoot(List<Cell> targets, int currentRound)
         {
@@ -42,7 +42,7 @@ namespace Domain.Weapons
 
         public override string ToString()
         {
-            return "Seeker Missle";
+            return "Seeker Missile";
         }
     }
 }

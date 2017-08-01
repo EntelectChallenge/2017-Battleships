@@ -88,8 +88,8 @@ namespace Domain.Players
             this.Name = name;
             this.PlayerType = type;
             this.Submarine = new Submarine(this, ShipType.Submarine,
-                new SeekerMissleWeapon(this, EnergyRequiredForWeapon(WeaponType.SeekerMissle),
-                    WeaponType.SeekerMissle));
+                new SeekerMissileWeapon(this, EnergyRequiredForWeapon(WeaponType.SeekerMissile),
+                    WeaponType.SeekerMissile));
             this.Destroyer = new Destroyer(this, ShipType.Destroyer,
                 new DoubleShotWeapon(this, EnergyRequiredForWeapon(WeaponType.DoubleShot), WeaponType.DoubleShot));
             this.Cruiser = new Cruiser(this, ShipType.Cruiser,
@@ -193,7 +193,7 @@ namespace Domain.Players
                             : rounds * Settings.Default.EnergyLargMap);
                     break;
                 //12 Rounds
-                case WeaponType.SeekerMissle:
+                case WeaponType.SeekerMissile:
                     rounds = 12;
                     energyRequired = _mapSize == Settings.Default.SmallMapSize
                         ? rounds * Settings.Default.EnergySmallMap

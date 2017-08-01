@@ -120,6 +120,8 @@ namespace GameEngine.Engine
                         if (difference != 0 &&--shield.CurrentCharges == 0)
                         {
                             shield.Active = false;
+                            shield.RoundLastUsed = currentRound;
+                            shield.CurrentRadius = 0;
                             _gameMap.RemoveShield(player.PlayerType);
                         }
                     }
