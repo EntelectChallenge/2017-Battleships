@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Domain.Maps;
 using Domain.Players;
 using Domain.Properties;
@@ -34,7 +35,7 @@ namespace Domain.Weapons
                     Owner.FirstShotLanded = currentRound;
                 }
 
-                var destroyed = target.OccupiedBy?.Destroyed ?? false;
+                var destroyed = target.OccupiedBy?.Cells.All(x => x != null && x.Hit) ?? false;
 
                 if (!alreadyDestroyed && destroyed)
                 {
