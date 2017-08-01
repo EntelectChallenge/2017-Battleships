@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -175,6 +176,28 @@ namespace Domain.Games
         public void RegisterPlayer(BattleshipPlayer player)
         {
             RegisteredPlayers.Add(player);
+        }
+
+        public void RemoveShield(PlayerType playerType)
+        {
+            var playerMap = _playersMaps[playerType];
+            playerMap.RemoveShield();
+        }
+
+        public void PlaceShield(BattleshipPlayer player, Point centerPoint, int currentRound)
+        {
+            if (player.Shield.Active)
+            {
+                throw new Exception("A shiled is already active and cant be placed");
+            }
+
+            if (player.Shield.CurrentCharges == 0)
+            {
+                throw new Exception("The shield has no charge and cannot be applied");
+            }
+
+            var playerMap = _playersMaps[player.PlayerType];
+            playerMap.PlaceShield(centerPoint, currentRound);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using Domain.Games;
 using Domain.Players;
+using Domain.Properties;
 using Domain.Ships;
 using Domain.Weapons;
 using Newtonsoft.Json;
@@ -12,23 +13,24 @@ namespace Domain.Maps
 {
     public class PlayerMap
     {
-        [JsonIgnore]
-        private readonly IDictionary<Point, Cell> cells;
+        [JsonIgnore] private readonly IDictionary<Point, Cell> cells;
+
         [JsonProperty]
         public IEnumerable<Cell> Cells => this.cells.Values;
-        
+
         [JsonProperty]
         public BattleshipPlayer Owner { get; }
 
         [JsonProperty]
         public int MapWidth { get; }
+
         [JsonProperty]
         public int MapHeight { get; }
 
         public bool IsReady()
         {
             return Owner.AllShippsPlaced();
-        } 
+        }
 
         private PlayerMap()
         {
@@ -84,7 +86,7 @@ namespace Domain.Maps
             {
                 throw new InvalidOperationException($"Can't place a ship going in the {direction} direction.");
             }
-            
+
             return ship.CanPlace(point, direction, this);
         }
 
@@ -151,6 +153,39 @@ namespace Domain.Maps
         public Cell GetCellAtPoint(Point point)
         {
             return cells[point];
+        }
+
+        public void RemoveShield()
+        {
+            foreach (var keyValueCell in cells)
+            {
+                keyValueCell.Value.Shielded = false;
+                keyValueCell.Value.ShieldHit = false;
+            }
+        }
+
+        public void PlaceShield(Point centerPoint, int currentRound)
+        {
+            var shieldSize = Owner.Shield.CurrentRadius;
+
+            var startX = Math.Max(centerPoint.X - shieldSize, 0);
+            var endX = Math.Min(centerPoint.X + shieldSize, MapWidth - 1);
+
+            var startY = Math.Max(centerPoint.Y - shieldSize, 0);
+            var endY = Math.Min(centerPoint.Y + shieldSize, MapHeight - 1);
+
+            for (var x = startX; x <= endX; x++)
+            {
+                for (var y = startY; y <= endY; y++)
+                {
+                    var point = new Point(x, y);
+                    cells[point].ApplyShield();
+                }
+            }
+
+            Owner.Shield.RoundLastUsed = currentRound;
+            Owner.Shield.Active = true;
+            Owner.Shield.CenterPoint = centerPoint;
         }
     }
 }

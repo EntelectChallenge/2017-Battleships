@@ -37,10 +37,18 @@ namespace Domain.Maps
         [JsonIgnore]
         public bool Missed => !Occupied && Hit;
 
+        [JsonProperty]
+        public bool Shielded { get; set; }
+
+        [JsonProperty]
+        public bool ShieldHit { get; set; }
+
         private Cell()
         {
             this.neighbours = new Dictionary<Direction, Cell>();
             this.Hit = false;
+            this.Shielded = false;
+            this.ShieldHit = false;
         }
 
         internal Cell(Point cellCoordinate, IDictionary<Point, Cell> otherCells)
@@ -62,7 +70,7 @@ namespace Domain.Maps
             }
             Point = cellCoordinate;
         }
-        
+
 
         internal Cell Neighbour(Direction direction)
         {
@@ -87,7 +95,7 @@ namespace Domain.Maps
                 throw new InvalidOperationException(
                     "Can't place an occupant on this cell as there is already one present.");
             }
-            
+
             this.OccupiedBy = ship;
         }
 
@@ -99,9 +107,25 @@ namespace Domain.Maps
 
         public bool LandShot()
         {
-            var firstShot = !Hit;
-            Hit = true;
-            return Occupied && firstShot;
+            if (!Shielded)
+            {
+                var firstShot = !Hit;
+                Hit = true;
+                var shotLanded = Occupied && firstShot;
+                return shotLanded;
+            }
+            ShieldHit = true;
+            return false;
+        }
+
+        public void ApplyShield()
+        {
+            this.Shielded = true;
+        }
+
+        public void RemoveShield()
+        {
+            this.Shielded = false;
         }
 
         IWeaponTarget IWeaponTarget.Neighbour(Direction direction)

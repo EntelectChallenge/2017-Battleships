@@ -90,10 +90,43 @@ namespace GameEngine.Engine
             }
             DestroyShips();
             AddEnergyToPlayers();
+            UpdateShields();
             KillOffPlayers();
             _logger.LogDebug("Round processing complete");
             _roundProcessed = true;
             return proccessed;
+        }
+
+        protected void UpdateShields()
+        {
+            if (_gameMap.Phase == 2)
+            {
+                foreach (var player in _gameMap.RegisteredPlayers)
+                {
+                    var shield = player.Shield;
+                    var currentRound = _gameMap.CurrentRound;
+                    var difference = currentRound - shield.RoundLastUsed;
+                    if (!shield.Active)
+                    {
+                        
+                        if (difference != 0 && difference % shield.ChargeTime == 0)
+                        {
+                            shield.CurrentCharges++;
+                            shield.GrowRadius();
+                        }
+                    }
+                    else
+                    {
+                        if (difference != 0 &&--shield.CurrentCharges == 0)
+                        {
+                            shield.Active = false;
+                            shield.RoundLastUsed = currentRound;
+                            shield.CurrentRadius = 0;
+                            _gameMap.RemoveShield(player.PlayerType);
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>

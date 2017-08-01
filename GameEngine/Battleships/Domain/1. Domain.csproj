@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abilities\Shield.cs" />
     <Compile Include="Bot\BotMeta.cs" />
     <Compile Include="Exceptions\InsufficientEnergyException.cs" />
     <Compile Include="Exceptions\InvalidOperationException.cs" />
@@ -81,7 +82,7 @@
     <Compile Include="Weapons\DiagonalCrossShotWeapon.cs" />
     <Compile Include="Weapons\DoubleShotWeapon.cs" />
     <Compile Include="Weapons\CornerShotWeapon.cs" />
-    <Compile Include="Weapons\SeekerMissleWeapon.cs" />
+    <Compile Include="Weapons\SeekerMissileWeapon.cs" />
     <Compile Include="Weapons\SingleShotWeapon.cs" />
     <Compile Include="Weapons\Weapon.cs" />
   </ItemGroup>

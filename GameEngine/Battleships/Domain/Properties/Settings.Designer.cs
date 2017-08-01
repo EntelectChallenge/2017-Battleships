@@ -103,5 +103,32 @@ namespace Domain.Properties {
                 return ((int)(this["EnergyLargMap"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int MaxShieldRadiusSmall {
+            get {
+                return ((int)(this["MaxShieldRadiusSmall"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int MaxShieldRadiusMedium {
+            get {
+                return ((int)(this["MaxShieldRadiusMedium"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int MaxShieldRadiusLarge {
+            get {
+                return ((int)(this["MaxShieldRadiusLarge"]));
+            }
+        }
     }
 }

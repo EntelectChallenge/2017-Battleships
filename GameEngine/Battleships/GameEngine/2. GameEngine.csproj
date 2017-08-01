@@ -51,8 +51,9 @@
     <Compile Include="Commands\PlayerCommands\FireCrossShotCommand.cs" />
     <Compile Include="Commands\PlayerCommands\FireDoubleShotCommand.cs" />
     <Compile Include="Commands\PlayerCommands\FireCornerrShotCommand.cs" />
-    <Compile Include="Commands\PlayerCommands\FireSeekerMissleCommand.cs" />
+    <Compile Include="Commands\PlayerCommands\FireSeekerMissileCommand.cs" />
     <Compile Include="Commands\PlayerCommands\FireSingleShotCommand.cs" />
+    <Compile Include="Commands\PlayerCommands\PlaceShieldCommand.cs" />
     <Compile Include="Commands\PlayerCommands\PlaceShipCommand.cs" />
     <Compile Include="Common\Player.cs" />
     <Compile Include="Engine\BattleshipEngine.cs" />

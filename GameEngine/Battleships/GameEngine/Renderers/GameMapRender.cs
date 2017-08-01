@@ -65,7 +65,8 @@ namespace GameEngine.Renderers
                         Damaged = x.Damaged,
                         Missed = x.Missed,
                         Y = x.Y,
-                        X = x.X
+                        X = x.X,
+                        ShieldHit = x.ShieldHit
                     }).ToList(),
                     Name = opponentsMap.Owner.Name,
                     Alive = !opponentsMap.Owner.Killed,
@@ -112,7 +113,8 @@ namespace GameEngine.Renderers
                 for (var x = 0; x <= mapWidth; x++)
                 {
                     var cell = playerMap.GetCellAtPoint(new Point(x, y));
-                    sb.Append(cell.Occupied ? GetShipSymbol(cell.OccupiedBy.ShipType, cell.Damaged) : '~');
+                    sb.Append(cell.Shielded && cell.ShieldHit ? '@' 
+                        : cell.Occupied ? GetShipSymbol(cell.OccupiedBy.ShipType, cell.Damaged) : '~');
                 }
                 sb.AppendLine();
             }
@@ -124,7 +126,9 @@ namespace GameEngine.Renderers
                 for (var x = 0; x <= mapWidth; x++)
                 {
                     var cell = opponentMap.GetCellAtPoint(new Point(x, y));
-                    sb.Append(cell.Damaged ? '*' : cell.Missed ? '!' : '~');
+                    sb.Append(cell.Shielded && cell.ShieldHit ? '@' 
+                        : cell.Damaged ? '*' 
+                        : cell.Missed ? '!' : '~');
                 }
                 sb.AppendLine();
             }
@@ -141,6 +145,7 @@ namespace GameEngine.Renderers
                 sb.AppendLine("~: Water");
                 sb.AppendLine("!: Miss");
                 sb.AppendLine("*: Hit");
+                sb.AppendLine("@: Shield hit");
                 sb.AppendLine("[B,C,R,S,D]: Healthy Ships");
                 sb.AppendLine("[b,c,r,s,d]: Damaged Ships");
                 sb.AppendLine("B-b: BattleShip");
@@ -178,7 +183,10 @@ namespace GameEngine.Renderers
                 .AppendLine($"Points: {player.Points}")
                 .AppendLine($"Arsenal: {player.PrintAvailableWeapons()}")
                 .AppendLine($"Ships: {player.PrintShips()}")
-                .AppendLine($"Status: {(!player.Killed ? "Alive" : "Dead")}");
+                .AppendLine($"Status: {(!player.Killed ? "Alive" : "Dead")}")
+                .AppendLine($"Shield: (Status: {(player.Shield.Active ? "Activated" : "Deactivated")}, " +
+                            $"Charges: {player.Shield.CurrentCharges}), " +
+                            $"Center Point: {(player.Shield.Active ? "X:" + player.Shield.CenterPoint.X + "," + "Y:" + player.Shield.CenterPoint.Y : "No Shield")}");
 
             //Prints opponents info
             sb.AppendLine("---------------------------")

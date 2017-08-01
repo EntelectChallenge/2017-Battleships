@@ -211,10 +211,10 @@ namespace Tests.Domain.Weapons
         }
 
         [Test]
-        public void SeekerMissleHit()
+        public void SeekerMissileHit()
         {
-            var fireSeekerMissleCommand = new FireSeekerMissleCommand(new Point(1, 1));
-            fireSeekerMissleCommand.PerformCommand(gameMap, player);
+            var fireSeekerMissileCommand = new FireSeekerMissileCommand(new Point(1, 1));
+            fireSeekerMissileCommand.PerformCommand(gameMap, player);
 
             var cellHit = opponentMap.Cells.First(cell => cell.X == 0 && cell.Y == 1);
             var cellNotHit = opponentMap.Cells.First(cell => cell.X == 1 && cell.Y == 0);
@@ -222,20 +222,20 @@ namespace Tests.Domain.Weapons
             Assert.IsTrue(cellHit.Damaged);
             Assert.IsFalse(cellNotHit.Hit);
 
-            Assert.IsTrue(player.Energy == 20);
+            Assert.IsTrue(player.Energy == 14);
         }
 
         [Test]
-        public void SeekerMissleMiss()
+        public void SeekerMissileMiss()
         {
-            var fireSeekerMissleCommand = new FireSeekerMissleCommand(new Point(3, 3));
-            fireSeekerMissleCommand.PerformCommand(gameMap, player);
+            var fireSeekerMissileCommand = new FireSeekerMissileCommand(new Point(3, 3));
+            fireSeekerMissileCommand.PerformCommand(gameMap, player);
 
             var middleCell = opponentMap.Cells.First(cell => cell.X == 3 && cell.Y == 3);
 
             Assert.IsTrue(middleCell.Missed);
 
-            Assert.IsTrue(player.Energy == 20);
+            Assert.IsTrue(player.Energy == 14);
         }
 
         public WeaponFixture()

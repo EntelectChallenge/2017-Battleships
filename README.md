@@ -156,6 +156,7 @@ The `map.txt` file will use the following characters to represent the game state
 '~': An empty water block
 '!': A missed shot
 '*': A succesfully landed shot
+'@': A shield was hit (This only show while the shield is active, when the shield is no longer active it will disappear)
 'B,C,R,S,D': A healthy ship cell
 'b,c,r,s,d': A damaged ship cell
 'B-b': BattleShip
@@ -163,6 +164,9 @@ The `map.txt` file will use the following characters to represent the game state
 'R-r': Cruiser
 'S-s': Submarine
 'D-d': Destroyer
+
+The shield will also be displayed on the map info
+Shield: (Status: <Activated | Deactivated>, Charges: <Amount of Charges Remaining>, Center Point: <X:<x value>, Y:<y value>>)
 
 The `map.txt` will also have sections underneath the map for each player to give more information about each player like the points, shots fired, shots landed and which ships are still remaining.
 ```
@@ -200,6 +204,24 @@ These are the simplified rules.  More in depth rules are further down.
 7. A player earns points for each successful shot landed and for completely destroying an enemy's ship.
 8. A player is victorious if he destroy's all of the enemy's ships first, in the case of a tie the winner will be the player who landed the first shot successfully, if it is still a tie it will be the player who had the least amount of first phase failed commands.
 
+## Shield Rules
+
+1. Each player is given a shield at the start of the game with 0 charges and a protection radius of 0.
+2. The shield will only be usable at the start of phase 2.
+3. After 7 rounds of not using the shield The shield will gain an additional charge.
+4. For every charge the shield protection radius will grow by one.
+5. The shield will protect a square of cells, given the protection radius of the shield.
+6. The shield has a max radius protection size, depending on the size of the map.
+	a. Small map will be a max radius of 1 unit: so a 3 x 3 block will be covered.
+	b. Medium Map will be a max radius of 2 units: so a 5 x 5 block will be covered.
+	c. Large Map will be a max radius of 3 units: so a 7 x 7 block will be covered.
+7. The shield will prevent any shots from hitting the cell underneath the shield.
+8. A shielded cell will only say it is shielded if it was hit.
+9. Only one shield can be activated at a time.
+10. Shields do not gain charge while they are active.
+11. A shield must have at least 1 charge before it can be placed.
+12. Shields block seeker missiles from finding targets underneath the shield.
+
 # The Rules to rule them all
 ### Map Generation
 
@@ -226,6 +248,7 @@ Players can either be console players or bots.  Both follow the same game engine
 	* Fire Cross Shot Diagonal Command - This will fire five shots givn a center point, with four being the same as the corner shot and inclusive of the center point. (3 x 3 cells)
 	* Fire Cross Shot Horizontal Command - This will fire five shots, same as the CrossShotDiagonal, but in a horizontal and vertical cross. (3 x 3 cells)
 	* Fire Seeker Missile Command - This will fire a missile at target area, finding the nearest ship cell with an eclidian distance of 2 units or less away from the center point given , if there is no ship the center point given will be the target of the missile. 
+	* Place Shield Command - This will place a square shield on the map given a center point and the size will be determined by the current protection radius of the shield. And will last until the charges of the shield reach 0.
 5. Bot players will have the following additional rules
 	* Bot processes will be forcefully terminated after 4 seconds
 	* Bots will not be allowed to exceed a total execution time of 2 seconds
@@ -270,10 +293,20 @@ The following rules describe how the game engine will run and process the game
 
 Players wills be awarded points during the game based on the following.
 1. For each successful shot you will be awarded 10 points.
-1. For destroying an enemy ship you will be awarded 30 points.
-1. For killing the enemy player you will be awarded an additional 100 points.
+2. For destroying an enemy ship you will be awarded 30 points.
+3. For killing the enemy player you will be awarded an additional 100 points.
 
 ## Release Notes
+
+### Version 1.2.0 - 01 August 2017
+Change Log:
+1. Fixed bug with points not being awarded when a ship is destroyed.
+2. Updated Seeker Missile to ignore shielded cells and damaged cells.
+3. Fixed spelling of missile.
+4. Updated Rules section of readme to include rules for shield.
+5. Added Shields (please read Shield Rules for more details).
+
+
 
 ### Version 1.1.2 - 07 July 2017
 Change Log:

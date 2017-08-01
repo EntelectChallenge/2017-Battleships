@@ -29,5 +29,14 @@
     <Setting Name="EnergyLargMap" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">4</Value>
     </Setting>
+    <Setting Name="MaxShieldRadiusSmall" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="MaxShieldRadiusMedium" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="MaxShieldRadiusLarge" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

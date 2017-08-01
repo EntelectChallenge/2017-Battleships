@@ -144,7 +144,9 @@ namespace TestHarness.TestHarnesses.Bot
                     case 6:
                         return new FireCrossShotCommand(otherCommand.Point, false);
                     case 7:
-                        return new FireSeekerMissleCommand(otherCommand.Point);
+                        return new FireSeekerMissileCommand(otherCommand.Point);
+                    case 8:
+                        return new PlaceShieldCommand(otherCommand.Point);
                     default:
                         return new DoNothingCommand();
                 }

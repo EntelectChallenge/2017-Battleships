@@ -35,7 +35,7 @@ namespace Domain.Weapons
                     Owner.FirstShotLanded = currentRound;
                 }
 
-                var destroyed = target.OccupiedBy?.Destroyed ?? false;
+                var destroyed = target.OccupiedBy?.Cells.All(x => x != null && x.Hit) ?? false;
 
                 if (!alreadyDestroyed && destroyed)
                 {

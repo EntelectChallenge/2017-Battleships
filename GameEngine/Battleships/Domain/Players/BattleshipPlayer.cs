@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Domain.Abilities;
 using Domain.Games;
 using Domain.Maps;
 using Domain.Properties;
@@ -62,6 +63,9 @@ namespace Domain.Players
 
         [JsonIgnore] private int _mapSize;
 
+        [JsonProperty]
+        public Shield Shield { get; set; }
+
         public void AddPoints(int points)
         {
             this.Points += points;
@@ -84,8 +88,8 @@ namespace Domain.Players
             this.Name = name;
             this.PlayerType = type;
             this.Submarine = new Submarine(this, ShipType.Submarine,
-                new SeekerMissleWeapon(this, EnergyRequiredForWeapon(WeaponType.SeekerMissle),
-                    WeaponType.SeekerMissle));
+                new SeekerMissileWeapon(this, EnergyRequiredForWeapon(WeaponType.SeekerMissile),
+                    WeaponType.SeekerMissile));
             this.Destroyer = new Destroyer(this, ShipType.Destroyer,
                 new DoubleShotWeapon(this, EnergyRequiredForWeapon(WeaponType.DoubleShot), WeaponType.DoubleShot));
             this.Cruiser = new Cruiser(this, ShipType.Cruiser,
@@ -108,7 +112,7 @@ namespace Domain.Players
                 this.Cruiser
             };
             this.Key = key;
-
+            this.Shield = new Shield(mapSize);
             this.FirstShotLanded = int.MaxValue;
         }
 
@@ -188,9 +192,9 @@ namespace Domain.Players
                             ? rounds * Settings.Default.EnergyMediumMap
                             : rounds * Settings.Default.EnergyLargMap);
                     break;
-                //10 Rounds
-                case WeaponType.SeekerMissle:
-                    rounds = 10;
+                //12 Rounds
+                case WeaponType.SeekerMissile:
+                    rounds = 12;
                     energyRequired = _mapSize == Settings.Default.SmallMapSize
                         ? rounds * Settings.Default.EnergySmallMap
                         : (_mapSize == Settings.Default.MediumMapSize
