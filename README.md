@@ -302,10 +302,10 @@ Players wills be awarded points during the game based on the following.
 Change Log:
 1. Fixed bug with points not being awarded when a ship is destroyed.
 2. Updated Seeker Missile to ignore shielded cells and damaged cells.
-3. Fixed spelling of missile.
-4. Updated Rules section of readme to include rules for shield.
-5. Added Shields (please read Shield Rules for more details).
-
+3. Seeker Missiles require 12 rounds of energy to be used instead of 10.
+4. Fixed spelling of missile.
+5. Updated Rules section of readme to include rules for shield.
+6. Added Shields (please read Shield Rules for more details).
 
 
 ### Version 1.1.2 - 07 July 2017
