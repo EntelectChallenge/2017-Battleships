@@ -209,7 +209,7 @@ These are the simplified rules.  More in depth rules are further down.
 1. Each player is given a shield at the start of the game with 0 charges and a protection radius of 0.
 2. The shield will only be usable at the start of phase 2.
 3. After 7 rounds of not using the shield The shield will gain an additional charge.
-4. For every charge the shield protection radius will grow by one.
+4. For every charge the shield protection radius will grow by 1.
 5. The shield will protect a square of cells, given the protection radius of the shield.
 6. The shield has a max radius protection size, depending on the size of the map.
 	* Small map will be a max radius of 1 unit: so a 3 x 3 block will be covered.
@@ -219,8 +219,15 @@ These are the simplified rules.  More in depth rules are further down.
 8. A shielded cell will only say it is shielded if it was hit.
 9. Only one shield can be activated at a time.
 10. Shields do not gain charge while they are active.
-11. A shield must have at least 1 charge before it can be placed.
-12. Shields block seeker missiles from finding targets underneath the shield.
+11. Shields lose 1 charge for each round they are active.
+12. A shield must have at least 1 charge before it can be placed.
+13. Shields block seeker missiles from finding targets underneath the shield.
+
+#### Shield Placement
+
+1. To Place a shield you have to pass through the following command: 8,<x:pos>,<y:pos> where the x and y pos are the center points of the shield.
+2. When a shield is hit, it will show an '@' symbol where the shot landed on the respective map while the shield is active. 
+3. When the shield expires there will be no history where any shots landed.
 
 # The Rules to rule them all
 ### Map Generation
