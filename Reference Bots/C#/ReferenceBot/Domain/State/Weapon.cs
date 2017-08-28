@@ -22,7 +22,7 @@ namespace ReferenceBot.Domain.State
         SingleShot,
         DoubleShot,
         CornerShot,
-        SeekerMissle,
+        SeekerMissile,
         DiagonalCrossShot,
         CrossShot
     }
