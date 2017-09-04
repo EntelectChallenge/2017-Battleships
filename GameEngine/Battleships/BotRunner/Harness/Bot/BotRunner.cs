@@ -126,7 +126,7 @@ namespace TestHarness.TestHarnesses.Bot
                 if (placeShipCommand != null)
                 {
                     return new PlaceShipCommand(placeShipCommand.Ships, placeShipCommand.Points,
-                        placeShipCommand.Directions);
+                        placeShipCommand.Directions, placeShipCommand.OriginalString);
                 }
                 if (otherCommand == null) return new DoNothingCommand();
                 switch (otherCommand.Code)

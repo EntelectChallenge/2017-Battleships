@@ -55,10 +55,14 @@
     <Compile Include="Games\PlayerType.cs" />
     <Compile Include="Games\ShipType.cs" />
     <Compile Include="Games\ShipTypeExtension.cs" />
+    <Compile Include="JSON\CommandType.cs" />
     <Compile Include="JSON\OpponentCell.cs" />
     <Compile Include="JSON\OpponentPlayerMap.cs" />
     <Compile Include="JSON\OpponentShip.cs" />
+    <Compile Include="JSON\Player1Move.cs" />
+    <Compile Include="JSON\Player2Move.cs" />
     <Compile Include="JSON\PlayerGameState.cs" />
+    <Compile Include="JSON\RoundCommands.cs" />
     <Compile Include="Maps\Cell.cs" />
     <Compile Include="Maps\Direction.cs" />
     <Compile Include="Maps\ICellOccupant.cs" />

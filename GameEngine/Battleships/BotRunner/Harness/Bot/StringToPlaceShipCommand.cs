@@ -13,11 +13,14 @@ namespace TestHarness.TestHarnesses.Bot
         public List<Point> Points { get; set; }
         public List<Direction> Directions { get; set; }
 
+        public string OriginalString { get; set; }
+
         public StringToPlaceShipCommand(string[] commands)
         {
             ExtractShips(commands);
             ExtractPoints(commands);
             ExtractDirections(commands);
+            this.OriginalString = string.Join(",", commands).Replace("\r", " ");
         }
 
         private void ExtractShips(string[] commands)
@@ -75,7 +78,7 @@ namespace TestHarness.TestHarnesses.Bot
         public static Direction ConvertoToDirection(string direction)
         {
             var lowerCase = direction.ToLower();
-            lowerCase = lowerCase.Replace("\r","");
+            lowerCase = lowerCase.Replace("\r", "");
             switch (lowerCase)
             {
                 case "north":

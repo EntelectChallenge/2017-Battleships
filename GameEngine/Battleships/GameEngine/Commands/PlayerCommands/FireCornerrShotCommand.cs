@@ -11,11 +11,11 @@ namespace GameEngine.Commands.PlayerCommands
 {
     public class FireCornerrShotCommand : ICommand
     {
-        private readonly Point _centerPoint;
+        public readonly Point CenterPoint;
 
         public FireCornerrShotCommand(Point centerPoint)
         {
-            _centerPoint = centerPoint;
+            CenterPoint = centerPoint;
         }
 
         public void PerformCommand(GameMap gameMap, BattleshipPlayer player)
@@ -26,10 +26,10 @@ namespace GameEngine.Commands.PlayerCommands
                 {
                     var opponentsMap = gameMap.GetOpponetMap(player.PlayerType);
                     var cornerShot =
-                        opponentsMap.Cells.Where(cell => (cell.X + 1 == _centerPoint.X && cell.Y - 1 == _centerPoint.Y)
-                                                         || (cell.X - 1 == _centerPoint.X && cell.Y - 1 == _centerPoint.Y)
-                                                         || (cell.X + 1 == _centerPoint.X && cell.Y + 1 == _centerPoint.Y)
-                                                         || (cell.X - 1 == _centerPoint.X && cell.Y + 1 == _centerPoint.Y)).Select(x => new Point(x.X, x.Y)).ToList();
+                        opponentsMap.Cells.Where(cell => (cell.X + 1 == CenterPoint.X && cell.Y - 1 == CenterPoint.Y)
+                                                         || (cell.X - 1 == CenterPoint.X && cell.Y - 1 == CenterPoint.Y)
+                                                         || (cell.X + 1 == CenterPoint.X && cell.Y + 1 == CenterPoint.Y)
+                                                         || (cell.X - 1 == CenterPoint.X && cell.Y + 1 == CenterPoint.Y)).Select(x => new Point(x.X, x.Y)).ToList();
                     gameMap.Shoot(player.PlayerType, cornerShot, WeaponType.CornerShot);
                 }
                 else

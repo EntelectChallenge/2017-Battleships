@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using Domain.Abilities;
 using Domain.Games;
@@ -65,6 +66,18 @@ namespace Domain.Players
 
         [JsonProperty]
         public Shield Shield { get; set; }
+
+        [JsonIgnore]
+        public bool SuccessfulMove { get; set; }
+
+        [JsonIgnore]
+        public string CommandIssued { get; set; }
+
+        [JsonIgnore]
+        public Point CommandCenterPoint { get; set; }
+
+        [JsonIgnore]
+        public string PlaceShipString { get; set; }
 
         public void AddPoints(int points)
         {

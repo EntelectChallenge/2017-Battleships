@@ -82,6 +82,43 @@ namespace GameEngine.Renderers
             return playerGameState;
         }
 
+        public StringBuilder RenderJsonRoundCommand()
+        {
+            return new StringBuilder(JsonConvert.SerializeObject(CreateRoundCommands(), minify ? Formatting.None : Formatting.Indented));
+        }
+
+        public RoundCommands CreateRoundCommands()
+        {
+            var player1 = GameMap.GetBattleshipPlayer(PlayerType.One);
+            var player2 = GameMap.GetBattleshipPlayer(PlayerType.Two);
+
+            var roundCommand = new RoundCommands
+            {
+                Player1Move = new Player1Move
+                {
+                    Energy = player1.Energy,
+                    CenterPoint = player1.CommandCenterPoint,
+                    SuccessfulMove = player1.SuccessfulMove,
+                    CommandIssued = player1.CommandIssued,
+                    PlaceShipString = player1.PlaceShipString,
+                    RemainingShieldTurns = player1.Shield.CurrentCharges,
+                    ShieldRadius = player1.Shield.CurrentRadius
+                },
+                Player2Move = new Player2Move
+                {
+                    Energy = player2.Energy,
+                    CenterPoint = player2.CommandCenterPoint,
+                    SuccessfulMove = player2.SuccessfulMove,
+                    CommandIssued = player2.CommandIssued,
+                    PlaceShipString = player2.PlaceShipString,
+                    RemainingShieldTurns = player2.Shield.CurrentCharges,
+                    ShieldRadius = player2.Shield.CurrentRadius
+
+                }
+            };
+            return roundCommand;
+        }
+
         public virtual StringBuilder RenderTextGameState(PlayerType playerType, bool failure = false,
             bool renderLegend = false)
         {

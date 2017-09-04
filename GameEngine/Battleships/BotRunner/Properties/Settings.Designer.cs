@@ -85,5 +85,14 @@ namespace BotRunner.Properties {
                 return ((string)(this["StateFileName"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("round-command.json")]
+        public string RoundCommandFileName {
+            get {
+                return ((string)(this["RoundCommandFileName"]));
+            }
+        }
     }
 }

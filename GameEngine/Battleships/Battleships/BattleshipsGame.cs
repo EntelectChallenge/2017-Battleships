@@ -141,6 +141,7 @@ namespace Battleships
             var mapPlayer2Location = Path.Combine(_runLocation, roundMapPath);
             var stateLocation = Path.Combine(_runLocation, roundMapPath);
             var roundInfoLocation = Path.Combine(_runLocation, roundMapPath);
+            var roundCommandLocation = Path.Combine(_runLocation, roundMapPath);
 
             if (!Directory.Exists(mapPlayer1Location))
                 Directory.CreateDirectory(mapPlayer1Location);
@@ -151,6 +152,7 @@ namespace Battleships
                 gameMap.GetBattleshipPlayer(PlayerType.Two).Key + " - map.txt");
             stateLocation = Path.Combine(stateLocation, "state.json");
             roundInfoLocation = Path.Combine(roundInfoLocation, "roundInfo.json");
+            roundCommandLocation = Path.Combine(roundCommandLocation, "roundCommand.json");
 
             if (File.Exists(mapPlayer1Location))
                 File.Delete(mapPlayer1Location);
@@ -163,6 +165,8 @@ namespace Battleships
 
             var renderer = new GameMapRender(gameMap, true);
             var json = renderer.RenderJsonGameState(PlayerType.Both);
+            var roundCommandJson = renderer.RenderJsonRoundCommand();
+
             var mapPlayerOne = renderer.RenderTextGameState(PlayerType.One);
             var mapPlayerTwo = renderer.RenderTextGameState(PlayerType.Two);
             var roundInfo = GenerateRoundInfo(gameMap);
@@ -171,6 +175,7 @@ namespace Battleships
             FileHelper.WriteAllText(mapPlayer2Location, mapPlayerTwo.ToString());
             FileHelper.WriteAllText(stateLocation, json.ToString());
             FileHelper.WriteAllText(roundInfoLocation, roundInfo);
+            FileHelper.WriteAllText(roundCommandLocation, roundCommandJson.ToString());
         }
 
         private void WriteEngineInfo(GameMap gameMap, int round)

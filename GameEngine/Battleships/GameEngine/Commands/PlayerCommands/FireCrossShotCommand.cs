@@ -12,13 +12,13 @@ namespace GameEngine.Commands.PlayerCommands
 {
     public class FireCrossShotCommand : ICommand
     {
-        private readonly Point _centerPoint;
-        private readonly bool _diagonal;
+        public readonly Point CenterPoint;
+        public readonly bool Diagonal;
 
         public FireCrossShotCommand(Point centerPoint, bool diagonal)
         {
-            this._centerPoint = centerPoint;
-            this._diagonal = diagonal;
+            this.CenterPoint = centerPoint;
+            this.Diagonal = diagonal;
         }
 
         public void PerformCommand(GameMap gameMap, BattleshipPlayer player)
@@ -28,16 +28,16 @@ namespace GameEngine.Commands.PlayerCommands
                 var opponentsMap = gameMap.GetOpponetMap(player.PlayerType);
                 var crossShot = new List<Point>();
 
-                if (_diagonal)
+                if (Diagonal)
                 {
                     if (player.Ships.Any(x => x.ShipType == ShipType.Battleship && !x.Destroyed))
                     {
                         crossShot = opponentsMap.Cells
-                            .Where(cell => (cell.X == _centerPoint.X && cell.Y == _centerPoint.Y)
-                                           || (cell.X + 1 == _centerPoint.X && cell.Y - 1 == _centerPoint.Y)
-                                           || (cell.X - 1 == _centerPoint.X && cell.Y - 1 == _centerPoint.Y)
-                                           || (cell.X + 1 == _centerPoint.X && cell.Y + 1 == _centerPoint.Y)
-                                           || (cell.X - 1 == _centerPoint.X && cell.Y + 1 == _centerPoint.Y))
+                            .Where(cell => (cell.X == CenterPoint.X && cell.Y == CenterPoint.Y)
+                                           || (cell.X + 1 == CenterPoint.X && cell.Y - 1 == CenterPoint.Y)
+                                           || (cell.X - 1 == CenterPoint.X && cell.Y - 1 == CenterPoint.Y)
+                                           || (cell.X + 1 == CenterPoint.X && cell.Y + 1 == CenterPoint.Y)
+                                           || (cell.X - 1 == CenterPoint.X && cell.Y + 1 == CenterPoint.Y))
                             .Select(x => new Point(x.X, x.Y)).ToList();
 
                         gameMap.Shoot(player.PlayerType, crossShot, WeaponType.DiagonalCrossShot);
@@ -53,11 +53,11 @@ namespace GameEngine.Commands.PlayerCommands
                     if (player.Ships.Any(x => x.ShipType == ShipType.Cruiser && !x.Destroyed))
                     {
                         crossShot = opponentsMap.Cells
-                            .Where(cell => (cell.X == _centerPoint.X && cell.Y == _centerPoint.Y)
-                                           || (cell.X + 1 == _centerPoint.X && cell.Y == _centerPoint.Y)
-                                           || (cell.X == _centerPoint.X && cell.Y - 1 == _centerPoint.Y)
-                                           || (cell.X == _centerPoint.X && cell.Y + 1 == _centerPoint.Y)
-                                           || (cell.X - 1 == _centerPoint.X && cell.Y == _centerPoint.Y))
+                            .Where(cell => (cell.X == CenterPoint.X && cell.Y == CenterPoint.Y)
+                                           || (cell.X + 1 == CenterPoint.X && cell.Y == CenterPoint.Y)
+                                           || (cell.X == CenterPoint.X && cell.Y - 1 == CenterPoint.Y)
+                                           || (cell.X == CenterPoint.X && cell.Y + 1 == CenterPoint.Y)
+                                           || (cell.X - 1 == CenterPoint.X && cell.Y == CenterPoint.Y))
                             .Select(x => new Point(x.X, x.Y)).ToList();
 
                         gameMap.Shoot(player.PlayerType, crossShot, WeaponType.CrossShot);

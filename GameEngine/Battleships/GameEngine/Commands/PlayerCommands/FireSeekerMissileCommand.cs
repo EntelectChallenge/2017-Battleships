@@ -11,11 +11,11 @@ namespace GameEngine.Commands.PlayerCommands
 {
     public class FireSeekerMissileCommand : ICommand
     {
-        private readonly Point _centerPoint;
+        public readonly Point CenterPoint;
 
         public FireSeekerMissileCommand(Point centerPoint)
         {
-            _centerPoint = centerPoint;
+            CenterPoint = centerPoint;
         }
 
         public void PerformCommand(GameMap gameMap, BattleshipPlayer player)
@@ -28,14 +28,14 @@ namespace GameEngine.Commands.PlayerCommands
 
                     var occupiedCells = opponentsMap.Cells.Where(cell => cell.Occupied && !cell.Hit && !cell.Shielded).ToList();
 
-                    var cellToHit = _centerPoint;
+                    var cellToHit = CenterPoint;
 
                     if (occupiedCells.Any())
                     {
                         var cellsInRange = occupiedCells.Select(x => new
                         {
                             distance = Math.Sqrt(
-                                Math.Pow((x.X - _centerPoint.X), 2) + Math.Pow(x.Y - _centerPoint.Y, 2)),
+                                Math.Pow((x.X - CenterPoint.X), 2) + Math.Pow(x.Y - CenterPoint.Y, 2)),
                             cell = x
                         }).OrderBy(x => x.distance);
 

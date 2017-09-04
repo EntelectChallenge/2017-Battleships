@@ -12,13 +12,13 @@ namespace GameEngine.Commands.PlayerCommands
 {
     public class FireDoubleShotCommand : ICommand
     {
-        private readonly Point _centerPoint;
-        private readonly Direction _direction;
+        public readonly Point CenterPoint;
+        public readonly Direction Direction;
 
         public FireDoubleShotCommand(Point centerPoint, Direction direction)
         {
-            this._centerPoint = centerPoint;
-            this._direction = direction;
+            this.CenterPoint = centerPoint;
+            this.Direction = direction;
         }
         public void PerformCommand(GameMap gameMap, BattleshipPlayer player)
         {
@@ -29,18 +29,18 @@ namespace GameEngine.Commands.PlayerCommands
                     var doubleShot = new List<Point>();
                     var opponentMap = gameMap.GetOpponetMap(player.PlayerType);
 
-                    if (_direction == Direction.North || _direction == Direction.South)
+                    if (Direction == Direction.North || Direction == Direction.South)
                     {
                         doubleShot = opponentMap.Cells
-                            .Where(cell => (cell.X == _centerPoint.X && cell.Y + 1 == _centerPoint.Y) ||
-                                           (cell.X == _centerPoint.X && cell.Y - 1 == _centerPoint.Y))
+                            .Where(cell => (cell.X == CenterPoint.X && cell.Y + 1 == CenterPoint.Y) ||
+                                           (cell.X == CenterPoint.X && cell.Y - 1 == CenterPoint.Y))
                             .Select(x => new Point(x.X, x.Y)).ToList();
                     }
-                    else if (_direction == Direction.East || _direction == Direction.West)
+                    else if (Direction == Direction.East || Direction == Direction.West)
                     {
                         doubleShot = opponentMap.Cells
-                            .Where(cell => (cell.X + 1 == _centerPoint.X && cell.Y == _centerPoint.Y) ||
-                                           (cell.X - 1 == _centerPoint.X && cell.Y == _centerPoint.Y))
+                            .Where(cell => (cell.X + 1 == CenterPoint.X && cell.Y == CenterPoint.Y) ||
+                                           (cell.X - 1 == CenterPoint.X && cell.Y == CenterPoint.Y))
                             .Select(x => new Point(x.X, x.Y)).ToList();
                     }
 

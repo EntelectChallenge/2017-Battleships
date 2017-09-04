@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Linq;
 using System.Text;
-
 using Domain.Games;
 using Domain.Maps;
 using Domain.Ships;
@@ -76,7 +75,8 @@ namespace BotRunner.Harness.ConsoleHarness
             }
             Console.WriteLine("All Ships have been added to the queue to be placed for player " + Name);
             var command = new StringToPlaceShipCommand(ships);
-            PublishCommand(new PlaceShipCommand(command.Ships, command.Points, command.Directions));
+            PublishCommand(new PlaceShipCommand(command.Ships, command.Points, command.Directions,
+                string.Join("\n", ships)));
         }
 
         private void GeneralCommands()
@@ -109,32 +109,45 @@ namespace BotRunner.Harness.ConsoleHarness
             switch (code)
             {
                 case 1:
-                    PublishCommand(new FireSingleShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2]))));
+                    PublishCommand(new FireSingleShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]),
+                        Convert.ToInt32(line.Split(',')[2]))));
                     break;
                 case 2:
                     //Vertical Double Shot
-                    PublishCommand(new FireDoubleShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2])),Direction.North));
+                    PublishCommand(
+                        new FireDoubleShotCommand(
+                            new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2])),
+                            Direction.North));
                     break;
                 case 3:
                     //Horizontal Double Shot
-                    PublishCommand(new FireDoubleShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2])), Direction.East));
+                    PublishCommand(
+                        new FireDoubleShotCommand(
+                            new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2])),
+                            Direction.East));
                     break;
                 case 4:
-                    PublishCommand(new FireCornerrShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2]))));;
+                    PublishCommand(new FireCornerrShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]),
+                        Convert.ToInt32(line.Split(',')[2]))));
+                    ;
                     break;
                 case 5:
                     //Diagonal cross shot
-                    PublishCommand(new FireCrossShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2])), true));
+                    PublishCommand(new FireCrossShotCommand(
+                        new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2])), true));
                     break;
                 case 6:
                     //Horizontal and vertical cross shot
-                    PublishCommand(new FireCrossShotCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2])), false));
+                    PublishCommand(new FireCrossShotCommand(
+                        new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2])), false));
                     break;
                 case 7:
-                    PublishCommand(new FireSeekerMissileCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2]))));
+                    PublishCommand(new FireSeekerMissileCommand(new Point(Convert.ToInt32(line.Split(',')[1]),
+                        Convert.ToInt32(line.Split(',')[2]))));
                     break;
                 case 8:
-                    PublishCommand(new PlaceShieldCommand(new Point(Convert.ToInt32(line.Split(',')[1]), Convert.ToInt32(line.Split(',')[2]))));
+                    PublishCommand(new PlaceShieldCommand(new Point(Convert.ToInt32(line.Split(',')[1]),
+                        Convert.ToInt32(line.Split(',')[2]))));
                     break;
                 default:
                     PublishCommand(new DoNothingCommand());

@@ -8,17 +8,17 @@ namespace GameEngine.Commands.PlayerCommands
 {
     public class PlaceShieldCommand : ICommand
     {
-        private readonly Point _point;
+        public readonly Point Point;
 
         public PlaceShieldCommand(Point point)
         {
-            this._point = point;
+            this.Point = point;
         }
         public void PerformCommand(GameMap gameMap, BattleshipPlayer player)
         {
             try
             {
-                gameMap.PlaceShield(player, _point, gameMap.CurrentRound);
+                gameMap.PlaceShield(player, Point, gameMap.CurrentRound);
             }
             catch (Exception exception)
             {

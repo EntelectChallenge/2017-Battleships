@@ -13,18 +13,18 @@ namespace GameEngine.Commands.PlayerCommands
 {
     public class FireSingleShotCommand : ICommand
     {
-        private readonly Point _point;
+        public readonly Point Point;
 
         public FireSingleShotCommand(Point point)
         {
-            this._point = point;
+            this.Point = point;
         }
 
         public void PerformCommand(GameMap gameMap, BattleshipPlayer player)
         {
             try
             {
-                gameMap.Shoot(player.PlayerType, new List<Point>() {_point}, WeaponType.SingleShot);
+                gameMap.Shoot(player.PlayerType, new List<Point>() {Point}, WeaponType.SingleShot);
             }
             catch (Exception exception)
             {

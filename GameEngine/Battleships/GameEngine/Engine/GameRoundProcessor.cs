@@ -1,9 +1,12 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Games;
+using Domain.JSON;
+using Domain.Maps;
 using Domain.Players;
 using Domain.Ships;
 using GameEngine.Commands;
@@ -108,7 +111,6 @@ namespace GameEngine.Engine
                     var difference = currentRound - shield.RoundLastUsed;
                     if (!shield.Active)
                     {
-                        
                         if (difference != 0 && difference % shield.ChargeTime == 0)
                         {
                             shield.CurrentCharges++;
@@ -117,7 +119,7 @@ namespace GameEngine.Engine
                     }
                     else
                     {
-                        if (difference != 0 &&--shield.CurrentCharges == 0)
+                        if (difference != 0 && --shield.CurrentCharges == 0)
                         {
                             shield.Active = false;
                             shield.RoundLastUsed = currentRound;
@@ -160,6 +162,9 @@ namespace GameEngine.Engine
             _logger.LogDebug("Processing Player Commands");
             foreach (var command in _commandsToProcess)
             {
+                SetCommandTypeAndCenterPoint(command.Value, command.Key.BattleshipPlayer);
+
+
                 if (command.Key.BattleshipPlayer.Killed)
                 {
                     _logger.LogInfo(
@@ -176,9 +181,11 @@ namespace GameEngine.Engine
                     }
 
                     command.Value.PerformCommand(_gameMap, command.Key.BattleshipPlayer);
+                    command.Key.BattleshipPlayer.SuccessfulMove = true;
                 }
                 catch (InvalidCommandException ex)
                 {
+                    command.Key.BattleshipPlayer.SuccessfulMove = false;
                     command.Key.PlayerCommandFailed(command.Value, ex.Message);
                     _logger.LogException(
                         $"Failed to process command {command.Value} for player {command.Key.BattleshipPlayer}", ex);
@@ -235,6 +242,66 @@ namespace GameEngine.Engine
         {
             _gameMap.CleanMapBeforePlace(PlayerType.One);
             _gameMap.CleanMapBeforePlace(PlayerType.Two);
+        }
+
+        protected void SetCommandTypeAndCenterPoint(ICommand command, BattleshipPlayer player)
+        {
+            if (command is FireSingleShotCommand)
+            {
+                player.CommandIssued = CommandType.FireSingleShot.ToString();
+                player.CommandCenterPoint = ((FireSingleShotCommand) command).Point;
+            }
+            else if (command is PlaceShipCommand)
+            {
+                player.CommandIssued = CommandType.PlaceShip.ToString();
+                player.PlaceShipString = ((PlaceShipCommand) command).OriginalString;
+            }
+            else if (command is PlaceShieldCommand)
+            {
+                player.CommandIssued = CommandType.PlaceShield.ToString();
+                player.CommandCenterPoint = ((PlaceShieldCommand) command).Point;
+            }
+            else if (command is FireSeekerMissileCommand)
+            {
+                player.CommandIssued = CommandType.FireSeekerMissile.ToString();
+                player.CommandCenterPoint = ((FireSeekerMissileCommand) command).CenterPoint;
+            }
+            else if (command is FireCornerrShotCommand)
+            {
+                player.CommandIssued = CommandType.FireCornerShot.ToString();
+                player.CommandCenterPoint = ((FireCornerrShotCommand) command).CenterPoint;
+            }
+            else if (command is FireCrossShotCommand)
+            {
+                if (((FireCrossShotCommand) command).Diagonal)
+                {
+                    player.CommandIssued = CommandType.FireCrossShotDiagonal.ToString();
+                    player.CommandCenterPoint = ((FireCrossShotCommand) command).CenterPoint;
+                }
+                else
+                {
+                    player.CommandIssued = CommandType.FireCrossShotNormal.ToString();
+                    player.CommandCenterPoint = ((FireCrossShotCommand) command).CenterPoint;
+                }
+            }
+            else if (command is FireDoubleShotCommand)
+            {
+                if (((FireDoubleShotCommand) command).Direction == Direction.North ||
+                    ((FireDoubleShotCommand) command).Direction == Direction.South)
+                {
+                    player.CommandIssued = CommandType.FireDoubleShotVertical.ToString();
+                    player.CommandCenterPoint = ((FireDoubleShotCommand) command).CenterPoint;
+                }
+                else
+                {
+                    player.CommandIssued = CommandType.FireDoubleShotHorizontal.ToString();
+                    player.CommandCenterPoint = ((FireDoubleShotCommand) command).CenterPoint;
+                }
+            }
+            else
+            {
+                player.CommandIssued = CommandType.DoNothing.ToString();
+            }
         }
     }
 }

@@ -16,12 +16,14 @@ namespace GameEngine.Commands.PlayerCommands
         private readonly List<Point> _points;
         private readonly List<Direction> _directions;
         private readonly int _maxNumOfShips = 5;
+        public string OriginalString { get; }
 
-        public PlaceShipCommand(List<ShipType> ships, List<Point> points, List<Direction> directions)
+        public PlaceShipCommand(List<ShipType> ships, List<Point> points, List<Direction> directions, string originalString)
         {
             _ships = ships;
             _points = points;
             _directions = directions;
+            this.OriginalString = originalString;
         }
 
         public void PerformCommand(GameMap gameMap, BattleshipPlayer player)
