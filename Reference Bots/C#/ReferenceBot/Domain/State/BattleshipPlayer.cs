@@ -42,5 +42,8 @@ namespace ReferenceBot.Domain.State
 
         [JsonProperty]
         public char Key { get; set; }
+
+        [JsonProperty]
+        public Shield Shield { get; set; }
     }
 }

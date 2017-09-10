@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>-b "C:\Development\Entelect Challenge\2017-Battleships\Reference Bots\C#\ReferenceBot" "C:\Development\Entelect Challenge\2017-Battleships\Reference Bots\C#\ReferenceBot" --pretty --clog</StartArguments>
+    <StartArguments>-b "E:\Entelect\Entelect-2017\Github\2017-Battleships\Reference Bots\C#\ReferenceBot" "E:\Entelect\Entelect-2017\Github\2017-Battleships\Reference Bots\C#\ReferenceBot" --pretty --clog</StartArguments>
   </PropertyGroup>
   <PropertyGroup>
     <PublishUrlHistory>publish\</PublishUrlHistory>

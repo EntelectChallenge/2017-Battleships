@@ -69,6 +69,16 @@ namespace ReferenceBot.Strategy
             var doubleShotWeaponEnergyRequired = destroyerAvailable?.Weapons
                 .Single(c => c.WeaponType == WeaponType.DoubleShot).EnergyRequired;
 
+            var shieldAvailable = !gameState.PlayerMap.Owner.Shield.Active &&
+                                  gameState.PlayerMap.Owner.Shield.CurrentCharges >= 1;
+
+            //This will place a shield over the destroyer if it is not destroyed
+            if (destroyerAvailable != null && shieldAvailable)
+            {
+                var cell = destroyerAvailable.Cells[0];
+                return new Command(Code.Shield, cell.X, cell.Y);
+            }
+
             if (doubleShotWeaponEnergyRequired != null && currentEnergy >= doubleShotWeaponEnergyRequired)
             {
                 return new Command(Code.DoubleShotVertical, x, y);

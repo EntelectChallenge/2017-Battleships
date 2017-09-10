@@ -160,7 +160,29 @@ namespace GameEngine.Engine
         protected bool ProcessPlayerCommands()
         {
             _logger.LogDebug("Processing Player Commands");
-            foreach (var command in _commandsToProcess)
+
+            var placeShieldCommands = _commandsToProcess.Where(x => x.Value is PlaceShieldCommand).ToList();
+            var normalCommands = _commandsToProcess.Where(x => !(x.Value is PlaceShieldCommand)).ToList();
+
+            var commandsToProccess = new Dictionary<Player, ICommand>();
+
+            if (placeShieldCommands.Count() == 1 && normalCommands.Count() == 1)
+            {
+                commandsToProccess.Add(placeShieldCommands[0].Key, placeShieldCommands[0].Value);
+                commandsToProccess.Add(normalCommands[0].Key, normalCommands[0].Value);
+            } 
+            else if (placeShieldCommands.Count() == 2)
+            {
+                commandsToProccess.Add(placeShieldCommands[0].Key, placeShieldCommands[0].Value);
+                commandsToProccess.Add(placeShieldCommands[1].Key, placeShieldCommands[1].Value);
+            }
+            else
+            {
+                commandsToProccess.Add(normalCommands[0].Key, normalCommands[0].Value);
+                commandsToProccess.Add(normalCommands[1].Key, normalCommands[1].Value);
+            }
+
+            foreach (var command in commandsToProccess)
             {
                 SetCommandTypeAndCenterPoint(command.Value, command.Key.BattleshipPlayer);
 

@@ -9,6 +9,7 @@
         CornerShot = 4,
         CrossShotDiagonal = 5,
         CrossShotHorizontal = 6,
-        SeekerMissle = 7
+        SeekerMissile = 7,
+        Shield = 8
     }
 }
