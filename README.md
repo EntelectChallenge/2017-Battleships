@@ -1,6 +1,6 @@
 # 2017-Battleships
 
-The current release is version [1.2.0](https://github.com/EntelectChallenge/2017-Battleships/releases/latest).
+The current release is version [1.2.1](https://github.com/EntelectChallenge/2017-Battleships/releases/latest).
 
 For more information about the challenge see the [Challenge website](http://challenge.entelect.co.za/) .
 
@@ -304,6 +304,10 @@ Players wills be awarded points during the game based on the following.
 3. For killing the enemy player you will be awarded an additional 100 points.
 
 ## Release Notes
+
+### Version 1.2.1 - 11 September 2017
+1. Fixed bug where Player A would have an advantage when placing their shield
+2. Updated reference bot to place shield over destroyer if it still exists
 
 ### Version 1.2.0 - 01 August 2017
 Change Log:
