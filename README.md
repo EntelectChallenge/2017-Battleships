@@ -306,7 +306,7 @@ Players wills be awarded points during the game based on the following.
 ## Release Notes
 
 ### Version 1.2.2 - 12 September 2017
-1. Shield Takes Round Placed into account when 
+1. Shields are deactivated before any commands are processed and will gain charge after the round processing has ended
 
 ### Version 1.2.1 - 11 September 2017
 1. Fixed bug where Player A would have an advantage when placing their shield

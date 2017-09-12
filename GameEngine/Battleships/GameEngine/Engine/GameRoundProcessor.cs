@@ -86,6 +86,7 @@ namespace GameEngine.Engine
                 throw new InvalidOperationException("This round has already been processed!");
             }
             _logger.LogDebug("Beginning round processing");
+            DeactivateShields();
             var proccessed = ProcessPlayerCommands();
             if (proccessed == false && _gameMap.Phase == 1)
             {
@@ -117,7 +118,19 @@ namespace GameEngine.Engine
                             shield.GrowRadius();
                         }
                     }
-                    else
+                }
+            }
+        }
+
+        protected void DeactivateShields()
+        {
+            if (_gameMap.Phase == 2)
+            {
+                foreach (var player in _gameMap.RegisteredPlayers)
+                {
+                    var shield = player.Shield;
+                    var currentRound = _gameMap.CurrentRound;
+                    if (shield.Active)
                     {
                         if (--shield.CurrentCharges == 0)
                         {
@@ -171,7 +184,7 @@ namespace GameEngine.Engine
             {
                 commandsToProccess.Add(placeShieldCommands[0].Key, placeShieldCommands[0].Value);
                 commandsToProccess.Add(normalCommands[0].Key, normalCommands[0].Value);
-            } 
+            }
             else if (placeShieldCommands.Count() == 2)
             {
                 commandsToProccess.Add(placeShieldCommands[0].Key, placeShieldCommands[0].Value);
